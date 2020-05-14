@@ -281,11 +281,11 @@ should agree between themselves on a history rewriting policy.
 How to handle failed tests
 --------------------------
 
-If you discover a component of MDP failing to run corectly, you should always
+If you discover a component of MDP failing to run correctly, you should always
 post an issue on
 `MDP's issue tracker <https://github.com/mdp-toolkit/mdp-toolkit/issues/>`_.
-If this happens in a test of MDP locally or in a CI service, it is typically
-easily reproducible like this::
+If this happens during a test of MDP locally or in a CI service, the problem is
+typically easily reproducible like this::
 
        pytest --seed==INTEGER mdp/test/test_FUNCTIONALITY.py -k test_NAME
 
