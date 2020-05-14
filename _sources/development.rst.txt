@@ -284,19 +284,16 @@ How to handle failed tests
 If you discover a component of MDP failing to run corectly, you should always
 post an issue on
 `MDP's issue tracker <https://github.com/mdp-toolkit/mdp-toolkit/issues/>`_.
-If this happens in a test of MDP locally or in a CI service, there is a chance
-the problem is specific to a random seed used to generate initial data within
-a test.
-
-A failed test can be reproduced like this::
+If this happens in a test of MDP locally or in a CI service, it is typically
+easily reproducible like this::
 
        pytest --seed==INTEGER mdp/test/test_FUNCTIONALITY.py -k test_NAME
 
 Here ``INTEGER`` is the random seed, ``FUNCTIONALITY`` describes the component
 of MDP for which ``test_FUNCTIONALITY.py`` contains test and ``NAME`` is the
 name of the failing test. The values can be read out of the pytest report
-after a failed test run. If the test fails only for some values of the seed,
-the data should be added to
+after a failed test run. The problem can be spotted by the other
+developers of MDP if the data is added to
 `the file dedicated to collecting such data <https://github.com/mdp-toolkit/mdp-toolkit/blob/master/BROKEN_SEEDS/>`_.
 
 ------------------------

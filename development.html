@@ -334,18 +334,16 @@ should agree between themselves on a history rewriting policy.</p>
 <p>If you discover a component of MDP failing to run corectly, you should always
 post an issue on
 <a class="reference external" href="https://github.com/mdp-toolkit/mdp-toolkit/issues/">MDP’s issue tracker</a>.
-If this happens in a test of MDP locally or in a CI service, there is a chance
-the problem is specific to a random seed used to generate initial data within
-a test.</p>
-<p>A failed test can be reproduced like this:</p>
+If this happens in a test of MDP locally or in a CI service, it is typically
+easily reproducible like this:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="o">--</span><span class="n">seed</span><span class="o">==</span><span class="n">INTEGER</span> <span class="n">mdp</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test_FUNCTIONALITY</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">k</span> <span class="n">test_NAME</span>
 </pre></div>
 </div>
 <p>Here <code class="docutils literal"><span class="pre">INTEGER</span></code> is the random seed, <code class="docutils literal"><span class="pre">FUNCTIONALITY</span></code> describes the component
 of MDP for which <code class="docutils literal"><span class="pre">test_FUNCTIONALITY.py</span></code> contains test and <code class="docutils literal"><span class="pre">NAME</span></code> is the
 name of the failing test. The values can be read out of the pytest report
-after a failed test run. If the test fails only for some values of the seed,
-the data should be added to
+after a failed test run. The problem can be spotted by the other
+developers of MDP if the data is added to
 <a class="reference external" href="https://github.com/mdp-toolkit/mdp-toolkit/blob/master/BROKEN_SEEDS/">the file dedicated to collecting such data</a>.</p>
 </div>
 </div>
@@ -447,7 +445,7 @@ comments and remarks :-)</p>
         </td>
         <td class="footer-center">
           Last updated on
-             2020-05-15 12:59:02 AM Coordinated Universal Time
+             2020-05-15 1:08:46 AM Coordinated Universal Time
         </td>
         <td class="footer-right">
          <form class="search" action="search.html" method="get">
