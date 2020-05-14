@@ -278,6 +278,27 @@ history of the branch if she finds it reasonable::
 If multiple developers wants to cooperate on ``feature_branch``, they
 should agree between themselves on a history rewriting policy.
 
+How to handle failed tests
+--------------------------
+
+If you discover a component of MDP failing to run corectly, you should always
+post an issue on
+`MDP's issue tracker <https://github.com/mdp-toolkit/mdp-toolkit/issues/>`_.
+If this happens in a test of MDP locally or in a CI service, there is a chance
+the problem is specific to a random seed used to generate initial data within
+a test.
+
+A failed test can be reproduced like this::
+
+       pytest --seed==INTEGER mdp/test/test_FUNCTIONALITY.py -k test_NAME
+
+Here ``INTEGER`` is the random seed, ``FUNCTIONALITY`` describes the component
+of MDP for which ``test_FUNCTIONALITY.py`` contains test and ``NAME`` is the
+name of the failing test. The values can be read out of the pytest report
+after a failed test run. If the test fails only for some values of the seed,
+the data should be added to
+`the file dedicated to collecting such data <https://github.com/mdp-toolkit/mdp-toolkit/blob/master/BROKEN_SEEDS/>`_.
+
 ------------------------
 General Style Guidelines
 ------------------------
