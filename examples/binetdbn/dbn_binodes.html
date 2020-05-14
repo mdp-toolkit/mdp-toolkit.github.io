@@ -1,0 +1,255 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DBN binodes &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Old DBN coroutine binodes" href="dbn_binodes_coroutine_old.html" />
+    <link rel="prev" title="DBN nodes" href="dbn_nodes.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logmap/logmap.html">Logistic Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lle/lle.html">Locally Linear Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gng/gng.html">Growing Neural Gas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution/image_convolution.html">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bayes_guesser/bayes_guesser.html">Bayes Guesser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../word_generator/word_generator.html">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dbn.html">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_custom_inspection.html">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dbn-binodes">
+<span id="id1"></span><h1>DBN binodes<a class="headerlink" href="#dbn-binodes" title="Permalink to this headline">¶</a></h1>
+<p>Download <a class="reference download internal" href="../../_downloads/dbn_binodes.py" download=""><code class="xref download docutils literal"><span class="pre">dbn_binodes.py</span></code></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file contains everything needed for the binet version of the DBN,</span>
+<span class="sd">based on Pietros non-binet DBN node implementation.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">mdp</span>
+<span class="kn">import</span> <span class="nn">bimdp</span>
+<span class="kn">from</span> <span class="nn">dbn_nodes</span> <span class="kn">import</span> <span class="n">DBNLayerNode</span>
+
+
+<span class="k">class</span> <span class="nc">DBNLayerBiNode</span><span class="p">(</span><span class="n">bimdp</span><span class="o">.</span><span class="n">BiNode</span><span class="p">,</span> <span class="n">DBNLayerNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adapter to turn the DBNLayerNode into a BiNode.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">visible_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DBNLayerBiNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">node_id</span><span class="o">=</span><span class="n">node_id</span><span class="p">,</span>
+                                             <span class="n">hidden_dim</span><span class="o">=</span><span class="n">hidden_dim</span><span class="p">,</span>
+                                             <span class="n">visible_dim</span><span class="o">=</span><span class="n">visible_dim</span><span class="p">,</span>
+                                             <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">_is_bi_learning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_updown_initialized</span>
+
+    <span class="c1"># v as the first argument is filled with the x value</span>
+    <span class="k">def</span> <span class="nf">_up_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+        <span class="n">v</span><span class="p">,</span> <span class="n">pv</span><span class="p">,</span> <span class="n">deltav</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DBNLayerBiNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_up_pass</span><span class="p">(</span>
+                                                <span class="n">v</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">decay</span><span class="p">,</span> <span class="n">momentum</span><span class="p">)</span>
+        <span class="c1"># pv and deltav are currently not used,</span>
+        <span class="c1"># but could be passed in the message</span>
+        <span class="k">return</span> <span class="n">v</span>
+    
+    <span class="c1"># h has a different dimension than x, so have to transport it in message,</span>
+    <span class="c1"># x is None, but is always given as the first argument</span>
+    <span class="k">def</span> <span class="nf">_down_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">top_updates</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                   <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+        <span class="n">v</span><span class="p">,</span> <span class="n">pv</span><span class="p">,</span> <span class="n">deltav</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DBNLayerBiNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_down_pass</span><span class="p">(</span>
+                                    <span class="n">h</span><span class="p">,</span> <span class="n">top_updates</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">decay</span><span class="p">,</span> <span class="n">momentum</span><span class="p">)</span>
+        <span class="c1"># pv and deltav are currently not used</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="n">h</span><span class="p">}</span>
+        
+
+<span class="k">class</span> <span class="nc">DBNMasterBiNode</span><span class="p">(</span><span class="n">bimdp</span><span class="o">.</span><span class="n">BiNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Node sits atop the DBN and manages the updown training phase.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dbn_ids</span><span class="p">,</span> <span class="n">sender_id</span><span class="p">,</span> <span class="n">node_id</span><span class="o">=</span><span class="s2">&quot;dbn_master&quot;</span><span class="p">,</span>
+                 <span class="n">input_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize node.</span>
+<span class="sd">        </span>
+<span class="sd">        sender_id -- id of the sender node at the flow bottom.</span>
+<span class="sd">        dbn_ids -- List with the ids of all the DBN node in the correct order.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dbn_ids</span> <span class="o">=</span> <span class="n">dbn_ids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sender_id</span> <span class="o">=</span> <span class="n">sender_id</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DBNMasterBiNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">node_id</span><span class="o">=</span><span class="n">node_id</span><span class="p">,</span>
+                                              <span class="n">input_dim</span><span class="o">=</span><span class="n">input_dim</span><span class="p">,</span>
+                                              <span class="n">output_dim</span><span class="o">=</span><span class="n">input_dim</span><span class="p">,</span>
+                                              <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+    
+    <span class="nd">@bimdp</span><span class="o">.</span><span class="n">binode_coroutine</span><span class="p">([</span><span class="s2">&quot;msg_x&quot;</span><span class="p">,</span> <span class="s2">&quot;msg&quot;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">msg_x</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">,</span> <span class="n">min_error</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Manage the DBN training.&quot;&quot;&quot;</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">max_iter</span> <span class="ow">and</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="n">min_error</span><span class="p">:</span>
+            <span class="c1">## up execution phase</span>
+            <span class="n">orig_x</span> <span class="o">=</span> <span class="n">msg_x</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">dbn_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbn_ids</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">[</span><span class="n">dbn_id</span> <span class="o">+</span> <span class="s2">&quot;-&gt;method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;up_pass&quot;</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">orig_x</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sender_id</span>
+            <span class="c1">## down execution phase</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">dbn_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbn_ids</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">[</span><span class="n">dbn_id</span> <span class="o">+</span> <span class="s2">&quot;-&gt;target&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="n">msg</span><span class="p">[</span><span class="n">dbn_id</span> <span class="o">+</span> <span class="s2">&quot;-&gt;method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;down_pass&quot;</span>
+            <span class="n">msg</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sender_id</span> <span class="o">+</span> <span class="s2">&quot;-&gt;target&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_id</span>
+            <span class="n">msg</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sender_id</span> <span class="o">+</span> <span class="s2">&quot;-&gt;no_x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># avoid x dimension error</span>
+            <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">yield</span> <span class="kc">None</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="c1">## execution phase</span>
+            <span class="c1"># do one normal execution for the error calculation</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">msg_x</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">orig_x</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sender_id</span>
+            <span class="c1">## inverse phase</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">dbn_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbn_ids</span><span class="p">:</span>
+                <span class="n">msg</span><span class="p">[</span><span class="n">dbn_id</span> <span class="o">+</span> <span class="s2">&quot;-&gt;method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;inverse&quot;</span>
+            <span class="n">msg</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sender_id</span> <span class="o">+</span> <span class="s2">&quot;-&gt;target&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_id</span>
+            <span class="n">msg</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sender_id</span> <span class="o">+</span> <span class="s2">&quot;-&gt;no_x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">x</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="c1">## calculate new error and restart up phase</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">orig_x</span> <span class="o">-</span> <span class="n">msg_x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+        <span class="c1">## this should end the training</span>
+        <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">()</span>
+
+
+<span class="nd">@mdp</span><span class="o">.</span><span class="n">extension_method</span><span class="p">(</span><span class="s2">&quot;html&quot;</span><span class="p">,</span> <span class="n">DBNMasterBiNode</span><span class="p">,</span> <span class="s2">&quot;_html_representation&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">master_html_representation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coroutine_instances</span> <span class="ow">and</span> <span class="s2">&quot;_train&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coroutine_instances</span><span class="p">:</span>
+        <span class="n">co_locals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coroutine_instances</span><span class="p">[</span><span class="s2">&quot;_train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">gi_frame</span><span class="o">.</span><span class="n">f_locals</span>
+        <span class="k">return</span> <span class="p">([</span><span class="s1">&#39;iter counter: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">co_locals</span><span class="p">[</span><span class="s2">&quot;i&quot;</span><span class="p">],</span>
+                 <span class="s1">&#39;error: </span><span class="si">%.5f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">co_locals</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">]])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">get_DBN_flow</span><span class="p">(</span><span class="n">n_layers</span><span class="p">,</span> <span class="n">hidden_dims</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Factory function for DBNs.&quot;&quot;&quot;</span>
+    <span class="n">dbn_ids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bimdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">SenderBiNode</span><span class="p">(</span><span class="n">node_id</span><span class="o">=</span><span class="s2">&quot;sender&quot;</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">i_layer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">):</span>
+        <span class="n">dbn_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;dbn_</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i_layer</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DBNLayerBiNode</span><span class="p">(</span><span class="n">node_id</span><span class="o">=</span><span class="n">dbn_ids</span><span class="p">[</span><span class="n">i_layer</span><span class="p">],</span>
+                                    <span class="n">hidden_dim</span><span class="o">=</span><span class="n">hidden_dims</span><span class="p">[</span><span class="n">i_layer</span><span class="p">]))</span>
+    <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DBNMasterBiNode</span><span class="p">(</span><span class="n">dbn_ids</span><span class="o">=</span><span class="n">dbn_ids</span><span class="p">,</span>
+                                 <span class="n">sender_id</span><span class="o">=</span><span class="s2">&quot;sender&quot;</span><span class="p">,</span>
+                                 <span class="n">node_id</span><span class="o">=</span><span class="s2">&quot;dbn_master&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">BiFlow</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>   
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

@@ -1,0 +1,1518 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>mdp.parallel.ParallelFlow</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="mdp-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://mdp-toolkit.github.io">Modular toolkit for Data Processing MDP</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="mdp-module.html">Package&nbsp;mdp</a> ::
+        <a href="mdp.parallel-module.html">Package&nbsp;parallel</a> ::
+        Class&nbsp;ParallelFlow
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="mdp.parallel.ParallelFlow-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class ParallelFlow</h1><p class="nomargin-top"></p>
+<center>
+
+</center>
+<hr />
+<pre class="literalblock">
+A parallel flow provides the methods for parallel training / execution.
+
+Nodes in the flow which are not derived from ParallelNode are trained in
+the normal way. The training is also done normally if fork() raises a
+TrainingPhaseNotParallelException. This can be intentionally used by the
+node to request local training without forking.
+Parallel execution on the other hand should work for all nodes, since it
+only relies on the copy method of nodes.
+The stop_training method is always called locally, with no forking or
+copying involved.
+
+Both parallel training and execution can be done conveniently by providing
+a scheduler instance to the train or execute method.
+It is also possible to manage the tasks manually. This is done via the
+methods setup_parallel_training (or execution), get_task and use_results.
+The code of the train / execute method can serve as an example how to use
+these methods and process the tasks by a scheduler.
+
+</pre>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">flow</span>,
+        <span class="summary-sig-arg">verbose</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Initialize the internal variables.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#_create_execute_task" class="summary-sig-name" onclick="show_private();">_create_execute_task</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Create and return a single execution task.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#_create_train_task" class="summary-sig-name" onclick="show_private();">_create_train_task</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Create and return a single training task without callable.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#_local_train_phase" class="summary-sig-name" onclick="show_private();">_local_train_phase</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data_iterable</span>)</span><br />
+      Perform a single training phase locally.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#_next_train_phase" class="summary-sig-name" onclick="show_private();">_next_train_phase</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Find the next phase or node for parallel training.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#_post_stop_training_hook" class="summary-sig-name" onclick="show_private();">_post_stop_training_hook</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Hook method that is called after stop_training is called.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#execute" class="summary-sig-name">execute</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">iterable</span>,
+        <span class="summary-sig-arg">nodenr</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">scheduler</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">execute_callable_class</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">overwrite_result_container</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Train all trainable nodes in the flow.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#get_task" class="summary-sig-name">get_task</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return a task either for either training or execution.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#setup_parallel_execution" class="summary-sig-name">setup_parallel_execution</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">iterable</span>,
+        <span class="summary-sig-arg">nodenr</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">execute_callable_class</span>=<span class="summary-sig-default">&lt;class 'mdp.parallel.FlowExecuteCallable'&gt;</span>)</span><br />
+      Prepare the flow for handing out tasks to do the execution.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#setup_parallel_training" class="summary-sig-name">setup_parallel_training</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data_iterables</span>,
+        <span class="summary-sig-arg">train_callable_class</span>=<span class="summary-sig-default">&lt;class 'mdp.parallel.FlowTrainCallable'&gt;</span>)</span><br />
+      Prepare the flow for handing out tasks to do the training.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#train" class="summary-sig-name">train</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data_iterables</span>,
+        <span class="summary-sig-arg">scheduler</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">train_callable_class</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">overwrite_result_container</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Train all trainable nodes in the flow.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.parallel.ParallelFlow-class.html#use_results" class="summary-sig-name">use_results</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">results</span>)</span><br />
+      Use the result from the scheduler.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><i>unreachable</i>.newobject</code></b>:
+      <code>__long__</code>,
+      <code>__native__</code>,
+      <code>__nonzero__</code>,
+      <code>__unicode__</code>,
+      <code>next</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+<tr bgcolor="#e8f0f8" >
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Inherited from <a href="mdp.Flow-class.html">Flow</a></th></tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__add__" class="summary-sig-name">__add__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">other</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__call__" class="summary-sig-name">__call__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">iterable</span>,
+        <span class="summary-sig-arg">nodenr</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Calling an instance is equivalent to call its 'execute' method.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__contains__" class="summary-sig-name">__contains__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">item</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__delitem__" class="summary-sig-name">__delitem__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__getitem__" class="summary-sig-name">__getitem__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__iadd__" class="summary-sig-name">__iadd__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">other</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__iter__" class="summary-sig-name">__iter__</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__len__" class="summary-sig-name">__len__</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      repr(x)</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__setitem__" class="summary-sig-name">__setitem__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      str(x)</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_check_dimension_consistency" class="summary-sig-name" onclick="show_private();">_check_dimension_consistency</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">out</span>,
+        <span class="summary-sig-arg">inp</span>)</span><br />
+      Raise ValueError when both dimensions are set and different.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_check_nodes_consistency" class="summary-sig-name" onclick="show_private();">_check_nodes_consistency</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">flow</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check the dimension consistency of a list of nodes.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_check_value_type_isnode" class="summary-sig-name" onclick="show_private();">_check_value_type_isnode</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_close_last_node" class="summary-sig-name" onclick="show_private();">_close_last_node</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_execute_seq" class="summary-sig-name" onclick="show_private();">_execute_seq</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">nodenr</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_inverse_seq" class="summary-sig-name" onclick="show_private();">_inverse_seq</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_propagate_exception" class="summary-sig-name" onclick="show_private();">_propagate_exception</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">except_</span>,
+        <span class="summary-sig-arg">nodenr</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_stop_training_hook" class="summary-sig-name" onclick="show_private();">_stop_training_hook</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Hook method that is called before stop_training is called.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_train_check_iterables" class="summary-sig-name" onclick="show_private();">_train_check_iterables</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data_iterables</span>)</span><br />
+      Return the data iterables after some checks and sanitizing.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_train_node" class="summary-sig-name" onclick="show_private();">_train_node</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data_iterable</span>,
+        <span class="summary-sig-arg">nodenr</span>)</span><br />
+      Train a single node in the flow.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#append" class="summary-sig-name">append</a>(<span class="summary-sig-arg">flow</span>,
+        <span class="summary-sig-arg">node</span>)</span><br />
+      append node to flow end</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#copy" class="summary-sig-name">copy</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">protocol</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Return a deep copy of the flow.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#extend" class="summary-sig-name">extend</a>(<span class="summary-sig-arg">flow</span>,
+        <span class="summary-sig-arg">iterable</span>)</span><br />
+      extend flow by appending
+elements from the iterable</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#insert" class="summary-sig-name">insert</a>(<span class="summary-sig-arg">flow</span>,
+        <span class="summary-sig-arg">index</span>,
+        <span class="summary-sig-arg">node</span>)</span><br />
+      insert node before index</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#inverse" class="summary-sig-name">inverse</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">iterable</span>)</span><br />
+      Process the data through all nodes in the flow backwards
+(starting from the last node up to the first node) by calling the
+inverse function of each node. Of course, all nodes in the
+flow must be invertible.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">node</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#pop" class="summary-sig-name">pop</a>(<span class="summary-sig-arg">flow</span>,
+        <span class="summary-sig-arg">index</span>=<span class="summary-sig-default">...</span>)</span><br />
+      remove and return node at index
+(default last)</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#save" class="summary-sig-name">save</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filename</span>,
+        <span class="summary-sig-arg">protocol</span>=<span class="summary-sig-default">-1</span>)</span><br />
+      Save a pickled serialization of the flow to 'filename'.
+If 'filename' is None, return a string.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#set_crash_recovery" class="summary-sig-name">set_crash_recovery</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">state</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Set crash recovery capabilities.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr bgcolor="#e8f0f8"  class="private">
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Inherited from <a href="mdp.Flow-class.html">Flow</a></th></tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_get_required_train_args" class="summary-sig-name" onclick="show_private();">_get_required_train_args</a>(<span class="summary-sig-arg">node</span>)</span><br />
+      Return arguments in addition to self and x for node.train.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.parallel.ParallelFlow-class.html#is_parallel_executing" class="summary-name">is_parallel_executing</a><br />
+      Return True if parallel execution is underway.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.parallel.ParallelFlow-class.html#is_parallel_training" class="summary-name">is_parallel_training</a><br />
+      Return True if parallel training is underway.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.parallel.ParallelFlow-class.html#task_available" class="summary-name">task_available</a><br />
+      Return True if tasks are available, otherwise False.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">flow</span>,
+        <span class="sig-arg">verbose</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Initialize the internal variables.
+
+Note that the crash_recovery flag is is not supported, so it is
+disabled.
+
+</pre>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_create_execute_task"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_create_execute_task</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Create and return a single execution task.
+
+Returns None if data iterator end is reached.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_create_train_task"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_create_train_task</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Create and return a single training task without callable.
+
+Returns None if data iterator end is reached.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_local_train_phase"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_local_train_phase</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">data_iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Perform a single training phase locally.
+
+The internal _train_callable_class is used for the training.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_next_train_phase"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_next_train_phase</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Find the next phase or node for parallel training.
+
+When it is found the corresponding internal variables are set.
+Nodes which are not derived from ParallelNode are trained locally.
+If a fork() fails due to a TrainingPhaseNotParallelException
+in a certain train phase, then the training is done locally as well
+(but fork() is tested again for the next phase).
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_post_stop_training_hook"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_post_stop_training_hook</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Hook method that is called after stop_training is called.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="execute"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">execute</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">iterable</span>,
+        <span class="sig-arg">nodenr</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">scheduler</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">execute_callable_class</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">overwrite_result_container</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Train all trainable nodes in the flow.
+
+If a scheduler is provided the execution will be done in parallel on
+the scheduler.
+
+iterable -- An iterable or iterator that returns data arrays that are
+    used as input to the flow. Alternatively, one can specify one
+    data array as input.
+    If a custom execute_callable_class is used to preprocess the data
+    then other data types can be used as well.
+nodenr -- Same as in normal flow, the flow is only executed up to the
+    nodenr.
+scheduler -- Value can be either None for normal execution (default
+    value) or a Scheduler instance for parallel execution with the
+    scheduler.
+execute_callable_class -- Class used to create execution callables for
+    the scheduler. By specifying your own class you can implement data
+    transformations before the data is actually fed into the flow
+    (e.g. from 8 bit image to 64 bit double precision).
+    Note that the execute_callable_class is only used if a scheduler was
+    provided. If a scheduler is provided the default class used is
+    NodeResultContainer.
+overwrite_result_container -- If set to True (default value) then
+    the result container in the scheduler will be overwritten with an
+    instance of OrderedResultContainer (unless it is already an
+    instance of OrderedResultContainer). Otherwise the results might
+    have a different order than the data chunks, which could mess up
+    any subsequent analysis.
+
+</pre>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#execute">Flow.execute</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_task"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_task</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Return a task either for either training or execution.
+
+A a one task buffer is used to make task_available work.
+tasks are available as long as need_result returns False or all the
+training / execution is done. If no tasks are available a
+NoTaskException is raised.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="setup_parallel_execution"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setup_parallel_execution</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">iterable</span>,
+        <span class="sig-arg">nodenr</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">execute_callable_class</span>=<span class="sig-default">&lt;class 'mdp.parallel.FlowExecuteCallable'&gt;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Prepare the flow for handing out tasks to do the execution.
+
+After calling setup_parallel_execution one has to pick up the
+tasks with get_task, run them and finally return the results via
+use_results. use_results will then return the result as if the flow was
+executed in the normal way.
+
+iterable -- An iterable or iterator that returns data arrays that are
+    used as input to the flow. Alternatively, one can specify one
+    data array as input.
+    If a custom execute_callable_class is used to preprocess the data
+    then other data types can be used as well.
+nodenr -- Same as in normal flow, the flow is only executed up to the
+    nodenr.
+execute_callable_class -- Class used to create execution callables for
+    the scheduler. By specifying your own class you can implement data
+    transformations before the data is actually fed into the flow
+    (e.g. from 8 bit image to 64 bit double precision).
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="setup_parallel_training"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setup_parallel_training</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">data_iterables</span>,
+        <span class="sig-arg">train_callable_class</span>=<span class="sig-default">&lt;class 'mdp.parallel.FlowTrainCallable'&gt;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Prepare the flow for handing out tasks to do the training.
+
+After calling setup_parallel_training one has to pick up the
+tasks with get_task, run them and finally return the results via
+use_results. tasks are available as long as task_available returns
+True. Training may require multiple phases, which are each closed by
+calling use_results.
+
+data_iterables -- A list of iterables, one for each node in the flow.
+    The iterators returned by the iterables must
+    return data arrays that are then used for the node training.
+    See Flow.train for more details.
+    If a custom train_callable_class is used to preprocess the data
+    then other data types can be used as well.
+train_callable_class -- Class used to create training callables for the
+    scheduler. By specifying your own class you can implement data
+    transformations before the data is actually fed into the flow
+    (e.g. from 8 bit image to 64 bit double precision).
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="train"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">train</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">data_iterables</span>,
+        <span class="sig-arg">scheduler</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">train_callable_class</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">overwrite_result_container</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Train all trainable nodes in the flow.
+
+If a scheduler is provided the training will be done in parallel on the
+scheduler.
+
+data_iterables -- A list of iterables, one for each node in the flow.
+    The iterators returned by the iterables must
+    return data arrays that are then used for the node training.
+    See Flow.train for more details.
+    If a custom train_callable_class is used to preprocess the data
+    then other data types can be used as well.
+scheduler -- Value can be either None for normal training (default
+    value) or a Scheduler instance for parallel training with the
+    scheduler.
+    If the scheduler value is an iterable or iterator then it is
+    assumed that it contains a scheduler for each training phase.
+    After a node has been trained the scheduler is shutdown. Note that
+    you can e.g. use a generator to create the schedulers just in time.
+    For nodes which are not trained the scheduler can be None.
+train_callable_class -- Class used to create training callables for the
+    scheduler. By specifying your own class you can implement data
+    transformations before the data is actually fed into the flow
+    (e.g. from 8 bit image to 64 bit double precision).
+    Note that the train_callable_class is only used if a scheduler was
+    provided. By default NodeResultContainer is used.
+overwrite_result_container -- If set to True (default value) then
+    the result container in the scheduler will be overwritten with an
+    instance of NodeResultContainer (unless it is already an instance
+    of NodeResultContainer). This improves the memory efficiency.
+
+</pre>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#train">Flow.train</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="use_results"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">use_results</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">results</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Use the result from the scheduler.
+
+During parallel training this will start the next training phase.
+For parallel execution this will return the result, like a normal
+execute would.
+
+results -- Iterable containing the results, normally the return value
+    of scheduler.ResultContainer.get_results().
+    The individual results can be the return values of the tasks.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Property Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-PropertyDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="is_parallel_executing"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">is_parallel_executing</h3>
+  <pre class="literalblock">
+Return True if parallel execution is underway.
+
+</pre>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.is_parallel_executing(<span class="summary-sig-arg">self</span>)</span>
+        - Return True if parallel execution is underway.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_parallel_training"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">is_parallel_training</h3>
+  <pre class="literalblock">
+Return True if parallel training is underway.
+
+</pre>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.is_parallel_training(<span class="summary-sig-arg">self</span>)</span>
+        - Return True if parallel training is underway.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="task_available"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">task_available</h3>
+  <pre class="literalblock">
+Return True if tasks are available, otherwise False.
+
+If False is returned this can indicate that results are needed to
+continue training.
+
+</pre>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.task_available(<span class="summary-sig-arg">self</span>)</span>
+        - Return True if tasks are available, otherwise False.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="mdp-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://mdp-toolkit.github.io">Modular toolkit for Data Processing MDP</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1-MDP on Mon Apr 27 21:56:24 2020
+    </td>
+    <td align="right" class="footer">
+      <a target="_blank" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

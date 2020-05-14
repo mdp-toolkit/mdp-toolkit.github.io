@@ -1,0 +1,360 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Bayes Guesser &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Word generator" href="../word_generator/word_generator.html" />
+    <link rel="prev" title="Logo Animation" href="../logo/logo_animation.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logmap/logmap.html">Logistic Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lle/lle.html">Locally Linear Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gng/gng.html">Growing Neural Gas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution/image_convolution.html">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Bayes Guesser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../word_generator/word_generator.html">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binetdbn/dbn.html">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_custom_inspection.html">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bayes-guesser">
+<h1>Bayes Guesser<a class="headerlink" href="#bayes-guesser" title="Permalink to this headline">¶</a></h1>
+<p>Download <a class="reference download internal" href="../../_downloads/bayes_guesser.py" download=""><code class="xref download docutils literal"><span class="pre">bayes_guesser.py</span></code></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Demo to check whether a text is more like the paragraphs in file one or more like file two.</span>
+<span class="sd">Each sample set is separated from the next by two line breaks.</span>
+
+<span class="sd">Based on Bayesian analysis – the same your spam filter uses.</span>
+<span class="sd">Can be used to check whether one text belongs to one language or another – although</span>
+<span class="sd">that is pretty easy to do for an algorithm. Just supply some paragraphs of text</span>
+<span class="sd">from each language and let the classifier analyse them.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">codecs</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+<span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
+
+<span class="kn">import</span> <span class="nn">mdp</span>
+<span class="kn">from</span> <span class="nn">mdp</span> <span class="kn">import</span> <span class="n">ClassifierNode</span><span class="p">,</span> <span class="n">numx</span>
+<span class="kn">from</span> <span class="nn">mdp.utils</span> <span class="kn">import</span> <span class="n">weighted_choice</span>
+
+
+<span class="k">class</span> <span class="nc">NaiveBayesClassifier</span><span class="p">(</span><span class="n">ClassifierNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A naive Bayes Classificator.</span>
+<span class="sd">    In order to be usable for spam filtering, the words must be transformed</span>
+<span class="sd">    with a hash function.</span>
+
+<span class="sd">    Right now, it is only a two-class model. If needed, it can be possible to</span>
+<span class="sd">    allow for multiple class training and classification.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NaiveBayesClassifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nospam</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spam</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_nospam</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_spam</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">_check_train_args</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">numx</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span> <span class="ow">and</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">!=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;The number of labels should be equal to the number of &quot;</span>
+                   <span class="s2">&quot;datapoints (</span><span class="si">%d</span><span class="s2"> != </span><span class="si">%d</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">),</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="k">raise</span> <span class="n">mdp</span><span class="o">.</span><span class="n">TrainingException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">numx</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))):</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">labels</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">labels</span><span class="p">))):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;The labels must be either -1 or 1.&quot;</span>
+            <span class="k">raise</span> <span class="n">mdp</span><span class="o">.</span><span class="n">TrainingException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update the internal structures according to the input data &#39;x&#39;.</span>
+
+<span class="sd">        x -- a matrix having different variables on different columns</span>
+<span class="sd">             and observations on the rows.</span>
+<span class="sd">        labels -- can be a list, tuple or array of labels (one for each data point)</span>
+<span class="sd">              or a single label, in which case all input data is assigned to</span>
+<span class="sd">              the same class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">xi</span><span class="p">,</span> <span class="n">labeli</span> <span class="ow">in</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">izip_stretched</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_learn</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">labeli</span><span class="p">)</span>
+
+        <span class="c1"># clear input dim hack</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_input_dim</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_learn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+        <span class="c1"># assume words is iterable of ints, labels is number</span>
+        <span class="k">if</span> <span class="n">labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># mail is spam</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_spam</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">spam</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">spam</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">spam</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># mail is not spam</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_nospam</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nospam</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nospam</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">nospam</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+        <span class="c1"># TODO: What happens when values are twice in prob_sort</span>
+
+        <span class="c1"># clear input dim hack</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_input_dim</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">prob_spam</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># P(W|Spam)</span>
+        <span class="n">prob_nospam</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]:</span> <span class="c1"># FIXME</span>
+            <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">spam</span><span class="p">:</span>
+                <span class="n">prob_spam</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spam</span><span class="p">[</span><span class="n">word</span><span class="p">])</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_spam</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># take a minimum value to avoid multiplication with 0 on unknown words</span>
+                <span class="n">prob_spam</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_spam</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nospam</span><span class="p">:</span>
+                <span class="n">prob_nospam</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nospam</span><span class="p">[</span><span class="n">word</span><span class="p">])</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_nospam</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">prob_nospam</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_nospam</span><span class="p">)</span>
+
+        <span class="n">num_classifiers_spam</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># take the n best values of spam</span>
+        <span class="n">num_classifiers_nospam</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># and of nospam</span>
+
+        <span class="n">prob</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">prob_nospam</span><span class="p">,</span> <span class="n">prob_spam</span><span class="p">)</span>
+
+        <span class="n">prob</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># investigate the pre-sorting</span>
+        <span class="n">prob</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">all_prob</span> <span class="o">=</span> <span class="n">prob</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">num_classifiers_nospam</span><span class="p">]</span>
+
+        <span class="n">prob</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">prob</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">all_prob</span> <span class="o">+=</span> <span class="n">prob</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">num_classifiers_spam</span><span class="p">]</span>
+
+        <span class="n">p_spam</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_spam</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_nospam</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_spam</span><span class="p">)</span>
+        <span class="n">p_nospam</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_nospam</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_nospam</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_spam</span><span class="p">)</span>
+
+        <span class="n">p_spam_W</span> <span class="o">=</span> <span class="n">p_spam</span>
+        <span class="n">p_nospam_W</span> <span class="o">=</span> <span class="n">p_nospam</span>
+
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">all_prob</span><span class="p">:</span>
+            <span class="n">p_nospam_W</span> <span class="o">*=</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">p_spam_W</span> <span class="o">*=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># all_prob are not independent, so normalise it</span>
+        <span class="n">p_sum</span> <span class="o">=</span> <span class="n">p_spam_W</span> <span class="o">+</span> <span class="n">p_nospam_W</span>
+        <span class="n">p_spam_W</span> <span class="o">=</span> <span class="n">p_spam_W</span> <span class="o">/</span> <span class="n">p_sum</span>
+        <span class="n">p_nospam_W</span> <span class="o">=</span> <span class="n">p_nospam_W</span> <span class="o">/</span> <span class="n">p_sum</span>
+
+        <span class="k">return</span> <span class="p">{</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="n">p_spam_W</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">p_nospam_W</span> <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Classifies the words.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># clear input dim hack</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_input_dim</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prob</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+        <span class="n">p_spam_W</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">p_nospam_W</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="n">p_spam_W</span> <span class="o">/</span> <span class="n">p_nospam_W</span>
+        <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="o">-</span> <span class="n">numx</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">LanguageGuesserDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nbc</span> <span class="o">=</span> <span class="n">NaiveBayesClassifier</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;unicode&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainNaiveBayesClassifier</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&quot;Insert a string to check against both files:</span><span class="se">\n</span><span class="s2">&gt; &quot;</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">trainNaiveBayesClassifier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files</span><span class="p">):</span>
+        <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">))</span>
+        <span class="k">def</span> <span class="nf">file_len</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+                <span class="k">pass</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="n">dictfile</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;latin-1&quot;</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="s2">&quot;Start learning from ‘</span><span class="si">%s</span><span class="s2">’.&quot;</span> <span class="o">%</span> <span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">paragraph</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">progressinfo</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">dictfile</span><span class="p">),</span> <span class="n">file_len</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="c1"># transform input to our needs</span>
+            <span class="c1">#if num == 100: break</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">paragraph</span> <span class="o">+=</span> <span class="n">words</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">and</span> <span class="n">paragraph</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nbc</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">paragraph</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">paragraph</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">and</span> <span class="n">paragraph</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nbc</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">paragraph</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">dictfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">dictfile</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;latin-1&quot;</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="s2">&quot;Start learning from ‘</span><span class="si">%s</span><span class="s2">’.&quot;</span> <span class="o">%</span> <span class="n">files</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">paragraph</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">progressinfo</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">dictfile</span><span class="p">),</span> <span class="n">file_len</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
+            <span class="c1"># transform input to our needs</span>
+            <span class="c1">#if num == 100: break</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">paragraph</span> <span class="o">+=</span> <span class="n">words</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">and</span> <span class="n">paragraph</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nbc</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">paragraph</span><span class="p">]),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">paragraph</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">and</span> <span class="n">paragraph</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nbc</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">paragraph</span><span class="p">]),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">dictfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">check_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">))</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="n">textvals</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">text</span><span class="p">])</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbc</span><span class="o">.</span><span class="n">prob</span><span class="p">(</span><span class="n">textvals</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;first&quot;</span><span class="p">:</span> <span class="n">prob</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;second&quot;</span><span class="p">:</span> <span class="n">prob</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">(</span><span class="s2">&quot;usage: %prog --first=FILE --second=FILE [options] arg&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;--first&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;select the first file to learn&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;FILE&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;--second&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;second&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;select the second file to learn&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;FILE&quot;</span><span class="p">)</span>
+
+    <span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">first</span> <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">second</span><span class="p">):</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;You have to supply two files.&quot;</span><span class="p">)</span>
+
+    <span class="n">demo</span> <span class="o">=</span> <span class="n">LanguageGuesserDemo</span><span class="p">((</span><span class="n">options</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">second</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

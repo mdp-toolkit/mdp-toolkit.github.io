@@ -1,0 +1,312 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Parallelization &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Caching execution results" href="caching.html" />
+    <link rel="prev" title="Hierarchical Networks" href="hinet.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="caching.html" title="Caching execution results"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="hinet.html" title="Hierarchical Networks"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="parallelization">
+<span id="parallel"></span><h1>Parallelization<a class="headerlink" href="#parallelization" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/tutorial/parallel.html">code snippets directory</a></p>
+</div>
+<p>The <code class="docutils literal"><span class="pre">parallel</span></code> package adds the ability to parallelize the training
+and execution of MPD flows. This package is split into two decoupled parts.</p>
+<p>The first part consists of a parallel extension for the familiar MDP
+structures of nodes and flows. In principle all MDP nodes aldready
+support parallel execution, since copies of a node can be made and used
+in parallel. Parallelization of the training on the other hand depends
+on the specific node or algorithm. For nodes which can be trained in a
+parallelized way there is the extension class <code class="docutils literal"><span class="pre">ParallelExtensionNode</span></code>.
+It adds the <code class="docutils literal"><span class="pre">fork</span></code> and <code class="docutils literal"><span class="pre">join</span></code> methods. When providing a parallel
+extension for custom node classes you should implement <code class="docutils literal"><span class="pre">_fork</span></code> and
+<code class="docutils literal"><span class="pre">_join</span></code>. Secondly there is the <code class="docutils literal"><span class="pre">ParallelFlow</span></code> class, which
+internally splits the training or execution into tasks which are then
+processed in parallel.</p>
+<p>The second part consists of the schedulers. A scheduler takes tasks
+and processes them in a more or less parallel way (e.g. in multiple
+Python processes). A scheduler deals with the more technical aspects
+of the parallelization, but does not need to know anything about
+nodes and flows.</p>
+<div class="section" id="basic-examples">
+<h2>Basic Examples<a class="headerlink" href="#basic-examples" title="Permalink to this headline">¶</a></h2>
+<p>In the following example we parallelize a simple <code class="docutils literal"><span class="pre">Flow</span></code> consisting of
+PCA and quadratic SFA, so that it makes use of multiple cores on a modern CPU:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">node1</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCANode</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node2</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">SFA2Node</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parallel_flow</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">ParallelFlow</span><span class="p">([</span><span class="n">node1</span><span class="p">,</span> <span class="n">node2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parallel_flow2</span> <span class="o">=</span> <span class="n">parallel_flow</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parallel_flow3</span> <span class="o">=</span> <span class="n">parallel_flow</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n_data_chunks</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_iterables</span> <span class="o">=</span> <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="gp">... </span>                   <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_data_chunks</span><span class="p">)]]</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scheduler</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">ProcessScheduler</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parallel_flow</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">data_iterables</span><span class="p">,</span> <span class="n">scheduler</span><span class="o">=</span><span class="n">scheduler</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scheduler</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Only two additional lines were needed to parallelize the training of the
+flow. All one has to do is use a <code class="docutils literal"><span class="pre">ParallelFlow</span></code> instead of the normal
+<code class="docutils literal"><span class="pre">Flow</span></code> and provide a scheduler. The <code class="docutils literal"><span class="pre">ProcessScheduler</span></code> will
+automatically create as many Python processes as there are CPU cores.
+The parallel flow gives the training task for each data chunk over to
+the scheduler, which in turn then distributes them across the available
+worker processes. The results are then returned to the flow, which puts
+them together in the right way. Note that the <code class="docutils literal"><span class="pre">shutdown</span></code> method should
+be always called at the end to make sure that the recources used by the
+scheduler are cleaned up properly. One should therefore put the
+<code class="docutils literal"><span class="pre">shutdown</span></code> call into a safe try/finally statement</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scheduler</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">ProcessScheduler</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">parallel_flow2</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">data_iterables</span><span class="p">,</span> <span class="n">scheduler</span><span class="o">=</span><span class="n">scheduler</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">finally</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">scheduler</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">Scheduler</span></code> class also supports the context manager interface of Python.
+One can therefore use a <code class="docutils literal"><span class="pre">with</span></code> statement</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">mdp</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">ProcessScheduler</span><span class="p">()</span> <span class="k">as</span> <span class="n">scheduler</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">parallel_flow3</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">data_iterables</span><span class="p">,</span> <span class="n">scheduler</span><span class="o">=</span><span class="n">scheduler</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">with</span></code> statement ensures that <code class="docutils literal"><span class="pre">scheduler.shutdown</span></code> is automatically
+called (even if there is an exception).</p>
+</div>
+<div class="section" id="scheduler">
+<h2>Scheduler<a class="headerlink" href="#scheduler" title="Permalink to this headline">¶</a></h2>
+<p>The scheduler classes in MDP are derived from the <code class="docutils literal"><span class="pre">Scheduler</span></code> base
+class (which itself does not implement any parallelization). The
+standard choice at the moment is the <code class="docutils literal"><span class="pre">ProcessScheduler</span></code>, which
+distributes the incoming tasks over multiple Python processes
+(circumventing the global interpreter lock or GIL). The performance gain
+is highly dependent on the specific situation, but can potentially scale
+well with the number of CPU cores (in one real world case we saw a
+speed-up factor of 4.2 on an Intel Core i7 processor with 4 physical / 8
+logical cores).</p>
+<p>MDP has experimental support for the <a class="reference external" href="http://www.parallelpython.com">Parallel Python library</a> in the <code class="docutils literal"><span class="pre">mdp.parallel.pp_support</span></code>
+package. In principle this makes it possible to parallelize across
+multiple machines. Recently we also added the thread based scheduler
+<code class="docutils literal"><span class="pre">ThreadScheduler</span></code>. While it is limited by the GIL it can still
+achieve a real-world speedup (since NumPy releases the GIL when
+possible) and it causes less overhead compared to the
+<code class="docutils literal"><span class="pre">ProcessScheduler</span></code>.</p>
+<p>(The following information is only releveant for people who want to implement
+custom scheduler classes.)</p>
+<p>The first important method of the scheduler class is <code class="docutils literal"><span class="pre">add_task</span></code>. This
+method takes two arguments: <code class="docutils literal"><span class="pre">data</span></code> and <code class="docutils literal"><span class="pre">task_callable</span></code>, which can be
+a function or an object with a <code class="docutils literal"><span class="pre">__call__</span></code> method. The return value of
+the <code class="docutils literal"><span class="pre">task_callable</span></code> is the result of the task. If <code class="docutils literal"><span class="pre">task_callable</span></code> is
+<code class="docutils literal"><span class="pre">None</span></code> then the last provided <code class="docutils literal"><span class="pre">task_callable</span></code> will be used. This
+splitting into callable and data makes it possible to implement caching
+of the <code class="docutils literal"><span class="pre">task_callable</span></code> in the scheduler and its workers (caching is
+turned on by default in the <code class="docutils literal"><span class="pre">ProcessScheduler</span></code>). To further influence
+caching one can derive from the <code class="docutils literal"><span class="pre">TaskCallable</span></code> class, which has a
+<code class="docutils literal"><span class="pre">fork</span></code> method to generate new callables in order to preserve the
+original cached callable. For MDP training and execution there are
+corresponding classes derived from <code class="docutils literal"><span class="pre">TaskCallable</span></code> which are
+automatically used, so normally there is no need to worry about this.</p>
+<p>After submitting all the tasks with <code class="docutils literal"><span class="pre">add_task</span></code> you can then call
+the <code class="docutils literal"><span class="pre">get_results</span></code> method. This method returns all the task results,
+normally in a list. If there are open tasks in the scheduler then
+<code class="docutils literal"><span class="pre">get_results</span></code> will wait until all the tasks are finished (it blocks). You can
+also check the status of the scheduler by looking at the
+<code class="docutils literal"><span class="pre">n_open_tasks</span></code> property, which gives you the number of open tasks.
+After using the scheduler you should always call the <code class="docutils literal"><span class="pre">shutdown</span></code> method,
+otherwise you might get error messages from not properly closed processes.</p>
+<p>Internally an instance of the base class <code class="docutils literal"><span class="pre">mdp.parallel.ResultContainer</span></code> is
+used for the storage of the results in the scheduler. By providing your own
+result container to the scheduler you modify the storage. For example the
+default result container is an instance of <code class="docutils literal"><span class="pre">OrderedResultContainer</span></code>. The
+<code class="docutils literal"><span class="pre">ParallelFlow</span></code> class by default makes sure that the right container is
+used for the task (this can be overriden manually via the
+<code class="docutils literal"><span class="pre">overwrite_result_container</span></code> parameter of the <code class="docutils literal"><span class="pre">train</span></code> and <code class="docutils literal"><span class="pre">execute</span></code>
+methods).</p>
+</div>
+<div class="section" id="parallel-nodes">
+<h2>Parallel Nodes<a class="headerlink" href="#parallel-nodes" title="Permalink to this headline">¶</a></h2>
+<p>If you want to parallelize your own nodes you have to provide parallel
+extensions for them. The <code class="docutils literal"><span class="pre">ParallelExtensionNode</span></code> base class has
+the new template methods <code class="docutils literal"><span class="pre">fork</span></code> and <code class="docutils literal"><span class="pre">join</span></code>.
+<code class="docutils literal"><span class="pre">fork</span></code> should return a new node instance. This new instance can then be
+trained somewhere else (e.g. in a different process) with the usual <code class="docutils literal"><span class="pre">train</span></code>
+method. Afterwards <code class="docutils literal"><span class="pre">join</span></code> is called on the original node, with the
+forked node as the argument. This should be
+equivalent to calling <code class="docutils literal"><span class="pre">train</span></code> directly on the original node.</p>
+<p>During Execution nodes are not forked by default, instead they are just
+copied (for example they are pickled and send to the Python worker
+processes). It is possible for nodes during execution to
+explicitly request that they are forked and joined (like during
+training). This is done by overriding the <code class="docutils literal"><span class="pre">use_execute_fork</span></code> method,
+which by default returns <code class="docutils literal"><span class="pre">False</span></code>. For example nodes that record data
+during execution can use this feature to become compatible with
+parallelization.</p>
+<p>When writing custom parallel node extension you should only overwrite
+the <code class="docutils literal"><span class="pre">_fork</span></code> and <code class="docutils literal"><span class="pre">_join</span></code> methods, which are automatically called by
+<code class="docutils literal"><span class="pre">fork</span></code> and <code class="docutils literal"><span class="pre">join</span></code>. The <code class="docutils literal"><span class="pre">fork</span></code> and <code class="docutils literal"><span class="pre">join</span></code> take care of the
+standard node attributes like the dimensions. You should also look at
+the source code of a parallel node like <code class="docutils literal"><span class="pre">ParallelPCANode</span></code> to get a
+better idea of how to parallelize nodes. By overwriting
+<code class="docutils literal"><span class="pre">use_execute_fork</span></code> to return <code class="docutils literal"><span class="pre">True</span></code> you can force forking and
+joining during execution. Note that the same <code class="docutils literal"><span class="pre">_fork</span></code> and <code class="docutils literal"><span class="pre">_join</span></code>
+implementation is called as during training, so if necessary one should
+add an <code class="docutils literal"><span class="pre">node.is_training()</span></code> check there to determine the correct
+action.</p>
+<p>Currently we provide the following parallel nodes:
+<code class="docutils literal"><span class="pre">ParallelPCANode</span></code>, <code class="docutils literal"><span class="pre">ParallelWhiteningNode</span></code>, <code class="docutils literal"><span class="pre">ParallelSFANode</span></code>,
+<code class="docutils literal"><span class="pre">ParallelSFA2Node</span></code>, <code class="docutils literal"><span class="pre">ParallelFDANode</span></code>, <code class="docutils literal"><span class="pre">ParallelHistogramNode</span></code>,
+<code class="docutils literal"><span class="pre">ParallelAdaptiveCutoffNode</span></code>, <code class="docutils literal"><span class="pre">ParallelFlowNode</span></code>, <code class="docutils literal"><span class="pre">ParallelLayer</span></code>,
+<code class="docutils literal"><span class="pre">ParallelCloneLayer</span></code> (the last three are derived from the <code class="docutils literal"><span class="pre">hinet</span></code>
+package).</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="caching.html" title="Caching execution results"
+             >next</a></li>
+        <li class="right" >
+          <a href="hinet.html" title="Hierarchical Networks"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

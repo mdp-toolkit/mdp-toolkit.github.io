@@ -1,0 +1,361 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Additional utilities &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Development" href="development.html" />
+    <link rel="prev" title="Node List" href="node_list.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="examples/logo/logo_animation.html">
+		    <img src="_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node_list.html">Node List</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Additional utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#html-slideshows">HTML Slideshows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#graph-module">Graph module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="additional-utilities">
+<span id="id1"></span><h1>Additional utilities<a class="headerlink" href="#additional-utilities" title="Permalink to this headline">¶</a></h1>
+<p>MDP offers some additional utilities of general interest
+in the <code class="docutils literal"><span class="pre">mdp.utils</span></code> module. Refer to the
+<a class="reference external" href="https://mdp-toolkit.github.io/docs/api/index.html">API</a>
+for the full documentation and interface description.</p>
+<dl class="docutils">
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils.CovarianceMatrix-class.html">mdp.utils.CovarianceMatrix</a></dt>
+<dd><p class="first">This class stores an empirical covariance matrix that can be updated
+incrementally. A call to the <code class="docutils literal"><span class="pre">fix</span></code> method returns the current state
+of the covariance matrix, the average and the number of observations,
+and resets the internal data.</p>
+<p class="last">Note that the internal sum is a standard <code class="docutils literal"><span class="pre">__add__</span></code> operation. We are not
+using any of the fancy sum algorithms to avoid round off errors when
+adding many numbers. If you want to contribute a <code class="docutils literal"><span class="pre">CovarianceMatrix</span></code>
+class that uses such algorithms we would be happy to include it in
+MDP.  For a start see the <a class="reference external" href="http://code.activestate.com/recipes/393090/">Python recipe</a>
+by Raymond Hettinger. For a
+review about floating point arithmetic and its pitfalls see
+<em>What every computer scientist should know about floating-point
+arithmetic</em> by David Goldberg, ACM Computing Surveys, Vol 23, No
+1, March 1991.</p>
+</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils.VartimeCovarianceMatrix-class.html">mdp.utils.VartimeCovarianceMatrix</a></dt>
+<dd><p class="first">This class stores an empirical covariance matrix that can be updated
+incrementally. A call to the <code class="docutils literal"><span class="pre">fix</span></code> method returns the current state
+of the covariance matrix, the average and the number of observations,
+and resets the internal data.</p>
+<p class="last">As compared to the <code class="docutils literal"><span class="pre">CovarianceMatrix</span></code> class, this class accepts sampled
+input in conjunction with a non-constant time increment between samples.
+The covariance matrix is then computed as a (centered) scalar product
+between functions, that is sampled unevenly, using the trapezoid rule.</p>
+</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils.DelayCovarianceMatrix-class.html">mdp.utils.DelayCovarianceMatrix</a></dt>
+<dd>This class stores an empirical covariance matrix between the signal and
+time delayed signal that can be updated incrementally.</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils.MultipleCovarianceMatrices-class.html">mdp.utils.MultipleCovarianceMatrices</a></dt>
+<dd>Container class for multiple covariance matrices to easily
+execute operations on all matrices at the same time.</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#dig_node">mdp.utils.dig_node</a> (node)</dt>
+<dd>Crawl recursively an MDP <code class="docutils literal"><span class="pre">Node</span></code> looking for arrays.
+Return (dictionary, string), where the dictionary is:
+{ attribute_name: (size_in_bytes, array_reference)}
+and string is a nice string representation of it.</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#get_node_size">mdp.utils.get_node_size</a> (node)</dt>
+<dd>Get <code class="docutils literal"><span class="pre">node</span></code> total byte-size using <code class="docutils literal"><span class="pre">cPickle</span></code> with protocol=2.
+(The byte-size is related the memory needed by the node).</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#progressinfo">mdp.utils.progressinfo</a> (sequence, length, style, custom)</dt>
+<dd><p class="first">A fully configurable text-mode progress info box tailored to the
+command-line die-hards.
+To get a progress info box for your loops use it like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">progressinfo</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">do_something</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also use it with generators, files or any other iterable object,
+but in this case you have to specify the total length of the sequence:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">progressinfo</span><span class="p">(</span><span class="n">open_file</span><span class="p">,</span> <span class="n">nlines</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">do_something</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A few examples of the available layouts:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">===================================</span><span class="mi">73</span><span class="o">%==============&gt;...................</span><span class="p">]</span>
+
+<span class="n">Progress</span><span class="p">:</span>  <span class="mi">67</span><span class="o">%</span><span class="p">[</span><span class="o">======================================&gt;</span>                   <span class="p">]</span>
+
+<span class="mi">23</span><span class="o">%</span> <span class="p">[</span><span class="mi">02</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">28</span><span class="p">]</span> <span class="o">-</span> <span class="p">[</span><span class="mi">00</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">37</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils.QuadraticForm-class.html">mdp.utils.QuadraticForm</a></dt>
+<dd>Define an inhomogeneous quadratic form as <code class="docutils literal"><span class="pre">1/2</span> <span class="pre">x'Hx</span> <span class="pre">+</span> <span class="pre">f'x</span> <span class="pre">+</span> <span class="pre">c</span></code>.
+This class implements the quadratic form analysis methods
+presented in:
+Berkes, P. and Wiskott, L. On the analysis and interpretation
+of inhomogeneous quadratic forms as receptive fields. <em>Neural
+Computation</em>, 18(8): 1868-1895. (2006).</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#refcast">mdp.utils.refcast</a> (array, dtype)</dt>
+<dd>Cast the array to <code class="docutils literal"><span class="pre">dtype</span></code> only if necessary,
+otherwise return a reference.</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#rotate">mdp.utils.rotate</a> (mat, angle, columns, units)</dt>
+<dd><p class="first">Rotate in-place a NxM data matrix in the plane defined by the <code class="docutils literal"><span class="pre">columns</span></code>
+when observation are stored on rows. Observations are rotated
+counterclockwise. This corresponds to the following matrix-multiplication
+for each data-point (unchanged elements omitted):</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span>  <span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>     <span class="p">[</span> <span class="n">x_i</span> <span class="p">]</span>
+   <span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>  <span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="p">]</span> <span class="o">*</span> <span class="p">[</span> <span class="n">x_j</span> <span class="p">]</span>
+</pre></div>
+</div>
+</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#random_rot">mdp.utils.random_rot</a> (dim, dtype)</dt>
+<dd>Return a random rotation matrix, drawn from the Haar distribution
+(the only uniform distribution on SO(n)).
+The algorithm is described in the paper
+Stewart, G.W., <em>The efficient generation of random orthogonal
+matrices with an application to condition estimators</em>, SIAM Journal
+on Numerical Analysis, 17(3), pp. 403-409, 1980.
+For more information see this <a class="reference external" href="http://en.wikipedia.org/wiki/Orthogonal_matrix#Randomization">Wikipedia entry</a>.</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#symeig_semidefinite_ldl">mdp.utils.symeig_semidefinite_ldl</a> (A, B, eigenvectors, turbo, rng, type, overwrite, rank_threshold, dfc_out)</dt>
+<dd><p class="first">LDL-based routine to solve generalized symmetric positive semidefinite
+eigenvalue problems.
+This can be used in case the normal <code class="docutils literal"><span class="pre">symeig()</span></code> call in
+<code class="docutils literal"><span class="pre">_stop_training()</span></code> throws
+<code class="docutils literal"><span class="pre">SymeigException</span> <span class="pre">('Covariance</span> <span class="pre">matrices</span> <span class="pre">may</span> <span class="pre">be</span> <span class="pre">singular')</span></code>.</p>
+<p>This solver uses SciPy’s raw LAPACK interface to access LDL decomposition.</p>
+<p class="last">Roughly as efficient as ordinary eigenvalue solving. Can exploit range
+parameter for performance just as well as the backend for ordinary symmetric
+eigenvalue solving enables. This is the recommended and most efficient
+approach, but it requires SciPy 1.0 or newer.</p>
+</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#symeig_semidefinite_pca">mdp.utils.symeig_semidefinite_pca</a> (A, B, eigenvectors, turbo, range, type, overwrite, rank_threshold, dfc_out)</dt>
+<dd><p class="first">PCA-based routine to solve generalized symmetric positive semidefinite
+eigenvalue problems.
+This can be used in case the normal <code class="docutils literal"><span class="pre">symeig()</span></code>
+call in <code class="docutils literal"><span class="pre">_stop_training()</span></code> throws
+<code class="docutils literal"><span class="pre">SymeigException</span> <span class="pre">('Covariance</span> <span class="pre">matrices</span> <span class="pre">may</span> <span class="pre">be</span> <span class="pre">singular')</span></code>.</p>
+<p>It applies PCA to B and filters out rank deficit before it applies
+symeig() to A.
+It is roughly twice as expensive as the ordinary eigh implementation.</p>
+<p class="last">One of the most stable and accurate approaches.
+Roughly twice as expensive as ordinary symmetric eigenvalue solving as
+it solves two symmetric eigenvalue problems.
+Only the second one can exploit range parameter for performance.</p>
+</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#symeig_semidefinite_reg">mdp.utils.symeig_semidefinite_reg</a> (A, B, eigenvectors, turbo, range, type, overwrite, rank_threshold, dfc_out)</dt>
+<dd><p class="first">Regularization-based routine to solve generalized symmetric positive
+semidefinite eigenvalue problems.
+This can be used in case the normal <code class="docutils literal"><span class="pre">symeig()</span></code>
+call in <code class="docutils literal"><span class="pre">_stop_training()</span></code> throws
+<code class="docutils literal"><span class="pre">SymeigException</span> <span class="pre">('Covariance</span> <span class="pre">matrices</span> <span class="pre">may</span> <span class="pre">be</span> <span class="pre">singular')</span></code>.</p>
+<p>This solver applies a moderate regularization to B before applying
+eigh/symeig. Afterwards it properly detects the rank deficit and
+filters out malformed features.
+For full range, this procedure is (approximately) as efficient as the
+ordinary eigh implementation, because all additional steps are
+computationally cheap.
+For shorter range, the LDL method should be preferred.</p>
+<p class="last">Roughly as efficient as ordinary eigenvalue solving if no range is given.
+If range is given, depending on the backend for ordinary symmetric
+eigenvalue solving, this method can be much slower than an ordinary
+symmetric eigenvalue solver that can exploit range for performance.</p>
+</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#symeig_semidefinite_svd">mdp.utils.symeig_semidefinite_svd</a> (A, B, eigenvectors, turbo, range, type, overwrite, rank_threshold, dfc_out)</dt>
+<dd><p class="first">SVD-based routine to solve generalized symmetric positive semidefinite
+eigenvalue problems.
+This can be used in case the normal <code class="docutils literal"><span class="pre">symeig()</span></code>
+call in <code class="docutils literal"><span class="pre">_stop_training()</span></code> throws
+<code class="docutils literal"><span class="pre">SymeigException</span> <span class="pre">('Covariance</span> <span class="pre">matrices</span> <span class="pre">may</span> <span class="pre">be</span> <span class="pre">singular')</span></code>.</p>
+<p class="last">One of the most stable and accurate approaches.
+Involves solving two svd problems. Computational cost can vary greatly
+depending on the backends used. E.g. SVD from SciPy appears to be much
+faster than SVD from NumPy. Based on this it can be faster or slower
+than the PCA based approach.</p>
+</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#symrand">mdp.utils.symrand</a> (dim_or_eigv, dtype)</dt>
+<dd>Return a random symmetric (Hermitian) matrix with eigenvalues
+uniformly distributed on (0,1].</dd>
+</dl>
+<div class="section" id="html-slideshows">
+<h2>HTML Slideshows<a class="headerlink" href="#html-slideshows" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">mdp.utils</span></code> module contains some classes and helper function to
+display animated results in a Webbrowser. This works by creating an
+HTML file with embedded JavaScript code, which dynamically loads
+image files (the images contain the content that you want to animate
+and can for example be created with matplotlib).
+MDP internally uses the open source <a class="reference external" href="http://davidbau.com/downloads/templet.py">Templete templating libray,
+written by David Bau</a>.</p>
+<p>The easiest way to create a slideshow it to use one of these two helper
+function:</p>
+<dl class="docutils">
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#show_image_slideshow">mdp.utils.show_image_slideshow</a> (filenames, image_size, filename=None, title=None, **kwargs)</dt>
+<dd>Write the slideshow into a HTML file, open it in the browser and
+return the file name. <code class="docutils literal"><span class="pre">filenames</span></code> is a list of the images files
+that you want to display in the slideshow. <code class="docutils literal"><span class="pre">image_size</span></code> is a
+2-tuple containing the width and height at which the images should
+be displayed. There are also a couple of additional arguments,
+which are documented in the docstring.</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.utils-module.html#image_slideshow">mdp.utils.image_slideshow</a> (filenames, image_size, title=None, **kwargs)</dt>
+<dd>This function is similar to <code class="docutils literal"><span class="pre">show_image_slideshow</span></code>, but it simply
+returns the slideshow HTML code (including the JavaScript code)
+which you can then embed into your own HTML file. Note that
+the default slideshow CSS code is not included, but it can be
+accessed in <code class="docutils literal"><span class="pre">mdp.utils.IMAGE_SLIDESHOW_STYLE</span></code>.</dd>
+</dl>
+<p>Note that there are also two demos in the Examples section <a class="reference internal" href="examples/slideshow/slideshow.html#slideshow"><span class="std std-ref">Slideshow</span></a>.</p>
+</div>
+<div class="section" id="graph-module">
+<h2>Graph module<a class="headerlink" href="#graph-module" title="Permalink to this headline">¶</a></h2>
+<p>MDP contains <code class="docutils literal"><span class="pre">mdp.graph</span></code>, a lightweight package to handle directed graphs.</p>
+<dl class="docutils">
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.graph.Graph-class.html">mdp.graph.Graph</a></dt>
+<dd><p class="first">Represent a directed graph. This class contains several methods
+to create graph structures and manipulate them, among which</p>
+<ul class="last">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">add_tree</span></code>: Add a tree to the graph.</dt>
+<dd><p class="first">The tree is specified with a nested list of tuple, in a LISP-like
+notation. The values specified in the list become the values of
+the single nodes.
+Return an equivalent nested list with the nodes instead of the values.</p>
+<p>Example::</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">=</span> <span class="n">c</span> <span class="o">=</span> <span class="n">d</span> <span class="o">=</span> <span class="n">e</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nodes</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">add_tree</span><span class="p">(</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="p">,</span><span class="n">e</span><span class="p">))</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Graph <code class="docutils literal"><span class="pre">g</span></code> corresponds to this tree, with all node values
+being <code class="docutils literal"><span class="pre">None</span></code>:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span>  <span class="n">a</span>
+ <span class="o">/</span> \
+<span class="n">b</span>   <span class="n">c</span>
+   <span class="o">/</span> \
+  <span class="n">d</span>   <span class="n">e</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">topological_sort</span></code>: Perform a topological sort of the nodes.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">dfs</span></code>, <code class="docutils literal"><span class="pre">undirected_dfs</span></code>: Perform Depth First sort.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">bfs</span></code>, <code class="docutils literal"><span class="pre">undirected_bfs</span></code>: Perform Breadth First sort.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">connected_components</span></code>: Return a list of lists containing
+the nodes of all connected components of the graph.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">is_weakly_connected</span></code>: Return True if the graph is weakly connected.</p>
+</li>
+</ul>
+</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.graph.GraphEdge-class.html">mdp.graph.GraphEdge</a></dt>
+<dd>Represent a graph edge and all information attached to it.</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.graph.GraphNode-class.html">mdp.graph.GraphNode</a></dt>
+<dd>Represent a graph node and all information attached to it.</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.graph-module.html#recursive_map">mdp.graph.recursive_map</a> (fun, seq)</dt>
+<dd>Apply a function recursively on a sequence and all subsequences.</dd>
+<dt><a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.graph-module.html#recursive_reduce">mdp.graph.recursive_reduce</a> (func, seq, *argv)</dt>
+<dd>Apply <code class="docutils literal"><span class="pre">reduce(func,</span> <span class="pre">seq)</span></code> recursively to a sequence and all its
+subsequences.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

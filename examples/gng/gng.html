@@ -1,0 +1,233 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Growing Neural Gas &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Animation of Training" href="animated_training.html" />
+    <link rel="prev" title="Locally Linear Embedding" href="../lle/lle.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logmap/logmap.html">Logistic Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lle/lle.html">Locally Linear Embedding</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Growing Neural Gas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution/image_convolution.html">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bayes_guesser/bayes_guesser.html">Bayes Guesser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../word_generator/word_generator.html">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binetdbn/dbn.html">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_custom_inspection.html">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="growing-neural-gas">
+<span id="gng"></span><h1>Growing Neural Gas<a class="headerlink" href="#growing-neural-gas" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/examples/gng/gng.html">code snippets directory</a></p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<p>We generate uniformly distributed random data points confined on different
+2-D geometrical objects. The Growing Neural Gas Node builds a graph with the
+same topological structure.</p>
+<p>Fix the random seed to obtain reproducible results:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mdp</span><span class="o">.</span><span class="n">numx_rand</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1266090063</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Some functions to generate uniform probability distributions on
+different geometrical objects:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">uniform</span><span class="p">(</span><span class="n">min_</span><span class="p">,</span> <span class="n">max_</span><span class="p">,</span> <span class="n">dims</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Return a random number between min_ and max_ .&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx_rand</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">max_</span><span class="o">-</span><span class="n">min_</span><span class="p">)</span><span class="o">+</span><span class="n">min_</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">circumference_distr</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Return n random points uniformly distributed on a circumference.&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="n">phi</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">radius</span><span class="o">*</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span><span class="o">+</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">y</span> <span class="o">=</span> <span class="n">radius</span><span class="o">*</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span><span class="o">+</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">circle_distr</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Return n random points uniformly distributed on a circle.&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="n">phi</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="n">sqrt_r</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">radius</span><span class="o">*</span><span class="n">radius</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">sqrt_r</span><span class="o">*</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span><span class="o">+</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">y</span> <span class="o">=</span> <span class="n">sqrt_r</span><span class="o">*</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span><span class="o">+</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">rectangle_distr</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Return n random points uniformly distributed on a rectangle.&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">w</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="n">w</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">y</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">h</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="n">h</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
+</pre></div>
+</div>
+<p>Explicitly collect random points from some distributions:</p>
+<ul>
+<li><p class="first">Circumferences:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cf1</span> <span class="o">=</span> <span class="n">circumference_distr</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cf2</span> <span class="o">=</span> <span class="n">circumference_distr</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Circles:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cl1</span> <span class="o">=</span> <span class="n">circle_distr</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cl2</span> <span class="o">=</span> <span class="n">circle_distr</span><span class="p">([</span><span class="mf">3.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">],</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Rectangles:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">=</span> <span class="n">rectangle_distr</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">rectangle_distr</span><span class="p">([</span><span class="o">+</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r3</span> <span class="o">=</span> <span class="n">rectangle_distr</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mf">1.5</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r4</span> <span class="o">=</span> <span class="n">rectangle_distr</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Shuffle the points to make the statistics stationary</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">cf1</span><span class="p">,</span> <span class="n">cf2</span><span class="p">,</span> <span class="n">cl1</span><span class="p">,</span> <span class="n">cl2</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span><span class="n">r2</span><span class="p">,</span><span class="n">r3</span><span class="p">,</span><span class="n">r4</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx_rand</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you have a plotting package <code class="docutils literal"><span class="pre">x</span></code> should look like this:</p>
+<a class="reference internal image-reference" href="../../_images/gng_distribution.png"><img alt="GNG starting distribution" src="../../_images/gng_distribution.png" style="width: 700px;" /></a>
+<p>Create a <code class="docutils literal"><span class="pre">GrowingNeuralGasNode</span></code> and train it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gng</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">GrowingNeuralGasNode</span><span class="p">(</span><span class="n">max_nodes</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The initial distribution of nodes is randomly chosen:</p>
+<a class="reference internal image-reference" href="../../_images/gng_initial.png"><img alt="GNG starting condition" src="../../_images/gng_initial.png" style="width: 700px;" /></a>
+<p>The training is performed in small chunks in order to visualize
+the evolution of the graph:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">STEP</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">STEP</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">gng</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">STEP</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="c1"># [...] plotting instructions</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gng</span><span class="o">.</span><span class="n">stop_training</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="animated_training.html#animated-training"><span class="std std-ref">The Animation of Training</span></a>.</p>
+<p>Visualizing the neural gas network, we’ll see that it is
+adapted to the topological structure of the data distribution:</p>
+<a class="reference internal image-reference" href="../../_images/gng_final.png"><img alt="GNG final condition" src="../../_images/gng_final.png" style="width: 700px;" /></a>
+<p>Calculate the number of connected components:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n_obj</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">gng</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">connected_components</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">n_obj</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

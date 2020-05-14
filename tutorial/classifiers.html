@@ -1,0 +1,218 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Classifier nodes &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interfacing with other libraries" href="wrappers.html" />
+    <link rel="prev" title="Caching execution results" href="caching.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="wrappers.html" title="Interfacing with other libraries"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="caching.html" title="Caching execution results"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="classifier-nodes">
+<span id="classifiers"></span><h1>Classifier nodes<a class="headerlink" href="#classifier-nodes" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/tutorial/classifiers.html">code snippets directory</a></p>
+</div>
+<p>New in MDP 2.6 is the <code class="docutils literal"><span class="pre">ClassifierNode</span></code> base class which offers a simple
+interface for creating classification tasks. Usually, one does not want to use
+the classification output in a flow but extract this information independently.
+By default classification nodes will therefore simply return the identity function on
+<code class="docutils literal"><span class="pre">execute</span></code>; all classification work is done with the new methods <code class="docutils literal"><span class="pre">label</span></code>,
+<code class="docutils literal"><span class="pre">prob</span></code> and <code class="docutils literal"><span class="pre">rank</span></code>. However, if a classification node is the last node in a flow
+then it is possible to perform the classification as part of the normal flow
+execution by setting the <code class="docutils literal"><span class="pre">execute_method</span></code> attribute (more on this later).</p>
+<p>As a first example, we will use the <code class="docutils literal"><span class="pre">GaussianClassifier</span></code>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gc</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">GaussianClassifier</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gc</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gc</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">-</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We have trained the node and assigned the labels +1 and -1 to the sample points.
+Note that in this simple case we do not need to give a label to each individual point,
+when only a single label is given, it is assigned to the whole batch of features.
+However, it is also possible to use the more explicit form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gc</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="p">[</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can then retrieve the most probable labels for some testing data,</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">test_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gc</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+<span class="go">[1, -1]</span>
+</pre></div>
+</div>
+<p>and also get the probability for each label.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">prob</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">prob</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">prob</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">prob</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">0.188737388144 0.811262611856</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">prob</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">prob</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">0.992454101588 0.00754589841187</span>
+</pre></div>
+</div>
+<p>Finally, it is possible to get the ranking of the labels, starting with the likeliest.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gc</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+<span class="go">[[1, -1], [-1, 1]]</span>
+</pre></div>
+</div>
+<p>New nodes should inherit from <code class="docutils literal"><span class="pre">ClassifierNode</span></code> and implement the
+<code class="docutils literal"><span class="pre">_label</span></code> and <code class="docutils literal"><span class="pre">_prob</span></code> methods. The public <code class="docutils literal"><span class="pre">rank</span></code> method will be
+created automatically from <code class="docutils literal"><span class="pre">prob</span></code>.</p>
+<p>As mentioned earlier it is possible to perform the classification
+in via the <code class="docutils literal"><span class="pre">execute</span></code> method of a classifier node. Every classifier node
+has an <code class="docutils literal"><span class="pre">execute_method</span></code> attribite which can be set to the string values
+<code class="docutils literal"><span class="pre">&quot;label&quot;</span></code>, <code class="docutils literal"><span class="pre">&quot;rank&quot;</span></code>, or <code class="docutils literal"><span class="pre">&quot;prob&quot;</span></code>. The <code class="docutils literal"><span class="pre">execute</span></code> method of the node
+will then automatically call the indicated classification method and return
+the result. This is especially useful when the classification node is the
+last node in a flow, because then the normal flow execution can be used
+to get the classification results.  An example application is given
+in the MNSIT handwritten digits classification example.</p>
+<p>The <code class="docutils literal"><span class="pre">execute_method</span></code> attribute can be also set when the node
+is created via the <code class="docutils literal"><span class="pre">execute_method</span></code> argument of the <code class="docutils literal"><span class="pre">__init__</span></code> method.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="wrappers.html" title="Interfacing with other libraries"
+             >next</a></li>
+        <li class="right" >
+          <a href="caching.html" title="Caching execution results"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

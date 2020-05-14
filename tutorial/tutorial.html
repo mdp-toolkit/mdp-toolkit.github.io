@@ -1,0 +1,267 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tutorial &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quick Start" href="quick_start.html" />
+    <link rel="prev" title="Documentation" href="../documentation.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="quick_start.html" title="Quick Start"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="../documentation.html" title="Documentation"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" accesskey="U">Documentation</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial">
+<span id="id1"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">MDP Developers</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Copyright:</th><td class="field-body">This document has been placed in the public domain.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Homepage:</th><td class="field-body">https://mdp-toolkit.github.io</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Contact:</th><td class="field-body">mdp-toolkit&#64;python.org</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">3.6</td>
+</tr>
+</tbody>
+</table>
+<p>This document is also available as <a class="reference external" href="http://downloads.sourceforge.net/mdp-toolkit/MDP-tutorial.pdf?download">pdf file.</a></p>
+<p>This is a guide to basic and some more advanced features of
+the MDP library. Besides the present tutorial, you can learn
+more about MDP by using the standard Python tools.
+All MDP nodes have doc-strings, the public
+attributes and methods have telling names: All information about a
+node can be obtained using  the <code class="docutils literal"><span class="pre">help</span></code> and <code class="docutils literal"><span class="pre">dir</span></code> functions within
+the Python interpreter. In addition to that, an automatically generated
+<a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a>
+is available.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Code snippets throughout the script will be denoted by:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;Hello world!&quot;</span>
+<span class="go">Hello world!</span>
+</pre></div>
+</div>
+<p>To run the following code examples don’t forget to import <code class="docutils literal"><span class="pre">mdp</span></code>
+and <code class="docutils literal"><span class="pre">numpy</span></code> in your Python session with:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mdp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<p>You’ll find all the code of this tutorial <a class="reference internal" href="../code/code_snippets.html#code-snippets"><span class="std std-ref">here</span></a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodes.html">Nodes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#node-instantiation">Node Instantiation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html#some-examples-of-node-instantiation">Some examples of node instantiation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#node-training">Node Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#node-execution">Node Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#node-inversion">Node Inversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#writing-your-own-nodes-subclassing-node">Writing your own nodes: subclassing <code class="docutils literal"><span class="pre">Node</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flows.html">Flows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flows.html#flow-instantiation-training-and-execution">Flow instantiation, training and execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flows.html#flow-inversion">Flow inversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flows.html#flows-are-container-type-objects">Flows are container type objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flows.html#crash-recovery">Crash recovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="iterables.html">Iterables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="iterables.html#block-mode-training">Block-mode training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iterables.html#one-shot-training-using-one-single-set-of-data-for-both-nodes">One-shot training using one single set of data for both nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Node Extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extensions.html#using-extensions">Using Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions.html#writing-extension-nodes">Writing Extension Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions.html#creating-extensions">Creating Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions.html#extension-setup-and-teardown-functions">Extension Setup and Teardown Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hinet.html">Hierarchical Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hinet.html#building-blocks">Building blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hinet.html#html-representation">HTML representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hinet.html#example-application-2-d-image-data">Example application (2-D image data)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#basic-examples">Basic Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#scheduler">Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#parallel-nodes">Parallel Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">Caching execution results</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#activating-the-caching-extension">Activating the caching extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bimdp.html">BiMDP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bimdp.html#targets-id-s-and-messages">Targets, id’s and Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bimdp.html#biflow">BiFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bimdp.html#binode">BiNode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bimdp.html#inspection">Inspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bimdp.html#extending-binode-and-message-handling">Extending BiNode and Message Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bimdp.html#hinet-in-bimdp">HiNet in BiMDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bimdp.html#parallel-in-bimdp">Parallel in BiMDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bimdp.html#coroutine-decorator">Coroutine Decorator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bimdp.html#classifiers-in-bimdp">Classifiers in BiMDP</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="quick_start.html" title="Quick Start"
+             >next</a></li>
+        <li class="right" >
+          <a href="../documentation.html" title="Documentation"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

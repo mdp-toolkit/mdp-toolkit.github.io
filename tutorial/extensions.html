@@ -1,0 +1,360 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Node Extensions &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hierarchical Networks" href="hinet.html" />
+    <link rel="prev" title="Checkpoints" href="checkpoints.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="hinet.html" title="Hierarchical Networks"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="checkpoints.html" title="Checkpoints"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="node-extensions">
+<span id="extensions"></span><h1>Node Extensions<a class="headerlink" href="#node-extensions" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/tutorial/extensions.html">code snippets directory</a></p>
+</div>
+<p>The node extension mechanism is an advanced topic, so you might want to
+skip this section at first. The examples here partly use the <code class="docutils literal"><span class="pre">parallel</span></code>
+and <code class="docutils literal"><span class="pre">hinet</span></code> packages, which are explained later in the tutorial.</p>
+<p>The node extension mechanism makes it possible to dynamically add methods or
+class attributes for specific features to node classes (e.g. for
+parallelization the nodes need a <code class="docutils literal"><span class="pre">_fork</span></code> and <code class="docutils literal"><span class="pre">_join</span></code> method). Note that
+methods are just a special case of class attributes, the extension mechanism
+treats them like any other class attributes.
+It is also possible for users to define custom extensions
+to introduce new functionality for MDP nodes without having to directly modify
+any MDP code. The node extension mechanism basically enables some
+form of <em>Aspect-oriented programming</em> (AOP) to deal with <em>cross-cutting
+concerns</em> (i.e., you want to add a new aspect to node classes which are
+spread all over MDP and possibly your own code). In the AOP terminology any
+new methods you introduce contain <em>advice</em> and the <em>pointcut</em> is effectively
+defined by the calling of these methods.</p>
+<p>Without the extension mechanism the adding of new aspects to nodes would
+be done through inheritance, deriving new node classes that implement
+the aspect for the parent node class. This is fine unless one wants to use
+multiple aspects, requiring multiple inheritance for every combination of
+aspects one wants to use. Therefore this approach does not scale well with
+the number of aspects.</p>
+<p>The node extension mechanism does not directly depend on inheritance,
+instead it adds the methods or class attributes to the node classes
+dynamically at runtime (like <em>method injection</em>). This makes it possible
+to activate extensions just when they are needed, reducing the risk of
+interference between different extensions. One can also use multiple
+extensions at the same time, as long as there is no interference, i.e.,
+both extensions do not use any attributes with the same name.</p>
+<p>The node extension mechanism uses a special Metaclass, which allows it to
+define the node extensions as classes derived from nodes (bascially just what
+one would do without the extension mechanism).
+This keeps the code readable and avoids some problems when using automatic
+code checkers (like the background pylint checks in the
+Eclipse IDE with PyDev).</p>
+<p>In MDP the node extension mechanism is currently used by the <code class="docutils literal"><span class="pre">parallel</span></code>
+package and for the the HTML representation in the <code class="docutils literal"><span class="pre">hinet</span></code> package,
+so the best way to learn more is to look there.
+We also use these packages in the following examples.</p>
+<div class="section" id="using-extensions">
+<h2>Using Extensions<a class="headerlink" href="#using-extensions" title="Permalink to this headline">¶</a></h2>
+<p>First of all you can get all the available node extensions by calling
+the <code class="docutils literal"><span class="pre">get_extensions</span></code> function, or to get just a list of their names use
+<code class="docutils literal"><span class="pre">get_extensions().keys()</span></code>. Be careful not to modify the dict returned
+by <code class="docutils literal"><span class="pre">get_extensions</span></code>, since this will actually modify the registered
+extensions. The currently activated extensions are returned
+by <code class="docutils literal"><span class="pre">get_active_extensions</span></code>. To activate an extension use
+<code class="docutils literal"><span class="pre">activate_extension</span></code>, e.g. to activate the parallel extension
+write:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mdp</span><span class="o">.</span><span class="n">activate_extension</span><span class="p">(</span><span class="s2">&quot;parallel&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now you can use the added attributes / methods</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mdp</span><span class="o">.</span><span class="n">deactivate_extension</span><span class="p">(</span><span class="s2">&quot;parallel&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the additional attributes are no longer available</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As a user you will never have to activate the parallel extension yourself,
+this is done automatically by the <code class="docutils literal"><span class="pre">ParallelFlow</span></code> class. The parallel
+package will be explained later, it is used here only as an example.</p>
+</div>
+<p>Activating an extension adds the available extensions attributes to the
+supported nodes. MDP also provides a context manager for the
+<code class="docutils literal"><span class="pre">with</span></code> statement:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">mdp</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s2">&quot;parallel&quot;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">with</span></code> statement ensures that the activated extension is deactivated
+after the code block, even if there is an exception.
+But the deactivation at the end happens only for the extensions that were
+activated by this context manager (not for those that were already active
+when the context was entered). This prevents unintended side effects.</p>
+<p>Finally there is also a function decorator:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@mdp</span><span class="o">.</span><span class="n">with_extension</span><span class="p">(</span><span class="s2">&quot;parallel&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Again this ensures that the extension is deactivated after the function
+call, even in the case of an exception. The deactivation happens only if
+the extension was activated by the decorator (not if it was already
+active before).</p>
+</div>
+<div class="section" id="writing-extension-nodes">
+<h2>Writing Extension Nodes<a class="headerlink" href="#writing-extension-nodes" title="Permalink to this headline">¶</a></h2>
+<p>Suppose you have written your own nodes and would like to make them compatible
+with a particular extension (e.g. add the required methods).
+The first way to do this is by using multiple inheritance to derive from
+the base class of this extension and your custom node class. For example
+the parallel extension of the SFA node is defined in a class</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">ParallelSFANode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">ParallelExtensionNode</span><span class="p">,</span> 
+<span class="gp">... </span>                      <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">SFANode</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_fork</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="c1"># implement the forking for SFANode</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="o">...</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_join</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="c1"># implement the joining for SFANode</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal"><span class="pre">ParallelExtensionNode</span></code> is the base class of the extension. Then
+you define the required methods or attributes just like in a normal
+class. If you want you could even use the new <code class="docutils literal"><span class="pre">ParallelSFANode</span></code> class
+like a normal class, ignoring the extension mechanism. Note that your
+extension node is automatically registered in the extension mechanism
+(through a little metaclass magic).</p>
+<p>For methods you can alternatively use the <code class="docutils literal"><span class="pre">extension_method</span></code> function
+decorator. You define the extension method like a normal function, but add
+the function decorator on top. For example to define the <code class="docutils literal"><span class="pre">_fork</span></code> method
+for the <code class="docutils literal"><span class="pre">SFANode</span></code> we could have also used</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@mdp</span><span class="o">.</span><span class="n">extension_method</span><span class="p">(</span><span class="s2">&quot;parallel&quot;</span><span class="p">,</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">SFANode</span><span class="p">)</span> 
+<span class="gp">... </span><span class="k">def</span> <span class="nf">_fork</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>The first decorator argument is the name of the extension, the second is the
+class you want to extend. You can also specify the method name as a third
+argument, then the name of the function is ignored (this allows you to get
+rid of warnings about multiple functions with the same name).</p>
+</div>
+<div class="section" id="creating-extensions">
+<h2>Creating Extensions<a class="headerlink" href="#creating-extensions" title="Permalink to this headline">¶</a></h2>
+<p>To create a new node extension you have to create a new extension base
+class (unless you only use the extension decorators to define the extension
+methods). For example, the HTML representation extension in <code class="docutils literal"><span class="pre">mdp.hinet</span></code>
+is created with</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span>  <span class="nc">HTMLExtensionNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">ExtensionNode</span><span class="p">,</span> <span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span> 
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Extension node for HTML representations of individual nodes.&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="n">extension_name</span> <span class="o">=</span> <span class="s2">&quot;html2&quot;</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">html_representation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">pass</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_html_representation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Note that you must derive from <code class="docutils literal"><span class="pre">ExtensionNode</span></code>. If you also derive
+from <code class="docutils literal"><span class="pre">mdp.Node</span></code> then the methods (and attributes) in this class are
+the default implementation for the <code class="docutils literal"><span class="pre">mdp.Node</span></code> class. So they will be
+used by all nodes without a more specific implementation. If you do not
+derive from <code class="docutils literal"><span class="pre">mdp.Node</span></code> then there is no such default implementation.
+You can also derive from a more specific node class if your extension
+only applies to these specific nodes.</p>
+<p>When you define a new extension then you must define the <code class="docutils literal"><span class="pre">extension_name</span></code>
+attribute. This magic attribute is used to register the new extension and you
+can activate or deactivate the extension by using this name.</p>
+<p>Note that extensions can override attributes and methods that are
+defined in a node class. The original attributes can still be accessed
+by prefixing the name with <code class="docutils literal"><span class="pre">_non_extension_</span></code> (the prefix string is
+also available as <code class="docutils literal"><span class="pre">mdp.ORIGINAL_ATTR_PREFIX</span></code>). On the other hand one
+extension is not allowed to override attributes that were defined by
+another currently active extension.</p>
+<p>The extension mechanism uses some magic to make the behavior more
+intuitive with respect to inheritance. Basically methods or attributes
+defined by extensions shadow those which are not defined in the
+extension. Here is an example</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">TestExtensionNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">ExtensionNode</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">extension_name</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">TestNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">ExtendedTestNode</span><span class="p">(</span><span class="n">TestExtensionNode</span><span class="p">,</span> <span class="n">TestNode</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>After this extension is activated any calls of <code class="docutils literal"><span class="pre">_execute</span></code> in instances
+of <code class="docutils literal"><span class="pre">TestNode</span></code> will return 0 instead of 1. The <code class="docutils literal"><span class="pre">_execute</span></code> from the
+extension base-class shadows the method from <code class="docutils literal"><span class="pre">TestNode</span></code>. This makes it
+easier to share behavior for different classes. Without this magic one
+would have to explicitly override <code class="docutils literal"><span class="pre">_execute</span></code> in <code class="docutils literal"><span class="pre">ExtendedTestNode</span></code>
+(or derive the extension base-class from <code class="docutils literal"><span class="pre">Node</span></code>, but that would give
+this behavior to all node classes). Note that there is a <code class="docutils literal"><span class="pre">verbose</span></code>
+argument in <code class="docutils literal"><span class="pre">activate_extension</span></code> which can help with debugging.</p>
+</div>
+<div class="section" id="extension-setup-and-teardown-functions">
+<h2>Extension Setup and Teardown Functions<a class="headerlink" href="#extension-setup-and-teardown-functions" title="Permalink to this headline">¶</a></h2>
+<p>If needed you can define a setup and/or teardown function for your extension.
+The setup function is called when the extension is activated (before the
+node classes are modified) and can be used for global modifications. The
+teardown function is called when the extension is deactivated (after all
+the node class modifications have been removed). In the following simple
+example we set a global variable when the extension is actived</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">is_extension_active</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@mdp</span><span class="o">.</span><span class="n">extension_setup</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">def</span> <span class="nf">_test_extension_setup</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">global</span> <span class="n">is_extension_active</span>
+<span class="gp">... </span>    <span class="n">is_extension_active</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@mdp</span><span class="o">.</span><span class="n">extension_teardown</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">def</span> <span class="nf">_test_extension_teardown</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">global</span> <span class="n">is_extension_active</span>
+<span class="gp">... </span>    <span class="n">is_extension_active</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="hinet.html" title="Hierarchical Networks"
+             >next</a></li>
+        <li class="right" >
+          <a href="checkpoints.html" title="Checkpoints"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

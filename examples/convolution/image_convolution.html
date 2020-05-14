@@ -1,0 +1,201 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Fast image filtering using the caching extension &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Handwritten digits classification with MDP and scikits.learn" href="../scikits_learn/digit_classification.html" />
+    <link rel="prev" title="The Animation of Training" href="../gng/animated_training.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logmap/logmap.html">Logistic Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lle/lle.html">Locally Linear Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gng/gng.html">Growing Neural Gas</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bayes_guesser/bayes_guesser.html">Bayes Guesser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../word_generator/word_generator.html">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binetdbn/dbn.html">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_custom_inspection.html">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fast-image-filtering-using-the-caching-extension">
+<span id="convolution2d"></span><h1>Fast image filtering using the caching extension<a class="headerlink" href="#fast-image-filtering-using-the-caching-extension" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/examples/convolution/image_convolution.html">code snippets directory</a></p>
+</div>
+<p>Here is an example of how to convolve an image with oriented
+filters. 2D convolution is notoriously a slow operation; we’ll show
+how to improve the filtering speed using the caching extension.</p>
+<p>For our example, we’ll use the famous image of Lena</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mdp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;examples.directory&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;datapath&#39;</span><span class="p">]),</span> <span class="s1">&#39;sample_data&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pylab</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">matplotlib.cbook</span> <span class="kn">import</span> <span class="n">get_sample_data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">im</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">get_sample_data</span><span class="p">(</span><span class="s2">&quot;ada.png&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># transform to grayscale</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">im</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">im</span><span class="p">[:,:,:</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mf">2.</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/lena_gray.png"><img alt="Lena's famous photograph" src="../../_images/lena_gray.png" style="width: 400px;" /></a>
+<p>First, we create a bank of Gabor filters at different orientations</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># create Gabor filters bank</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">orientations</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mf">4.</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="n">pi</span><span class="o">*</span><span class="mf">3.</span><span class="o">/</span><span class="mf">4.</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">10</span>    <span class="c1"># frequency</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phi</span> <span class="o">=</span> <span class="n">pi</span><span class="o">/</span><span class="mf">2.</span>     <span class="c1"># phase</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="c1"># in pixels</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sgm</span> <span class="o">=</span> <span class="p">(</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">)</span>  <span class="c1"># standard deviation of the axes</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nfilters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">orientations</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gabors</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nfilters</span><span class="p">,</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">orientations</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">gabors</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">gabor</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">sgm</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/gabor_filters.png"><img alt="The four Gabor filters" src="../../_images/gabor_filters.png" style="width: 500px;" /></a>
+<p>To convolve the image, we use the <code class="docutils literal"><span class="pre">Convolution2DNode</span></code> as follows</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">Convolution2DNode</span><span class="p">(</span><span class="n">gabors</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                                   <span class="n">fillvalue</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">output_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cim</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">im</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:,:])</span>
+</pre></div>
+</div>
+<p>obtaining these filtered images</p>
+<a class="reference internal image-reference" href="../../_images/filtered_lena.png"><img alt="Lena filtered by Gabors" src="../../_images/filtered_lena.png" style="width: 600px;" /></a>
+<p>To demonstrate how to use the caching extension, we’ll pretend we have
+several images by copying Lena several times, and measure the
+filtering performance with and without cache</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">lrep</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># set up a Timer object to measure performance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">Timer</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">timer</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="s2">&quot;node.execute(x)&quot;</span><span class="p">,</span> <span class="s2">&quot;from __main__ import node, x&quot;</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># first uncached execution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">timer</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;sec&#39;</span> 
+<span class="go">6.91 sec</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now activating the cache on the Convolution2DNode class:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">mdp</span><span class="o">.</span><span class="n">caching</span><span class="o">.</span><span class="n">cache</span><span class="p">(</span><span class="n">cache_classes</span><span class="o">=</span><span class="p">[</span><span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">Convolution2DNode</span><span class="p">]):</span> 
+<span class="gp">&gt;&gt;&gt; </span>   <span class="c1"># second execution, uncached if it&#39;s the first time the script is run</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="nb">print</span> <span class="n">timer</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;sec&#39;</span> 
+<span class="gp">&gt;&gt;&gt; </span>   <span class="c1"># third execution, this time cached</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="nb">print</span> <span class="n">timer</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;sec&#39;</span> 
+<span class="go">7.05 sec</span>
+<span class="go">39.6 msec</span>
+</pre></div>
+</div>
+<p>That’s a 178 times improvement!</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

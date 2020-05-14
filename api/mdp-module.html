@@ -1,0 +1,1285 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>mdp</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://mdp-toolkit.github.io">Modular toolkit for Data Processing MDP</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;mdp
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="mdp-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PACKAGE DESCRIPTION ==================== -->
+<h1 class="epydoc">Package mdp</h1><p class="nomargin-top"></p>
+<p><strong>The Modular toolkit for Data Processing (MDP)</strong> package is a library
+of widely used data processing algorithms, and the possibility to
+combine them together to form pipelines for building more complex
+data processing software.</p>
+<p>MDP has been designed to be used as-is and as a framework for
+scientific data processing development.</p>
+<p>From the user's perspective, MDP consists of a collection of <em>units</em>,
+which process data. For example, these include algorithms for
+supervised and unsupervised learning, principal and independent
+components analysis and classification.</p>
+<p>These units can be chained into data processing flows, to create
+pipelines as well as more complex feed-forward network
+architectures. Given a set of input data, MDP takes care of training
+and executing all nodes in the network in the correct order and
+passing intermediate data between the nodes. This allows the user to
+specify complex algorithms as a series of simpler data processing
+steps.</p>
+<p>The number of available algorithms is steadily increasing and includes
+signal processing methods (Principal Component Analysis, Independent
+Component Analysis, Slow Feature Analysis), manifold learning methods
+([Hessian] Locally Linear Embedding), several classifiers,
+probabilistic methods (Factor Analysis, RBM), data pre-processing
+methods, and many others.</p>
+<p>Particular care has been taken to make computations efficient in terms
+of speed and memory. To reduce the memory footprint, it is possible to
+perform learning using batches of data. For large data-sets, it is
+also possible to specify that MDP should use single precision floating
+point numbers rather than double precision ones. Finally, calculations
+can be parallelised using the <a href="mdp.parallel-module.html" class="link">parallel</a> subpackage, which offers a
+parallel implementation of the basic nodes and flows.</p>
+<p>From the developer's perspective, MDP is a framework that makes the
+implementation of new supervised and unsupervised learning algorithms
+easy and straightforward. The basic class, <a href="mdp.Node-class.html" class="link">Node</a>, takes care of tedious
+tasks like numerical type and dimensionality checking, leaving the
+developer free to concentrate on the implementation of the learning
+and execution phases. Because of the common interface, the node then
+automatically integrates with the rest of the library and can be used
+in a network together with other nodes.</p>
+<p>A node can have multiple training phases and even an undetermined
+number of phases. Multiple training phases mean that the training data
+is presented multiple times to the same node. This allows the
+implementation of algorithms that need to collect some statistics on
+the whole input before proceeding with the actual training, and others
+that need to iterate over a training phase until a convergence
+criterion is satisfied. It is possible to train each phase using
+chunks of input data if the chunks are given as an iterable. Moreover,
+crash recovery can be optionally enabled, which will save the state of
+the flow in case of a failure for later inspection.</p>
+<p>MDP is distributed under the open source BSD license. It has been
+written in the context of theoretical research in neuroscience, but it
+has been designed to be helpful in any context where trainable data
+processing algorithms are used. Its simplicity on the user's side, the
+variety of readily available algorithms, and the reusability of the
+implemented nodes also make it a useful educational tool.</p>
+<p><a class="rst-reference external" href="https://mdp-toolkit.github.io" target="_top">https://mdp-toolkit.github.io</a></p>
+
+<hr />
+<div class="fields">      <p><strong>Version:</strong>
+        3.6
+      </p>
+      <p><strong>Author:</strong>
+        MDP Developers
+      </p>
+      <p><strong>Contact:</strong>
+        mdp-toolkit@python.org
+      </p>
+      <p><strong>Copyright:</strong>
+        (c) 2003-2020 mdp-toolkit@python.org
+      </p>
+      <p><strong>License:</strong>
+        BSD License, see COPYRIGHT
+      </p>
+</div><!-- ==================== SUBMODULES ==================== -->
+<a name="section-Submodules"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Submodules</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Submodules"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr><td class="summary">
+  <ul class="nomargin">
+    <li> <strong class="uidlink"><a href="mdp.caching-module.html">mdp.caching</a></strong>: <em class="summary">MDP extension to cache the execution phase of nodes.</em>    </li>
+    <li> <strong class="uidlink"><a href="mdp.graph-module.html">mdp.graph</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet-module.html">mdp.hinet</a></strong>: <em class="summary">Hierarchical Networks Package.</em>    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes-module.html">mdp.nodes</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel-module.html">mdp.parallel</a></strong>: <em class="summary">This is the MDP package for parallel processing.</em>    </li>
+    <li> <strong class="uidlink"><a href="mdp.utils-module.html">mdp.utils</a></strong>    </li>
+  </ul></td></tr>
+</table>
+
+<br />
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.CheckpointFlow-class.html" class="summary-name">CheckpointFlow</a><br />
+      Subclass of Flow class that allows user-supplied checkpoint functions
+to be executed at the end of each phase, for example to
+save the internal structures of a node for later analysis.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.CheckpointFunction-class.html" class="summary-name">CheckpointFunction</a><br />
+      Base class for checkpoint functions.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.CheckpointSaveFunction-class.html" class="summary-name">CheckpointSaveFunction</a><br />
+      This checkpoint function saves the node in pickle format.
+The pickle dump can be done either before the training phase is finished or
+right after that.
+In this way, it is for example possible to reload it in successive sessions
+and continue the training.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.CircularOnlineFlow-class.html" class="summary-name">CircularOnlineFlow</a><br />
+      A 'CircularOnlineFlow' is a cyclic sequence of online/non-trainable nodes that are trained and executed
+together to form a more complex algorithm. This type of flow is useful when one needs to train the nodes
+internally for several iterations using stored inputs before training with the next external input.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.CircularOnlineFlowException-class.html" class="summary-name">CircularOnlineFlowException</a><br />
+      Base class for exceptions in Flow subclasses.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.ClassifierCumulator-class.html" class="summary-name">ClassifierCumulator</a><br />
+      A ClassifierCumulator is a Node whose training phase simply collects
+all input data and labels. In this way it is possible to easily implement
+batch-mode learning.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.ClassifierNode-class.html" class="summary-name">ClassifierNode</a><br />
+      A ClassifierNode can be used for classification tasks that should not
+interfere with the normal execution flow. A reason for that is that the
+labels used for classification do not form a vector space, and so they don't
+make much sense in a flow.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.CrashRecoveryException-class.html" class="summary-name">CrashRecoveryException</a><br />
+      Class to handle crash recovery
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.Cumulator-class.html" class="summary-name">Cumulator</a><br />
+      A specialized version of <a href="mdp-module.html#VariadicCumulator" class="link">VariadicCumulator</a> which only
+fills the field <code class="link">self.data</code>.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.ExtensionNode-class.html" class="summary-name">ExtensionNode</a><br />
+      Base class for extensions nodes.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.ExtensionNodeMetaclass-class.html" class="summary-name">ExtensionNodeMetaclass</a><br />
+      This is the metaclass for node extension superclasses.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.Flow-class.html" class="summary-name">Flow</a><br />
+      A 'Flow' is a sequence of nodes that are trained and executed
+together to form a more complex algorithm.  Input data is sent to the
+first node and is successively processed by the subsequent nodes along
+the sequence.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.FlowException-class.html" class="summary-name">FlowException</a><br />
+      Base class for exceptions in Flow subclasses.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.FlowExceptionCR-class.html" class="summary-name">FlowExceptionCR</a><br />
+      Class to handle flow-crash recovery
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.IsNotInvertibleException-class.html" class="summary-name">IsNotInvertibleException</a><br />
+      Raised when the <a href="mdp.Node-class.html#inverse" class="link">Node.inverse</a> method is called although the
+node is not invertible.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.IsNotTrainableException-class.html" class="summary-name">IsNotTrainableException</a><br />
+      Raised when the <a href="mdp.Node-class.html#train" class="link">Node.train</a> method is called although the
+node is not trainable.
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.MDPDeprecationWarning-class.html" class="summary-name" onclick="show_private();">MDPDeprecationWarning</a><br />
+      Warn about deprecated MDP API.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.MDPException-class.html" class="summary-name">MDPException</a><br />
+      Base class for exceptions in MDP.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.MDPWarning-class.html" class="summary-name">MDPWarning</a><br />
+      Base class for warnings in MDP.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.Node-class.html" class="summary-name">Node</a><br />
+      A <a href="mdp.Node-class.html" class="link">Node</a> is the basic building block of an MDP application.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.NodeException-class.html" class="summary-name">NodeException</a><br />
+      Base class for exceptions in <a href="mdp.Node-class.html" class="link">Node</a> subclasses.
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.NodeMetaclass-class.html" class="summary-name" onclick="show_private();">NodeMetaclass</a><br />
+      A metaclass which copies docstrings from private to public methods.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.OnlineFlow-class.html" class="summary-name">OnlineFlow</a><br />
+      An 'OnlineFlow' is a sequence of nodes that are trained online and executed
+together to form a more complex algorithm.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.OnlineFlowException-class.html" class="summary-name">OnlineFlowException</a><br />
+      Base class for exceptions in Flow subclasses.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.OnlineNode-class.html" class="summary-name">OnlineNode</a><br />
+      An online Node (OnlineNode) is the basic building block of
+an online MDP application.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.OnlineNodeException-class.html" class="summary-name">OnlineNodeException</a><br />
+      Base class for exceptions in <a href="mdp.OnlineNode-class.html" class="link">OnlineNode</a> subclasses.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.PreserveDimNode-class.html" class="summary-name">PreserveDimNode</a><br />
+      Abstract base class with <code class="link">output_dim == input_dim</code>.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.PreserveDimOnlineNode-class.html" class="summary-name">PreserveDimOnlineNode</a><br />
+      Abstract base class with <code class="link">output_dim == input_dim</code>.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.TrainingException-class.html" class="summary-name">TrainingException</a><br />
+      Base class for exceptions in the training phase.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.TrainingFinishedException-class.html" class="summary-name">TrainingFinishedException</a><br />
+      Raised when the <a href="mdp.Node-class.html#train" class="link">Node.train</a> method is called although the
+training phase is closed.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.config-class.html" class="summary-name">config</a><br />
+      Provide information about optional dependencies.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.extension-class.html" class="summary-name">extension</a><br />
+      Context manager for MDP extension.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#VariadicCumulator" class="summary-sig-name">VariadicCumulator</a>(<span class="summary-sig-arg">*fields</span>)</span><br />
+      A VariadicCumulator is a <a href="mdp.Node-class.html" class="link">Node</a> whose training phase simply collects
+all input data. In this way it is possible to easily implement
+batch-mode learning.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#activate_extension" class="summary-sig-name">activate_extension</a>(<span class="summary-sig-arg">extension_name</span>,
+        <span class="summary-sig-arg">verbose</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Activate the extension by injecting the extension methods.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#activate_extensions" class="summary-sig-name">activate_extensions</a>(<span class="summary-sig-arg">extension_names</span>,
+        <span class="summary-sig-arg">verbose</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Activate all the extensions for the given names.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#deactivate_extension" class="summary-sig-name">deactivate_extension</a>(<span class="summary-sig-arg">extension_name</span>,
+        <span class="summary-sig-arg">verbose</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Deactivate the extension by removing the injected methods.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#deactivate_extensions" class="summary-sig-name">deactivate_extensions</a>(<span class="summary-sig-arg">extension_names</span>,
+        <span class="summary-sig-arg">verbose</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Deactivate all the extensions for the given names.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#extension_method" class="summary-sig-name">extension_method</a>(<span class="summary-sig-arg">extension_name</span>,
+        <span class="summary-sig-arg">node_cls</span>,
+        <span class="summary-sig-arg">method_name</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Returns a decorator to register a function as an extension method.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#extension_setup" class="summary-sig-name">extension_setup</a>(<span class="summary-sig-arg">extension_name</span>)</span><br />
+      Returns a decorator to register a setup function for an extension.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#extension_teardown" class="summary-sig-name">extension_teardown</a>(<span class="summary-sig-arg">extension_name</span>)</span><br />
+      Returns a decorator to register a teardown function for an extension.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#fastica" class="summary-sig-name">fastica</a>(<span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Perform Independent Component Analysis on input data using the FastICA
+algorithm by Aapo Hyvarinen.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#get_extensions" class="summary-sig-name">get_extensions</a>()</span><br />
+      Return a dictionary currently registered extensions.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#pca" class="summary-sig-name">pca</a>(<span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Filters multidimensional input data through its principal components.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp-module.html#with_extension" class="summary-sig-name">with_extension</a>(<span class="summary-sig-arg">extension_name</span>)</span><br />
+      Return a wrapper function to activate and deactivate the extension.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp-module.html#__homepage__" class="summary-name" onclick="show_private();">__homepage__</a> = <code title="'https://mdp-toolkit.github.io'"><code class="variable-quote">'</code><code class="variable-string">https://mdp-toolkit.github.io</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp-module.html#__medium_description__" class="summary-name" onclick="show_private();">__medium_description__</a> = <code title="'''**Modular toolkit for Data Processing (MDP)** is a Python data proc\
+essing framework.
+
+From the user\'s perspective, MDP is a collection of supervised and un\
+supervised
+learning algorithms and other data processing units that can be combin\
+ed into
+data processing sequences and more complex feed-forward network archit\
+..."><code class="variable-quote">'</code><code class="variable-string">**Modular toolkit for Data Processin</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp-module.html#__package__" class="summary-name" onclick="show_private();">__package__</a> = <code title="'mdp'"><code class="variable-quote">'</code><code class="variable-string">mdp</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp-module.html#__revision__" class="summary-name" onclick="show_private();">__revision__</a> = <code title="''"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp-module.html#__short_description__" class="summary-name" onclick="show_private();">__short_description__</a> = <code title="'MDP is a Python library for building complex data processing software\
+ by combining widely used machine learning algorithms into pipelines a\
+nd networks.'"><code class="variable-quote">'</code><code class="variable-string">MDP is a Python library for building </code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp-module.html#_pp_needs_monkeypatching" class="summary-name" onclick="show_private();">_pp_needs_monkeypatching</a> = <code title="False">False</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp-module.html#numx_description" class="summary-name" onclick="show_private();">numx_description</a> = <code title="'scipy'"><code class="variable-quote">'</code><code class="variable-string">scipy</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="VariadicCumulator"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">VariadicCumulator</span>(<span class="sig-arg">*fields</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>A VariadicCumulator is a <a href="mdp.Node-class.html" class="link">Node</a> whose training phase simply collects
+all input data. In this way it is possible to easily implement
+batch-mode learning.</p>
+<p>The data is accessible in the attributes given with the VariadicCumulator's
+constructor after the beginning of the <a href="mdp.Node-class.html#_stop_training" class="link" onclick="show_private();">Node._stop_training</a> phase.
+<code class="link">self.tlen</code> contains the number of data points collected.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="activate_extension"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">activate_extension</span>(<span class="sig-arg">extension_name</span>,
+        <span class="sig-arg">verbose</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Activate the extension by injecting the extension methods.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="activate_extensions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">activate_extensions</span>(<span class="sig-arg">extension_names</span>,
+        <span class="sig-arg">verbose</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Activate all the extensions for the given names.</p>
+<p>extension_names -- Sequence of extension names.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="deactivate_extension"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">deactivate_extension</span>(<span class="sig-arg">extension_name</span>,
+        <span class="sig-arg">verbose</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Deactivate the extension by removing the injected methods.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="deactivate_extensions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">deactivate_extensions</span>(<span class="sig-arg">extension_names</span>,
+        <span class="sig-arg">verbose</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Deactivate all the extensions for the given names.</p>
+<p>extension_names -- Sequence of extension names.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="extension_method"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">extension_method</span>(<span class="sig-arg">extension_name</span>,
+        <span class="sig-arg">node_cls</span>,
+        <span class="sig-arg">method_name</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a decorator to register a function as an extension method.</p>
+<p>Note that it is possible to directly call other extension functions, call
+extension methods in other node classes or to use super in the normal way
+(the function will be called as a method of the node class).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>extension_name</code></strong> - String with the name of the extension.</li>
+        <li><strong class="pname"><code>node_cls</code></strong> - Node class for which the method should be registered.</li>
+        <li><p><strong class="pname"><code>method_name</code></strong> - Name of the extension method (default value is <code class="link">None</code>).</p>
+<p>If no value is provided then the name of the function is used.</p></li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="extension_setup"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">extension_setup</span>(<span class="sig-arg">extension_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a decorator to register a setup function for an extension.</p>
+<p>The decorated function will be called when the extension is activated.</p>
+<p>Note that there is also the extension_teardown decorator, which should
+probably defined as well if there is a setup procedure.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>extension_name</code></strong> - String with the name of the extension.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="extension_teardown"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">extension_teardown</span>(<span class="sig-arg">extension_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a decorator to register a teardown function for an extension.</p>
+<p>The decorated function will be called when the extension is deactivated.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>extension_name</code></strong> - String with the name of the extension.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fastica"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fastica</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Perform Independent Component Analysis on input data using the FastICA
+algorithm by Aapo Hyvarinen.</p>
+<p>Observations of the same variable are stored on rows, different variables
+are stored on columns.</p>
+<p>This is a shortcut function for the corresponding node <a href="mdp.nodes.FastICANode-class.html" class="link">nodes.FastICANode</a>.
+If any keyword arguments are specified, they are passed to its constructor.</p>
+<p>This is equivalent to <a href="mdp.nodes.FastICANode-class.html" class="link">mdp.nodes.FastICANode(**kwargs)(x)</a></p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_extensions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_extensions</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return a dictionary currently registered extensions.</p>
+<p>Note that this is not a copy, so if you change anything in this dict
+the whole extension mechanism will be affected. If you just want the
+names of the available extensions use get_extensions().keys().</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="pca"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">pca</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Filters multidimensional input data through its principal components.</p>
+<p>Observations of the same variable are stored on rows, different variables
+are stored on columns.</p>
+<p>This is a shortcut function for the corresponding node <a href="mdp.nodes.PCANode-class.html" class="link">nodes.PCANode</a>. If any
+keyword arguments are specified, they are passed to its constructor.</p>
+<p>This is equivalent to <a href="mdp.nodes.PCANode-class.html" class="link">mdp.nodes.PCANode(**kwargs)(x)</a></p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="with_extension"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">with_extension</span>(<span class="sig-arg">extension_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return a wrapper function to activate and deactivate the extension.</p>
+<p>This function is intended to be used with the decorator syntax.</p>
+<p>The deactivation happens only if the extension was activated by
+the decorator (not if it was already active before). So this
+decorator ensures that the extensions is active and prevents
+unintended side effects.</p>
+<p>If the generated function is a generator, the extension will be in
+effect only when the generator object is created (that is when the
+function is called, but its body is not actually immediately
+executed). When the function body is executed (after <code class="link">next</code> is
+called on the generator object), the extension might not be in
+effect anymore. Therefore, it is better to use the <a href="mdp.extension-class.html" class="link">extension</a>
+context manager with a generator function.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__homepage__"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__homepage__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'</code><code class="variable-string">https://mdp-toolkit.github.io</code><code class="variable-quote">'</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__medium_description__"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__medium_description__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'''</code><code class="variable-string">**Modular toolkit for Data Processing (MDP)** is a Python data proc</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-string">essing framework.</code>
+<code class="variable-string"></code>
+<code class="variable-string">From the user\'s perspective, MDP is a collection of supervised and un</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-string">supervised</code>
+<code class="variable-string">learning algorithms and other data processing units that can be combin</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-string">ed into</code>
+<code class="variable-string">data processing sequences and more complex feed-forward network archit</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__package__"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__package__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'</code><code class="variable-string">mdp</code><code class="variable-quote">'</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__revision__"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__revision__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__short_description__"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__short_description__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'</code><code class="variable-string">MDP is a Python library for building complex data processing software</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-string"> by combining widely used machine learning algorithms into pipelines a</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-string">nd networks.</code><code class="variable-quote">'</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_pp_needs_monkeypatching"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">_pp_needs_monkeypatching</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+False
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="numx_description"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">numx_description</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'</code><code class="variable-string">scipy</code><code class="variable-quote">'</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://mdp-toolkit.github.io">Modular toolkit for Data Processing MDP</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1-MDP on Mon Apr 27 21:56:15 2020
+    </td>
+    <td align="right" class="footer">
+      <a target="_blank" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

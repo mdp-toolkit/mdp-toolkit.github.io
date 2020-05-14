@@ -1,0 +1,455 @@
+<html>
+<head>
+<title>Test Animation</title>
+<style type="text/css" media="screen">
+html, body {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    color: #003399;
+}
+
+par.explanation {
+    color: #003399;
+    font-size: small;
+}
+
+table.flow {
+    margin-left: auto;
+    margin-right: auto;
+}
+/* style for slideshow control table */
+
+div.slideshow {
+    text-align: center;
+}
+
+table.slideshow, table.slideshow td, table.slideshow th {
+    border-collapse: collapse;
+    padding: 1px 2px 1px 2px;
+    font-size: small;
+    border: 1px solid;
+}
+
+table.slideshow {
+    border: 2px solid;
+    margin: 0 auto;
+}
+
+table.slideshow td {
+    text-align: center;
+}
+
+span.inactive_section {
+    color: #0000FF;
+    cursor: pointer;
+}
+
+span.inactive_section:hover {
+    color: #6666FF;
+}
+
+span.active_section {
+    color: #0000FF;
+    background-color: #BBDDFF;
+    cursor: pointer;
+}
+
+span.active_section:hover {
+    color: #6666FF;
+}
+img.slideshow {
+    image-rendering: -moz-crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+</style>
+</head>
+<body>
+
+<script language="JavaScript">
+<!-- Begin
+
+// use closure to create object, the slideshow_id is the only global variable
+var slideshow53601 = function () {
+
+    var that = {};
+
+    var current_slide = 0; // current slide index
+    var show_delay = 100; // delay in milliseconds
+    var loop_slideshow = true; // loop in auto mode
+    // shortcuts to form elements, initialized in onLoad
+    var slideform;
+    var slideselect;
+
+    
+    
+    // step size for in- or decreasing the delay
+    var delay_delta = 20;
+
+    that.slower = function () {
+        show_delay += delay_delta;
+        slideform.slideshow53601_delaytext.value = show_delay.toString();
+    }
+
+    that.faster = function (text) {
+        show_delay -= delay_delta;
+        if (show_delay < 0) {
+            show_delay = 0;
+        }
+        slideform.slideshow53601_delaytext.value = show_delay.toString();
+    }
+
+    that.changeDelay = function () {
+        var new_delay = parseInt(slideform.slideshow53601_delaytext.value, 10);
+        if (new_delay < 0) {
+             new_delay = 0;
+            }
+        show_delay = new_delay;
+        slideform.slideshow53601_delaytext.value = new_delay.toString();
+    }
+
+    var magnification = 1; // image magnification
+    var original_width = 400; // original image width
+    var original_height = 300; // original image height
+
+    that.smaller = function () {
+        magnification = magnification / 2;
+        slideform.slideshow53601_magtext.value = magnification.toString();
+        that.resizeImage();
+    }
+
+    that.larger = function (text) {
+        magnification = magnification * 2;
+        slideform.slideshow53601_magtext.value = magnification.toString();
+        that.resizeImage();
+    }
+
+    that.changeMag = function () {
+        magnification = parseFloat(slideform.slideshow53601_magtext.value);
+        that.resizeImage();
+    }
+
+    
+    that.resizeImage = function () {
+        document.images.slideshow53601_image_display.width =
+            parseInt(magnification * original_width, 10);
+        document.images.slideshow53601_image_display.height =
+            parseInt(magnification * original_height, 10);
+        // make sure that section ids are nicely line wrapped
+        var section_panel_width = 250;
+        if (magnification * original_height > section_panel_width) {
+            section_panel_width = magnification * original_width;
+        }
+        document.getElementById("slideshow53601_sections_panel").style.width =
+            parseInt(section_panel_width, 10) + "px";
+    }
+    
+    that.loadSlide = function () {
+        document.images.slideshow53601_image_display.src =
+            slideselect[current_slide].value;
+    }
+    
+    // maps slide index to section slideshow_id
+    var section_ids = new Array(
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_positive",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative",
+        "slideshow53601_section_id_negative");
+    // currently highlighted section slideshow_id
+    var current_section_id = section_ids[0];
+
+    that.updateSlide = function () {
+        document.getElementById(current_section_id).className =
+            "inactive_section";
+        current_section_id = section_ids[current_slide]
+        document.getElementById(current_section_id).className =
+            "active_section";
+        slideselect.selectedIndex = current_slide;
+        that.loadSlide();
+    }
+
+    // use this function when a section is selected,
+    // e.g. onClick="setSlide(42)"
+    that.setSlide = function (index) {
+        current_slide = index;
+        that.updateSlide();
+    }
+
+    that.previousSection = function () {
+        if (false) {
+            return;
+        }
+        while (current_section_id === section_ids[current_slide]) {
+            if (current_slide > 0) {
+                current_slide -= 1;
+            } else {
+                current_slide = slideselect.length-1;
+            }
+        }
+        var new_section_id = section_ids[current_slide];
+        // now go to start of this section
+        while (new_section_id === section_ids[current_slide]) {
+            current_slide -= 1;
+            if (current_slide < 0) {
+                break;
+            }
+        }
+        current_slide += 1;
+        that.updateSlide();
+    }
+
+    that.nextSection = function () {
+        if (false) {
+            return;
+        }
+        while (current_section_id === section_ids[current_slide]) {
+            if (current_slide+1 < slideselect.length) {
+                current_slide += 1;
+            } else {
+                current_slide = 0;
+            }
+        }
+        that.updateSlide();
+    }
+
+    
+    that.loadSlide = function () {
+        document.images.slideshow53601_image_display.src =
+            slideselect[current_slide].value;
+    }
+    
+    that.onLoad = function () {
+        slideform = document.slideshow53601_slideform;
+        slideselect = slideform.slideshow53601_slideselect;
+        current_slide = slideselect.selectedIndex;
+        that.updateSlide();
+        slideform.slideshow53601_delaytext.value = show_delay.toString();
+        slideform.slideshow53601_magtext.value = magnification.toString();
+        that.resizeImage();
+    }
+
+    that.onSelectorChange = function () {
+        current_slide = slideselect.selectedIndex;
+        that.updateSlide();
+    }
+
+    that.next = function () {
+        if (slideselect[current_slide+1]) {
+            current_slide += 1;
+            that.updateSlide();
+        }
+        else if (loop_slideshow) {
+            that.first();
+        }
+    }
+
+    that.previous = function () {
+        if (current_slide-1 >= 0) {
+            current_slide -= 1;
+            that.updateSlide();
+        }
+        else if (loop_slideshow) {
+            that.last();
+        }
+    }
+
+    that.first = function () {
+        current_slide = 0;
+        that.updateSlide();
+    }
+
+    that.last = function () {
+        current_slide = slideselect.length-1;
+        that.updateSlide();
+    }
+
+    // start or stop the slideshow
+    that.startstop = function (text) {
+        if (text === "Start") {
+            slideform.startbutton.value = "Stop";
+            if (!loop_slideshow &&
+                (current_slide === slideselect.length-1)) {
+                // restart slideshow
+                current_slide = -1;  // is directly increased by showAuto
+            }
+            that.showAuto();
+        } else {
+            slideform.startbutton.value = "Start";
+        }
+    }
+
+    // continuously show the slideshow
+    that.showAuto = function () {
+        if (slideform.startbutton.value == "Stop") {
+            if (current_slide == slideselect.length-1) {
+                if (loop_slideshow) {
+                    current_slide = 0;
+                    that.updateSlide();
+                } else {
+                    slideform.startbutton.value = "Start";
+                }
+            } else {
+                current_slide = current_slide+1;
+                that.updateSlide();
+            }
+            window.setTimeout("slideshow53601.showAuto()", show_delay);
+        }
+    }
+
+    // end of closure, return created object
+    return that;
+}();
+
+
+document.onkeydown = function(e) {
+    if (!e.ctrlKey) { // control key must be pressed
+        return;
+    }
+    else if (e.which === 37) { // left key
+        document.getElementById("slideshow53601_prevButton").click();
+    }
+    else if(e.which === 39) { // right key
+        document.getElementById("slideshow53601_nextButton").click();
+    }
+    else if(e.which === 38) { // up key
+        document.getElementById("slideshow53601_prevSectionButton").click();
+    }
+    else if(e.which === 40) { // down key
+        document.getElementById("slideshow53601_nextSectionButton").click();
+    }
+    else if(e.which === 45) { // insert key
+        document.getElementById("slideshow53601_startButton").click();
+    }
+}
+    
+//  End -->
+</script>
+
+<div class="slideshow" id="slideshow53601">
+
+
+
+<form name=slideshow53601_slideform>
+<table class="slideshow">
+<tr><td><b> Test Animation </b></td></tr>
+
+<tr>
+<td style="padding: 20 20 20 20">
+<img class="slideshow" src="" name="slideshow53601_image_display"
+    width="400" height="300">
+</td>
+</tr>
+
+<tr><td>
+<select name="slideshow53601_slideselect"
+    onChange="slideshow53601.onSelectorChange();">
+<option value="img0000.png" selected>img0000.png
+<option value="img0001.png">img0001.png
+<option value="img0002.png">img0002.png
+<option value="img0003.png">img0003.png
+<option value="img0004.png">img0004.png
+<option value="img0005.png">img0005.png
+<option value="img0006.png">img0006.png
+<option value="img0007.png">img0007.png
+<option value="img0008.png">img0008.png
+<option value="img0009.png">img0009.png
+<option value="img0010.png">img0010.png
+<option value="img0011.png">img0011.png
+<option value="img0012.png">img0012.png
+<option value="img0013.png">img0013.png
+<option value="img0014.png">img0014.png
+<option value="img0015.png">img0015.png
+<option value="img0016.png">img0016.png
+<option value="img0017.png">img0017.png
+<option value="img0018.png">img0018.png
+<option value="img0019.png">img0019.png
+<option value="img0020.png">img0020.png
+<option value="img0021.png">img0021.png
+<option value="img0022.png">img0022.png
+<option value="img0023.png">img0023.png
+<option value="img0024.png">img0024.png
+</select>
+</td></tr>
+<tr><td>
+
+
+<input type=button onClick="slideshow53601.first();"
+    value="|<<" title="First" id="slideshow53601_firstButton">
+<input type=button onClick="slideshow53601.previousSection();" value="|<"
+    title="Previous Section (Ctrl+Up)" id="slideshow53601_prevSectionButton">
+<input type=button onClick="slideshow53601.previous();"
+    value="<" title="Previous (Ctrl+Left)" id="slideshow53601_prevButton">
+<input type=button name="startbutton"
+    onClick="slideshow53601.startstop(this.value);"
+    value="Start" title="Autoplay (Ctrl+Insert)"
+    id="slideshow53601_startButton">
+<input type=button onClick="slideshow53601.next();" value=">"
+    title="Next (Ctrl+Right)"
+    id="slideshow53601_nextButton">
+<input type=button onClick="slideshow53601.nextSection();" value=">|"
+    title="Next Section (Ctrl+Down)" id="slideshow53601_nextSectionButton">
+<input type=button onClick="slideshow53601.last();" value=">>|" title="Last"
+    id="slideshow53601_lastButton">
+
+</td></tr>
+
+
+
+<tr><td align=center>
+
+magnification: <input type="text" name="slideshow53601_magtext"
+    onChange="slideshow53601.changeMag();" value="0" size="2">
+<input type=button onClick="slideshow53601.smaller();" value="-" title="Smaller">
+<input type=button onClick="slideshow53601.larger();" value="+" title="Larger">
+<br>
+
+delay: <input type="text" name="slideshow53601_delaytext"
+    onChange="slideshow53601.changeDelay();" value="0" size="4"> ms
+<input type=button onClick="slideshow53601.faster();" value="-" title="Faster">
+<input type=button onClick="slideshow53601.slower();" value="+" title="Slower">
+</td></tr>
+
+<tr><td>
+<div id="slideshow53601_sections_panel"
+    style="margin-left:auto; margin-right: auto;">
+<span class="inactive_section" id="slideshow53601_section_id_positive" onClick="slideshow53601.setSlide(0);">positive</span>&nbsp;| <span class="inactive_section" id="slideshow53601_section_id_negative" onClick="slideshow53601.setSlide(13);">negative</span>
+</div>
+</td></tr>
+
+</table>
+</form>
+
+
+
+</div>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+slideshow53601.onLoad();
+//  End -->
+</script>
+</body>
+</html>

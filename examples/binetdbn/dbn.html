@@ -1,0 +1,202 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Deep Belief Network (DBN) based on BiMDP &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DBN nodes" href="dbn_nodes.html" />
+    <link rel="prev" title="Gradient Descent and the Newton Method" href="../gradnewton/gradnewton.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logmap/logmap.html">Logistic Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lle/lle.html">Locally Linear Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gng/gng.html">Growing Neural Gas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution/image_convolution.html">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bayes_guesser/bayes_guesser.html">Bayes Guesser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../word_generator/word_generator.html">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_custom_inspection.html">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="deep-belief-network-dbn-based-on-bimdp">
+<span id="dbn"></span><span id="binetdbn"></span><h1>Deep Belief Network (DBN) based on BiMDP<a class="headerlink" href="#deep-belief-network-dbn-based-on-bimdp" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/examples/binetdbn/dbn.html">code snippets directory</a></p>
+</div>
+<p>written by Pietro Berkes and Niko Wilbert</p>
+<p>This is only a proof-of-concept, so don’t expect the DBN to actually work!
+Its current pupose is to experiment with different binet features.</p>
+<p>Run this demo to view an HTML inspection of the DBN training.
+This should help with understanding how the implementation works.</p>
+<p><a class="reference internal" href="dbn_nodes.html#dbn-nodes"><span class="std std-ref">DBN nodes</span></a> — This is the original non-bimdp DBN node
+from Pietro, which is the basis for the BiMDP DBN implementation and
+is required for this example to run.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mdp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bimdp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">dbn_binodes</span>
+</pre></div>
+</div>
+<p>create DBN</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n_layers</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span> <span class="o">=</span> <span class="n">dbn_binodes</span><span class="o">.</span><span class="n">get_DBN_flow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">hidden_dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>create data</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># number of data points</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n_greedy_reps</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># repetitions in greedy phase</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">r</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">r</span><span class="o">&gt;</span><span class="mf">0.666</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">elif</span> <span class="n">r</span><span class="o">&gt;</span><span class="mf">0.333</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>n_layers iterables plus one iterable for the DBNMasterBiNode</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data_iterables</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="p">[[</span><span class="n">x</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_greedy_reps</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_layers</span> <span class="o">+</span> <span class="p">[[</span><span class="n">x</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">msg_iterables</span> <span class="o">=</span> <span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">+</span>
+<span class="gp">... </span>                 <span class="p">[[{</span><span class="s2">&quot;epsilon&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;decay&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="s2">&quot;momentum&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}]</span> <span class="o">*</span> <span class="n">n_greedy_reps</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_layers</span> <span class="o">+</span>
+<span class="gp">... </span>                 <span class="p">[[{</span><span class="s2">&quot;top_updates&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;epsilon&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;decay&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="s2">&quot;momentum&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;min_error&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">}]])</span>
+</pre></div>
+</div>
+<p>perform and visualize the training</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bimdp</span><span class="o">.</span><span class="n">show_training</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">data_iterables</span><span class="p">,</span> <span class="n">msg_iterables</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   
+<span class="go">&#39;/tmp/.../training_inspection.html&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;done.&quot;</span>
+<span class="go">done.</span>
+</pre></div>
+</div>
+<p>Other files:</p>
+<dl class="docutils">
+<dt><a class="reference internal" href="dbn_nodes.html#dbn-nodes"><span class="std std-ref">DBN nodes</span></a></dt>
+<dd>This is the original non-bimdp DBN node from Pietro, which is
+the basis for the BiMDP DBN implementation.</dd>
+<dt><a class="reference internal" href="dbn_binodes.html#dbn-binodes"><span class="std std-ref">DBN binodes</span></a></dt>
+<dd>The current BiMDP implementation of the DBN,
+based on the coroutine decorator for easy continuation.</dd>
+<dt><a class="reference internal" href="dbn_binodes_coroutine_old.html#dbn-binodes-coroutine-old"><span class="std std-ref">Old DBN coroutine binodes</span></a></dt>
+<dd>Older version based on a coroutine, but without
+using the coderoator. This might still be useful to understand how the
+codecorator actually works.</dd>
+<dt><a class="reference internal" href="dbn_binodes_statemachine_old.html#dbn-binodes-statemachine-old"><span class="std std-ref">Old DBN statemachine binodes</span></a></dt>
+<dd>Older version based on a state machine implementation.</dd>
+</dl>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

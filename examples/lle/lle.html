@@ -1,0 +1,190 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Locally Linear Embedding &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Growing Neural Gas" href="../gng/gng.html" />
+    <link rel="prev" title="Logistic Maps" href="../logmap/logmap.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logmap/logmap.html">Logistic Maps</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Locally Linear Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gng/gng.html">Growing Neural Gas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution/image_convolution.html">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bayes_guesser/bayes_guesser.html">Bayes Guesser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../word_generator/word_generator.html">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binetdbn/dbn.html">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_custom_inspection.html">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="locally-linear-embedding">
+<span id="lle"></span><h1>Locally Linear Embedding<a class="headerlink" href="#locally-linear-embedding" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/examples/lle/lle.html">code snippets directory</a></p>
+</div>
+<p>Locally linear embedding (LLE) approximates the input data with a
+low-dimensional surface and reduces its dimensionality by learning
+a mapping to the surface. Here we consider data generated randomly
+on an S-shaped 2D surface embedded in a 3D space:</p>
+<a class="reference internal image-reference" href="../../_images/s_shape_3D.png"><img alt="S-shaped surface" src="../../_images/s_shape_3D.png" style="width: 500px;" /></a>
+<p>The surface is defined by the function</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">s_distr</span><span class="p">(</span><span class="n">npoints</span><span class="p">,</span> <span class="n">hole</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Return a 3D S-shaped surface. If hole is True, the surface has</span>
+<span class="gp">... </span><span class="sd">    a hole in the middle.&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="n">t</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx_rand</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">npoints</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">y</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx_rand</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">npoints</span><span class="p">)</span><span class="o">*</span><span class="mf">5.</span>
+<span class="gp">... </span>    <span class="n">theta</span> <span class="o">=</span> <span class="mf">3.</span><span class="o">*</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">z</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">hole</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">indices</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">where</span><span class="p">(((</span><span class="mf">0.3</span><span class="o">&gt;</span><span class="n">t</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="mf">0.7</span><span class="o">&lt;</span><span class="n">t</span><span class="p">))</span> <span class="o">|</span> <span class="p">((</span><span class="mf">1.</span><span class="o">&gt;</span><span class="n">y</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="mf">4.</span><span class="o">&lt;</span><span class="n">y</span><span class="p">)))</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">z</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">t</span>
+</pre></div>
+</div>
+<p>We generate 1000 points on this surface, then define an LLENode with
+parameters k=15 (number of neighbors) and output_dim=2 (the number of
+dimensions of the reduced representation), then train and execute the
+node to obtain the projected data:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">s_distr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">hole</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lle_projected_data</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">LLENode</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The projected data forms a nice parametric representation of the
+S-shaped surface:</p>
+<a class="reference internal image-reference" href="../../_images/s_shape_lle_proj.png"><img alt="LLE projection of the S-shaped surface" src="../../_images/s_shape_lle_proj.png" style="width: 500px;" /></a>
+<p>The problem becomes more difficult if the surface has a hole in the
+middle:</p>
+<a class="reference internal image-reference" href="../../_images/s_shape_hole_3D.png"><img alt="S-shaped surface with hole" src="../../_images/s_shape_hole_3D.png" style="width: 500px;" /></a>
+<p>In this case, the LLE algorithm has some difficulty finding the
+correct representation. The lines</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">s_distr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">hole</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lle_projected_data</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">LLENode</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>return a distorted mapping:</p>
+<a class="reference internal image-reference" href="../../_images/s_shape_hole_lle_proj.png"><img alt="LLE projection of the S-shaped surface with hole" src="../../_images/s_shape_hole_lle_proj.png" style="width: 500px;" /></a>
+<p>The Hessian LLE Node takes the local curvature of the surface into
+account, and is able to find a better representation:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hlle_projected_data</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">HLLENode</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/s_shape_hole_hlle_proj.png"><img alt="HLLE projection of the S-shaped surface with hole" src="../../_images/s_shape_hole_hlle_proj.png" style="width: 500px;" /></a>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

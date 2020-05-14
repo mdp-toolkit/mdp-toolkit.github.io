@@ -1,0 +1,1472 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class Hierarchy</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="mdp-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://mdp-toolkit.github.io">Modular toolkit for Data Processing MDP</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">&nbsp;</td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="class-tree.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<center><b>
+ [ <a href="module-tree.html">Module Hierarchy</a>
+ | <a href="class-tree.html">Class Hierarchy</a> ]
+</b></center><br />
+<h1 class="epydoc">Class Hierarchy</h1>
+<ul class="nomargin-top">
+    <li> <strong class="uidlink">object</strong>:
+      <em class="summary">The most base type</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.BaseException</strong>:
+      <em class="summary">Common base class for all exceptions</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.Exception</strong>:
+      <em class="summary">Common base class for all non-exit exceptions.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.graph.GraphException-class.html">mdp.graph.GraphException</a></strong>:
+      <em class="summary">Base class for exception in the graph package.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.graph.GraphTopologicalException-class.html">mdp.graph.GraphTopologicalException</a></strong>:
+      <em class="summary">Exception thrown during a topological sort if the graph is cyclical.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.MDPException-class.html">mdp.MDPException</a></strong>:
+      <em class="summary">Base class for exceptions in MDP.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.CircularOnlineFlowException-class.html">mdp.CircularOnlineFlowException</a></strong>:
+      <em class="summary">Base class for exceptions in Flow subclasses.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.CrashRecoveryException-class.html">mdp.CrashRecoveryException</a></strong>:
+      <em class="summary">Class to handle crash recovery</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.FlowExceptionCR-class.html">mdp.FlowExceptionCR</a></strong>:
+      <em class="summary">Class to handle flow-crash recovery</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.FlowException-class.html">mdp.FlowException</a></strong>:
+      <em class="summary">Base class for exceptions in Flow subclasses.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.FlowExceptionCR-class.html">mdp.FlowExceptionCR</a></strong>:
+      <em class="summary">Class to handle flow-crash recovery</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelFlowException-class.html">mdp.parallel.ParallelFlowException</a></strong>:
+      <em class="summary">Standard exception for problems with ParallelFlow.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.NoTaskException-class.html">mdp.parallel.NoTaskException</a></strong>:
+      <em class="summary">Exception for problems with the task creation.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.NodeException-class.html">mdp.NodeException</a></strong>:
+      <em class="summary">Base class for exceptions in <a href="mdp.Node-class.html" class="link">Node</a> subclasses.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.IsNotInvertibleException-class.html">mdp.IsNotInvertibleException</a></strong>:
+      <em class="summary">Raised when the <a href="mdp.Node-class.html#inverse" class="link">Node.inverse</a> method is called although the
+node is not invertible.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.JoinParallelException-class.html">mdp.parallel.JoinParallelException</a></strong>:
+      <em class="summary">Exception for errors when joining parallel nodes.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.NotForkableParallelException-class.html">mdp.parallel.NotForkableParallelException</a></strong>:
+      <em class="summary">Exception to signal that a fork is not possible.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.OnlineNodeException-class.html">mdp.OnlineNodeException</a></strong>:
+      <em class="summary">Base class for exceptions in <a href="mdp.OnlineNode-class.html" class="link">OnlineNode</a> subclasses.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.SwitchboardException-class.html">mdp.hinet.SwitchboardException</a></strong>:
+      <em class="summary">Exception for routing problems in the Switchboard class.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.hinet.DoubleRect2dSwitchboardException-class.html">mdp.hinet.DoubleRect2dSwitchboardException</a></strong>:
+      <em class="summary">Exception for routing problems in the DoubleRect2dSwitchboard class.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.DoubleRhomb2dSwitchboardException-class.html">mdp.hinet.DoubleRhomb2dSwitchboardException</a></strong>:
+      <em class="summary">Exception for routing problems in the DoubleRhomb2dSwitchboard class.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.Rectangular2dSwitchboardException-class.html">mdp.hinet.Rectangular2dSwitchboardException</a></strong>:
+      <em class="summary">Exception for routing problems in the Rectangular2dSwitchboard class.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.TrainingException-class.html">mdp.TrainingException</a></strong>:
+      <em class="summary">Base class for exceptions in the training phase.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.IsNotTrainableException-class.html">mdp.IsNotTrainableException</a></strong>:
+      <em class="summary">Raised when the <a href="mdp.Node-class.html#train" class="link">Node.train</a> method is called although the
+node is not trainable.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.TrainingFinishedException-class.html">mdp.TrainingFinishedException</a></strong>:
+      <em class="summary">Raised when the <a href="mdp.Node-class.html#train" class="link">Node.train</a> method is called although the
+training phase is closed.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.OnlineFlowException-class.html">mdp.OnlineFlowException</a></strong>:
+      <em class="summary">Base class for exceptions in Flow subclasses.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.utils.QuadraticFormException-class.html">mdp.utils.QuadraticFormException</a></strong>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">exceptions.StandardError</strong>:
+      <em class="summary">Base class for all standard Python exceptions that do not represent
+interpreter exiting.</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.EnvironmentError</strong>:
+      <em class="summary">Base class for I/O related errors.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="exceptions.OSError-class.html">exceptions.OSError</a></strong>:
+      <em class="summary">OS system call failed.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">exceptions.Warning</strong>:
+      <em class="summary">Base class for warning categories.</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.DeprecationWarning</strong>:
+      <em class="summary">Base class for warnings about deprecated features.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.MDPDeprecationWarning-class.html" onclick="show_private();">mdp.MDPDeprecationWarning</a></strong>:
+      <em class="summary">Warn about deprecated MDP API.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">exceptions.UserWarning</strong>:
+      <em class="summary">Base class for warnings generated by user code.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.MDPWarning-class.html">mdp.MDPWarning</a></strong>:
+      <em class="summary">Base class for warnings in MDP.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.MDPDeprecationWarning-class.html" onclick="show_private();">mdp.MDPDeprecationWarning</a></strong>:
+      <em class="summary">Warn about deprecated MDP API.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">dict</strong>:
+      <em class="summary">dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+    in the keyword argument list.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="collections.OrderedDict-class.html">collections.OrderedDict</a></strong>:
+      <em class="summary">Dictionary that remembers insertion order</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><i>unreachable</i>.newobject</strong>:
+      <em class="summary">A magical object class that provides Python 2 compatibility methods::
+    next
+    __unicode__
+    __nonzero__</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.CheckpointFunction-class.html">mdp.CheckpointFunction</a></strong>:
+      <em class="summary">Base class for checkpoint functions.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.CheckpointSaveFunction-class.html">mdp.CheckpointSaveFunction</a></strong>:
+      <em class="summary">This checkpoint function saves the node in pickle format.
+The pickle dump can be done either before the training phase is finished or
+right after that.
+In this way, it is for example possible to reload it in successive sessions
+and continue the training.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.utils.CovarianceMatrix-class.html">mdp.utils.CovarianceMatrix</a></strong>:
+      <em class="summary">This class stores an empirical covariance matrix that can be updated
+incrementally. A call to the 'fix' method returns the current state of
+the covariance matrix, the average and the number of observations, and
+resets the internal data.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.utils.CrossCovarianceMatrix-class.html">mdp.utils.CrossCovarianceMatrix</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.utils.VartimeCovarianceMatrix-class.html">mdp.utils.VartimeCovarianceMatrix</a></strong>:
+      <em class="summary">This class stores an empirical covariance matrix that can be updated
+incrementally. A call to the 'fix' method returns the current state of
+the covariance matrix, the average and the number of observations, and
+resets the internal data.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.utils.DelayCovarianceMatrix-class.html">mdp.utils.DelayCovarianceMatrix</a></strong>:
+      <em class="summary">This class stores an empirical covariance matrix between the signal and
+time delayed signal that can be updated incrementally.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.ExtensionNode-class.html">mdp.ExtensionNode</a></strong>:
+      <em class="summary">Base class for extensions nodes.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelExtensionNode-class.html">mdp.parallel.ParallelExtensionNode</a></strong>:
+      <em class="summary">Base class for parallel trainable MDP nodes.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelCloneLayer-class.html">mdp.parallel.ParallelCloneLayer</a></strong>:
+      <em class="summary">Parallel version of CloneLayer class.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelFDANode-class.html">mdp.parallel.ParallelFDANode</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelFlowNode-class.html">mdp.parallel.ParallelFlowNode</a></strong>:
+      <em class="summary">Parallel version of FlowNode.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelHistogramNode-class.html">mdp.parallel.ParallelHistogramNode</a></strong>:
+      <em class="summary">Parallel version of the HistogramNode.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelLayer-class.html">mdp.parallel.ParallelLayer</a></strong>:
+      <em class="summary">Parallel version of a Layer.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelSFANode-class.html">mdp.parallel.ParallelSFANode</a></strong>:
+      <em class="summary">Parallel version of MDP SFA node.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.Flow-class.html">mdp.Flow</a></strong>:
+      <em class="summary">A 'Flow' is a sequence of nodes that are trained and executed
+together to form a more complex algorithm.  Input data is sent to the
+first node and is successively processed by the subsequent nodes along
+the sequence.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.CheckpointFlow-class.html">mdp.CheckpointFlow</a></strong>:
+      <em class="summary">Subclass of Flow class that allows user-supplied checkpoint functions
+to be executed at the end of each phase, for example to
+save the internal structures of a node for later analysis.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelCheckpointFlow-class.html">mdp.parallel.ParallelCheckpointFlow</a></strong>:
+      <em class="summary">Parallel version of CheckpointFlow.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.OnlineFlow-class.html">mdp.OnlineFlow</a></strong>:
+      <em class="summary">An 'OnlineFlow' is a sequence of nodes that are trained online and executed
+together to form a more complex algorithm.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.CircularOnlineFlow-class.html">mdp.CircularOnlineFlow</a></strong>:
+      <em class="summary">A 'CircularOnlineFlow' is a cyclic sequence of online/non-trainable nodes that are trained and executed
+together to form a more complex algorithm. This type of flow is useful when one needs to train the nodes
+internally for several iterations using stored inputs before training with the next external input.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelFlow-class.html">mdp.parallel.ParallelFlow</a></strong>:
+      <em class="summary">A parallel flow provides the methods for parallel training / execution.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelCheckpointFlow-class.html">mdp.parallel.ParallelCheckpointFlow</a></strong>:
+      <em class="summary">Parallel version of CheckpointFlow.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.graph.Graph-class.html">mdp.graph.Graph</a></strong>:
+      <em class="summary">Represent a directed graph.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.graph.GraphEdge-class.html">mdp.graph.GraphEdge</a></strong>:
+      <em class="summary">Represent a graph edge and all information attached to it.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.graph.GraphNode-class.html">mdp.graph.GraphNode</a></strong>:
+      <em class="summary">Represent a graph node and all information attached to it.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.htmlvisitor.HiNetHTMLVisitor-class.html">mdp.hinet.htmlvisitor.HiNetHTMLVisitor</a></strong>:
+      <em class="summary">Class to convert a hinet flow to HTML.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.hinet.htmlvisitor.HiNetXHTMLVisitor-class.html">mdp.hinet.htmlvisitor.HiNetXHTMLVisitor</a></strong>:
+      <em class="summary">Modified converter to create valid XHTML.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.utils.MultipleCovarianceMatrices-class.html">mdp.utils.MultipleCovarianceMatrices</a></strong>:
+      <em class="summary">Container class for multiple covariance matrices to easily
+execute operations on all matrices at the same time.
+Note: all operations are done in place where possible.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.htmlvisitor.NewlineWriteFile-class.html">mdp.hinet.htmlvisitor.NewlineWriteFile</a></strong>:
+      <em class="summary">Decorator for file-like object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.Node-class.html">mdp.Node</a></strong>:
+      <em class="summary">A <a href="mdp.Node-class.html" class="link">Node</a> is the basic building block of an MDP application.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.Convolution2DNode-class.html">mdp.nodes.Convolution2DNode</a></strong>:
+      <em class="summary">Convolve input data with filter banks.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.Cumulator-class.html">mdp.Cumulator</a></strong>:
+      <em class="summary">A specialized version of <a href="mdp-module.html#VariadicCumulator" class="link">VariadicCumulator</a> which only
+fills the field <code class="link">self.data</code>.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.ARDRegressionScikitsLearnNode-class.html">mdp.nodes.ARDRegressionScikitsLearnNode</a></strong>:
+      <em class="summary">Bayesian ARD regression.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.bayes.ARDRegression</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Fit the weights of a regression model, using an ARD prior. The weights of
+the regression model are assumed to be in Gaussian distributions.
+Also estimate the parameters lambda (precisions of the distributions of the
+weights) and alpha (precision of the distribution of the noise).
+The estimation is done by an iterative procedures (Evidence Maximization)</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.BayesianRidgeScikitsLearnNode-class.html">mdp.nodes.BayesianRidgeScikitsLearnNode</a></strong>:
+      <em class="summary">Bayesian ridge regression
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.bayes.BayesianRidge</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Fit a Bayesian ridge model and optimize the regularization parameters
+lambda (precision of the weights) and alpha (precision of the noise).</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.BinarizerScikitsLearnNode-class.html">mdp.nodes.BinarizerScikitsLearnNode</a></strong>:
+      <em class="summary">This node has been automatically generated by wrapping the <code class="link">scikits.learn.preprocessing.sparse.Binarizer</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.CCAScikitsLearnNode-class.html">mdp.nodes.CCAScikitsLearnNode</a></strong>:
+      <em class="summary">CCA Canonical Correlation Analysis.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.CountVectorizerScikitsLearnNode-class.html">mdp.nodes.CountVectorizerScikitsLearnNode</a></strong>:
+      <em class="summary">Convert a collection of raw documents to a matrix of token counts
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.feature_extraction.text.CountVectorizer</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+This implementation produces a sparse representation of the counts using
+scipy.sparse.coo_matrix.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.ElasticNetCVScikitsLearnNode-class.html">mdp.nodes.ElasticNetCVScikitsLearnNode</a></strong>:
+      <em class="summary">Elastic Net model with iterative fitting along a regularization path
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.coordinate_descent.ElasticNetCV</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+The best model is selected by cross-validation.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.ElasticNetScikitsLearnNode-class.html">mdp.nodes.ElasticNetScikitsLearnNode</a></strong>:
+      <em class="summary">Linear Model trained with L1 and L2 prior as regularizer
+This node has been automatically generated by wrapping the ``scikits.learn.linear_model.coordinate_descent.ElasticNet`` class
+from the ``sklearn`` library.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.FastICAScikitsLearnNode-class.html">mdp.nodes.FastICAScikitsLearnNode</a></strong>:
+      <em class="summary">FastICA; a fast algorithm for Independent Component Analysis
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.decomposition.fastica_.FastICA</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GMMHMMScikitsLearnNode-class.html">mdp.nodes.GMMHMMScikitsLearnNode</a></strong>:
+      <em class="summary">Hidden Markov Model with Gaussin mixture emissions
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.hmm.GMMHMM</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Attributes</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GMMScikitsLearnNode-class.html">mdp.nodes.GMMScikitsLearnNode</a></strong>:
+      <em class="summary">Gaussian Mixture Model
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.mixture.GMM</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Representation of a Gaussian mixture model probability distribution.
+This class allows for easy evaluation of, sampling from, and
+maximum-likelihood estimation of the parameters of a GMM distribution.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GaussianHMMScikitsLearnNode-class.html">mdp.nodes.GaussianHMMScikitsLearnNode</a></strong>:
+      <em class="summary">Hidden Markov Model with Gaussian emissions
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.hmm.GaussianHMM</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Representation of a hidden Markov model probability distribution.
+This class allows for easy evaluation of, sampling from, and
+maximum-likelihood estimation of the parameters of a HMM.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GaussianProcessScikitsLearnNode-class.html">mdp.nodes.GaussianProcessScikitsLearnNode</a></strong>:
+      <em class="summary">The Gaussian Process model class.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.gaussian_process.gaussian_process.GaussianProcess</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GenericUnivariateSelectScikitsLearnNode-class.html">mdp.nodes.GenericUnivariateSelectScikitsLearnNode</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.ICANode-class.html" onclick="show_private();">mdp.nodes.ICANode</a></strong>:
+      <em class="summary">ICANode is a general class to handle different batch-mode algorithm for
+Independent Component Analysis.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.CuBICANode-class.html">mdp.nodes.CuBICANode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the CuBICA algorithm.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.FastICANode-class.html">mdp.nodes.FastICANode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the FastICA algorithm.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.JADENode-class.html">mdp.nodes.JADENode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the JADE algorithm.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.KernelCentererScikitsLearnNode-class.html">mdp.nodes.KernelCentererScikitsLearnNode</a></strong>:
+      <em class="summary">Centers a kernel. This is equivalent to centering phi(X) with
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.preprocessing.KernelCenterer</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.KernelPCAScikitsLearnNode-class.html">mdp.nodes.KernelPCAScikitsLearnNode</a></strong>:
+      <em class="summary">Kernel Principal component analysis (KPCA)
+This node has been automatically generated by wrapping the ``scikits.learn.decomposition.pca.KernelPCA`` class
+from the ``sklearn`` library.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LARSScikitsLearnNode-class.html">mdp.nodes.LARSScikitsLearnNode</a></strong>:
+      <em class="summary">Least Angle Regression model a.k.a. LAR
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.least_angle.LARS</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LLENode-class.html">mdp.nodes.LLENode</a></strong>:
+      <em class="summary">Perform a Locally Linear Embedding analysis on the data.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.HLLENode-class.html">mdp.nodes.HLLENode</a></strong>:
+      <em class="summary">Perform a Hessian Locally Linear Embedding analysis on the data.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LabelBinarizerScikitsLearnNode-class.html">mdp.nodes.LabelBinarizerScikitsLearnNode</a></strong>:
+      <em class="summary">Binarize labels in a one-vs-all fashion.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.preprocessing.LabelBinarizer</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Several regression and binary classification algorithms are available in the
+scikit. A simple way to extend these algorithms to the multi-class
+classification case is to use the so-called one-vs-all scheme.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LassoCVScikitsLearnNode-class.html">mdp.nodes.LassoCVScikitsLearnNode</a></strong>:
+      <em class="summary">Lasso linear model with iterative fitting along a regularization path
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.coordinate_descent.LassoCV</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+The best model is selected by cross-validation.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LassoLARSScikitsLearnNode-class.html">mdp.nodes.LassoLARSScikitsLearnNode</a></strong>:
+      <em class="summary">Lasso model fit with Least Angle Regression a.k.a. LARS
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.least_angle.LassoLARS</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+It is a Linear Model trained with an L1 prior as regularizer.
+lasso).</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LassoScikitsLearnNode-class.html">mdp.nodes.LassoScikitsLearnNode</a></strong>:
+      <em class="summary">Linear Model trained with L1 prior as regularizer (aka the Lasso)
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.coordinate_descent.Lasso</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Technically the Lasso model is optimizing the same objective function as
+the Elastic Net with rho=1.0 (no L2 penalty).</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LengthNormalizerScikitsLearnNode-class.html">mdp.nodes.LengthNormalizerScikitsLearnNode</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LinearModelCVScikitsLearnNode-class.html">mdp.nodes.LinearModelCVScikitsLearnNode</a></strong>:
+      <em class="summary">This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.coordinate_descent.LinearModelCV</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LinearRegressionScikitsLearnNode-class.html">mdp.nodes.LinearRegressionScikitsLearnNode</a></strong>:
+      <em class="summary">Ordinary least squares Linear Regression.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.base.LinearRegression</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Attributes</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.MultinomialHMMScikitsLearnNode-class.html">mdp.nodes.MultinomialHMMScikitsLearnNode</a></strong>:
+      <em class="summary">Hidden Markov Model with multinomial (discrete) emissions
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.hmm.MultinomialHMM</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Attributes</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NIPALSNode-class.html">mdp.nodes.NIPALSNode</a></strong>:
+      <em class="summary">Perform Principal Component Analysis using the NIPALS algorithm.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NMFScikitsLearnNode-class.html">mdp.nodes.NMFScikitsLearnNode</a></strong>:
+      <em class="summary">Non-Negative matrix factorization by Projected Gradient (NMF)
+This node has been automatically generated by wrapping the ``scikits.learn.decomposition.nmf.NMF`` class
+from the ``sklearn`` library.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NormalizerScikitsLearnNode-class.html">mdp.nodes.NormalizerScikitsLearnNode</a></strong>:
+      <em class="summary">This node has been automatically generated by wrapping the <code class="link">scikits.learn.preprocessing.Normalizer</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NuSVRScikitsLearnNode-class.html">mdp.nodes.NuSVRScikitsLearnNode</a></strong>:
+      <em class="summary">NuSVR for sparse matrices (csr)
+This node has been automatically generated by wrapping the ``scikits.learn.svm.sparse.classes.NuSVR`` class
+from the ``sklearn`` library.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.OneClassSVMScikitsLearnNode-class.html">mdp.nodes.OneClassSVMScikitsLearnNode</a></strong>:
+      <em class="summary">Unsupervised Outliers Detection.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.svm.classes.OneClassSVM</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Estimate the support of a high-dimensional distribution.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.PCAScikitsLearnNode-class.html">mdp.nodes.PCAScikitsLearnNode</a></strong>:
+      <em class="summary">Principal component analysis (PCA)
+This node has been automatically generated by wrapping the ``scikits.learn.decomposition.pca.PCA`` class
+from the ``sklearn`` library.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.PLSCanonicalScikitsLearnNode-class.html">mdp.nodes.PLSCanonicalScikitsLearnNode</a></strong>:
+      <em class="summary">PLS canonical.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.PLSRegressionScikitsLearnNode-class.html">mdp.nodes.PLSRegressionScikitsLearnNode</a></strong>:
+      <em class="summary">PLS regression (Also known PLS2 or PLS in case of one dimensional
+response).</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.PLSSVDScikitsLearnNode-class.html">mdp.nodes.PLSSVDScikitsLearnNode</a></strong>:
+      <em class="summary">Partial Least Square SVD
+This node has been automatically generated by wrapping the ``scikits.learn.pls.PLSSVD`` class
+from the ``sklearn`` library.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.ProbabilisticPCAScikitsLearnNode-class.html">mdp.nodes.ProbabilisticPCAScikitsLearnNode</a></strong>:
+      <em class="summary">Additional layer on top of PCA that adds a probabilistic evaluation
+This node has been automatically generated by wrapping the ``scikits.learn.decomposition.pca.ProbabilisticPCA`` class
+from the ``sklearn`` library.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.ProjectedGradientNMFScikitsLearnNode-class.html">mdp.nodes.ProjectedGradientNMFScikitsLearnNode</a></strong>:
+      <em class="summary">Non-Negative matrix factorization by Projected Gradient (NMF)
+This node has been automatically generated by wrapping the ``scikits.learn.decomposition.nmf.ProjectedGradientNMF`` class
+from the ``sklearn`` library.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RFECVScikitsLearnNode-class.html">mdp.nodes.RFECVScikitsLearnNode</a></strong>:
+      <em class="summary">Feature ranking with Recursive feature elimination and cross validation
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.feature_selection.rfe.RFECV</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RFEScikitsLearnNode-class.html">mdp.nodes.RFEScikitsLearnNode</a></strong>:
+      <em class="summary">Feature ranking with Recursive feature elimination
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.feature_selection.rfe.RFE</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RandomizedPCAScikitsLearnNode-class.html">mdp.nodes.RandomizedPCAScikitsLearnNode</a></strong>:
+      <em class="summary">Principal component analysis (PCA) using randomized SVD
+This node has been automatically generated by wrapping the ``scikits.learn.decomposition.pca.RandomizedPCA`` class
+from the ``sklearn`` library.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RidgeCVScikitsLearnNode-class.html">mdp.nodes.RidgeCVScikitsLearnNode</a></strong>:
+      <em class="summary">Ridge regression with built-in cross-validation.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.ridge.RidgeCV</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+By default, it performs Generalized Cross-Validation, which is a form of
+efficient Leave-One-Out cross-validation. Currently, only the n_features &gt;
+n_samples case is handled efficiently.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RidgeClassifierCVScikitsLearnNode-class.html">mdp.nodes.RidgeClassifierCVScikitsLearnNode</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RidgeClassifierScikitsLearnNode-class.html">mdp.nodes.RidgeClassifierScikitsLearnNode</a></strong>:
+      <em class="summary">Classifier using Ridge regression
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.ridge.RidgeClassifier</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RidgeScikitsLearnNode-class.html">mdp.nodes.RidgeScikitsLearnNode</a></strong>:
+      <em class="summary">Ridge regression.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.ridge.Ridge</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SGDRegressorScikitsLearnNode-class.html">mdp.nodes.SGDRegressorScikitsLearnNode</a></strong>:
+      <em class="summary">Linear model fitted by minimizing a regularized empirical loss with SGD
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.sparse.stochastic_gradient.SGDRegressor</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+SGD stands for Stochastic Gradient Descent: the gradient of the loss is
+estimated each sample at a time and the model is updated along the way with
+a decreasing strength schedule (aka learning rate).</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SVRScikitsLearnNode-class.html">mdp.nodes.SVRScikitsLearnNode</a></strong>:
+      <em class="summary">epsilon-Support Vector Regression.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.svm.classes.SVR</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+The free parameters in the model are C and epsilon.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.ScalerScikitsLearnNode-class.html">mdp.nodes.ScalerScikitsLearnNode</a></strong>:
+      <em class="summary">Object to standardize a dataset
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.preprocessing.Scaler</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+It centers the dataset and optionaly scales to fix the variance to 1 for
+each feature</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SelectFdrScikitsLearnNode-class.html">mdp.nodes.SelectFdrScikitsLearnNode</a></strong>:
+      <em class="summary">Filter : Select the p-values corresponding to an estimated false
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.feature_selection.univariate_selection.SelectFdr</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SelectFprScikitsLearnNode-class.html">mdp.nodes.SelectFprScikitsLearnNode</a></strong>:
+      <em class="summary">This node has been automatically generated by wrapping the <code class="link">scikits.learn.feature_selection.univariate_selection.SelectFpr</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SelectFweScikitsLearnNode-class.html">mdp.nodes.SelectFweScikitsLearnNode</a></strong>:
+      <em class="summary">This node has been automatically generated by wrapping the <code class="link">scikits.learn.feature_selection.univariate_selection.SelectFwe</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SelectKBestScikitsLearnNode-class.html">mdp.nodes.SelectKBestScikitsLearnNode</a></strong>:
+      <em class="summary">This node has been automatically generated by wrapping the <code class="link">scikits.learn.feature_selection.univariate_selection.SelectKBest</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SelectPercentileScikitsLearnNode-class.html">mdp.nodes.SelectPercentileScikitsLearnNode</a></strong>:
+      <em class="summary">This node has been automatically generated by wrapping the <code class="link">scikits.learn.feature_selection.univariate_selection.SelectPercentile</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SparseBaseLibLinearScikitsLearnNode-class.html">mdp.nodes.SparseBaseLibLinearScikitsLearnNode</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SparseBaseLibSVMScikitsLearnNode-class.html">mdp.nodes.SparseBaseLibSVMScikitsLearnNode</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.TfidfTransformerScikitsLearnNode-class.html">mdp.nodes.TfidfTransformerScikitsLearnNode</a></strong>:
+      <em class="summary">Transform a count matrix to a TF or TF-IDF representation
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.feature_extraction.text.TfidfTransformer</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+TF means term-frequency while TF-IDF means term-frequency times inverse
+document-frequency:</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.VectorizerScikitsLearnNode-class.html">mdp.nodes.VectorizerScikitsLearnNode</a></strong>:
+      <em class="summary">Convert a collection of raw documents to a matrix
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.feature_extraction.text.Vectorizer</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Equivalent to CountVectorizer followed by TfidfTransformer.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.WardAgglomerationScikitsLearnNode-class.html">mdp.nodes.WardAgglomerationScikitsLearnNode</a></strong>:
+      <em class="summary">Feature agglomeration based on Ward hierarchical clustering
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.cluster.hierarchical.WardAgglomeration</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><i>unreachable</i>.Cumulator</strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.ClassifierCumulator-class.html">mdp.ClassifierCumulator</a></strong>:
+      <em class="summary">A ClassifierCumulator is a Node whose training phase simply collects
+all input data and labels. In this way it is possible to easily implement
+batch-mode learning.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GNBScikitsLearnNode-class.html">mdp.nodes.GNBScikitsLearnNode</a></strong>:
+      <em class="summary">Gaussian Naive Bayes (GNB)
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.naive_bayes.GNB</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LDAScikitsLearnNode-class.html">mdp.nodes.LDAScikitsLearnNode</a></strong>:
+      <em class="summary">Linear Discriminant Analysis (LDA)
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.lda.LDA</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LinearSVCScikitsLearnNode-class.html">mdp.nodes.LinearSVCScikitsLearnNode</a></strong>:
+      <em class="summary">Linear Support Vector Classification, Sparse Version
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.svm.sparse.classes.LinearSVC</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Similar to SVC with parameter kernel='linear', but uses internally
+liblinear rather than libsvm, so it has more flexibility in the
+choice of penalties and loss functions and should be faster for
+huge datasets.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LogisticRegressionScikitsLearnNode-class.html">mdp.nodes.LogisticRegressionScikitsLearnNode</a></strong>:
+      <em class="summary">Logistic Regression.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.logistic.LogisticRegression</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Implements L1 and L2 regularized logistic regression.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NeighborsClassifierScikitsLearnNode-class.html">mdp.nodes.NeighborsClassifierScikitsLearnNode</a></strong>:
+      <em class="summary">Classifier implementing k-Nearest Neighbor Algorithm.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.neighbors.NeighborsClassifier</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NeighborsRegressorScikitsLearnNode-class.html">mdp.nodes.NeighborsRegressorScikitsLearnNode</a></strong>:
+      <em class="summary">Regression based on k-Nearest Neighbor Algorithm
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.neighbors.NeighborsRegressor</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+The target is predicted by local interpolation of the targets
+associated of the k-Nearest Neighbors in the training set.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NuSVCScikitsLearnNode-class.html">mdp.nodes.NuSVCScikitsLearnNode</a></strong>:
+      <em class="summary">NuSVC for sparse matrices (csr).</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.QDAScikitsLearnNode-class.html">mdp.nodes.QDAScikitsLearnNode</a></strong>:
+      <em class="summary">Quadratic Discriminant Analysis (QDA)
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.qda.QDA</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SGDClassifierScikitsLearnNode-class.html">mdp.nodes.SGDClassifierScikitsLearnNode</a></strong>:
+      <em class="summary">Linear model fitted by minimizing a regularized empirical loss with SGD.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SVCScikitsLearnNode-class.html">mdp.nodes.SVCScikitsLearnNode</a></strong>:
+      <em class="summary">C-Support Vector Classification.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.svm.classes.SVC</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.EtaComputerNode-class.html">mdp.nodes.EtaComputerNode</a></strong>:
+      <em class="summary">Compute the eta values of the normalized training data.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.FANode-class.html">mdp.nodes.FANode</a></strong>:
+      <em class="summary">Perform Factor Analysis.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.FDANode-class.html">mdp.nodes.FDANode</a></strong>:
+      <em class="summary">Perform a (generalized) Fisher Discriminant Analysis of its
+input. It is a supervised node that implements FDA using a
+generalized eigenvalue approach.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelFDANode-class.html">mdp.parallel.ParallelFDANode</a></strong>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.FlowNode-class.html">mdp.hinet.FlowNode</a></strong>:
+      <em class="summary">FlowNode wraps a Flow of Nodes into a single Node.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.hinet.CircularOnlineFlowNode-class.html">mdp.hinet.CircularOnlineFlowNode</a></strong>:
+      <em class="summary">CircularOnlineFlowNode wraps a CircularOnlineFlow of OnlineNodes into a single OnlineNode.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.OnlineFlowNode-class.html">mdp.hinet.OnlineFlowNode</a></strong>:
+      <em class="summary">OnlineFlowNode wraps an OnlineFlow of OnlineNodes into a single OnlineNode.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelFlowNode-class.html">mdp.parallel.ParallelFlowNode</a></strong>:
+      <em class="summary">Parallel version of FlowNode.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GSFANode-class.html">mdp.nodes.GSFANode</a></strong>:
+      <em class="summary">This node implements &quot;Graph-Based SFA (GSFA)&quot;, which is the main
+component of hierarchical GSFA (HGSFA).</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GrowingNeuralGasNode-class.html">mdp.nodes.GrowingNeuralGasNode</a></strong>:
+      <em class="summary">Learn the topological structure of the input data by building a
+corresponding graph approximation.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GrowingNeuralGasExpansionNode-class.html">mdp.nodes.GrowingNeuralGasExpansionNode</a></strong>:
+      <em class="summary">Perform a trainable radial basis expansion, where the centers and
+sizes of the basis functions are learned through a growing neural
+gas.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NeuralGasNode-class.html">mdp.nodes.NeuralGasNode</a></strong>:
+      <em class="summary">Learn the topological structure of the input data by building a
+corresponding graph approximation (original Neural Gas algorithm).</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.ICANode-class.html" onclick="show_private();">mdp.nodes.ICANode</a></strong>:
+      <em class="summary">ICANode is a general class to handle different batch-mode algorithm for
+Independent Component Analysis.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.CuBICANode-class.html">mdp.nodes.CuBICANode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the CuBICA algorithm.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.FastICANode-class.html">mdp.nodes.FastICANode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the FastICA algorithm.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.JADENode-class.html">mdp.nodes.JADENode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the JADE algorithm.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.ISFANode-class.html">mdp.nodes.ISFANode</a></strong>:
+      <em class="summary">Perform Independent Slow Feature Analysis on the input data.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.TDSEPNode-class.html">mdp.nodes.TDSEPNode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the TDSEP algorithm.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.Layer-class.html">mdp.hinet.Layer</a></strong>:
+      <em class="summary">Layers are nodes which consist of multiple horizontally parallel nodes.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.hinet.CloneLayer-class.html">mdp.hinet.CloneLayer</a></strong>:
+      <em class="summary">Layer with a single node instance that is used multiple times.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.hinet.CloneOnlineLayer-class.html">mdp.hinet.CloneOnlineLayer</a></strong>:
+      <em class="summary">OnlineLayer with a single node instance that is used multiple times.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelCloneLayer-class.html">mdp.parallel.ParallelCloneLayer</a></strong>:
+      <em class="summary">Parallel version of CloneLayer class.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.OnlineLayer-class.html">mdp.hinet.OnlineLayer</a></strong>:
+      <em class="summary">OnlineLayers are nodes which consist of multiple horizontally parallel OnlineNodes.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.hinet.CloneOnlineLayer-class.html">mdp.hinet.CloneOnlineLayer</a></strong>:
+      <em class="summary">OnlineLayer with a single node instance that is used multiple times.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.SameInputOnlineLayer-class.html">mdp.hinet.SameInputOnlineLayer</a></strong>:
+      <em class="summary">SameInputOnlineLayer is an OnlineLayer were all nodes receive the full input.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelLayer-class.html">mdp.parallel.ParallelLayer</a></strong>:
+      <em class="summary">Parallel version of a Layer.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.SameInputLayer-class.html">mdp.hinet.SameInputLayer</a></strong>:
+      <em class="summary">SameInputLayer is a layer were all nodes receive the full input.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.hinet.SameInputOnlineLayer-class.html">mdp.hinet.SameInputOnlineLayer</a></strong>:
+      <em class="summary">SameInputOnlineLayer is an OnlineLayer were all nodes receive the full input.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LinearRegressionNode-class.html">mdp.nodes.LinearRegressionNode</a></strong>:
+      <em class="summary">Compute least-square, multivariate linear regression on the input
+data, i.e., learn coefficients <code class="link">b_j</code> so that the linear combination
+<code class="link">y_i = b_0 + b_1 x_1 + ... b_N x_N</code> , for <code class="link">i = 1 ... M</code>, minimizes
+the sum of squared error given the training <code class="link">x</code>'s and <code class="link">y</code>'s.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.OnlineNode-class.html">mdp.OnlineNode</a></strong>:
+      <em class="summary">An online Node (OnlineNode) is the basic building block of
+an online MDP application.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.CCIPCANode-class.html">mdp.nodes.CCIPCANode</a></strong>:
+      <em class="summary">Candid-Covariance free Incremental Principal Component Analysis (CCIPCA)
+extracts the principal components from the input data incrementally.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.CCIPCAWhiteningNode-class.html">mdp.nodes.CCIPCAWhiteningNode</a></strong>:
+      <em class="summary">Incrementally updates whitening vectors for the input data using CCIPCA.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.CircularOnlineFlowNode-class.html">mdp.hinet.CircularOnlineFlowNode</a></strong>:
+      <em class="summary">CircularOnlineFlowNode wraps a CircularOnlineFlow of OnlineNodes into a single OnlineNode.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.IncSFANode-class.html">mdp.nodes.IncSFANode</a></strong>:
+      <em class="summary">Incremental Slow Feature Analysis (IncSFA) extracts the slowly varying
+components from the input data incrementally.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.MCANode-class.html">mdp.nodes.MCANode</a></strong>:
+      <em class="summary">Minor Component Analysis (MCA) extracts minor components (dual of principal
+components) from the input data incrementally.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.OnlineFlowNode-class.html">mdp.hinet.OnlineFlowNode</a></strong>:
+      <em class="summary">OnlineFlowNode wraps an OnlineFlow of OnlineNodes into a single OnlineNode.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.OnlineLayer-class.html">mdp.hinet.OnlineLayer</a></strong>:
+      <em class="summary">OnlineLayers are nodes which consist of multiple horizontally parallel OnlineNodes.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.hinet.CloneOnlineLayer-class.html">mdp.hinet.CloneOnlineLayer</a></strong>:
+      <em class="summary">OnlineLayer with a single node instance that is used multiple times.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.SameInputOnlineLayer-class.html">mdp.hinet.SameInputOnlineLayer</a></strong>:
+      <em class="summary">SameInputOnlineLayer is an OnlineLayer were all nodes receive the full input.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.PreserveDimOnlineNode-class.html">mdp.PreserveDimOnlineNode</a></strong>:
+      <em class="summary">Abstract base class with <code class="link">output_dim == input_dim</code>.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.OnlineCenteringNode-class.html">mdp.nodes.OnlineCenteringNode</a></strong>:
+      <em class="summary">OnlineCenteringNode centers the input data, that is, subtracts the arithmetic mean (average) from the
+input data. This is an online learnable node.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.OnlineTimeDiffNode-class.html">mdp.nodes.OnlineTimeDiffNode</a></strong>:
+      <em class="summary">Compute the discrete time derivative of the input using backward difference approximation:</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.PCANode-class.html">mdp.nodes.PCANode</a></strong>:
+      <em class="summary">Filter the input data through the most significatives of its
+principal components.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NIPALSNode-class.html">mdp.nodes.NIPALSNode</a></strong>:
+      <em class="summary">Perform Principal Component Analysis using the NIPALS algorithm.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.WhiteningNode-class.html">mdp.nodes.WhiteningNode</a></strong>:
+      <em class="summary"><em>Whiten</em> the input data by filtering it through the most
+significant of its principal components.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelExtensionNode-class.html">mdp.parallel.ParallelExtensionNode</a></strong>:
+      <em class="summary">Base class for parallel trainable MDP nodes.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelCloneLayer-class.html">mdp.parallel.ParallelCloneLayer</a></strong>:
+      <em class="summary">Parallel version of CloneLayer class.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelFDANode-class.html">mdp.parallel.ParallelFDANode</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelFlowNode-class.html">mdp.parallel.ParallelFlowNode</a></strong>:
+      <em class="summary">Parallel version of FlowNode.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelHistogramNode-class.html">mdp.parallel.ParallelHistogramNode</a></strong>:
+      <em class="summary">Parallel version of the HistogramNode.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelLayer-class.html">mdp.parallel.ParallelLayer</a></strong>:
+      <em class="summary">Parallel version of a Layer.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelSFANode-class.html">mdp.parallel.ParallelSFANode</a></strong>:
+      <em class="summary">Parallel version of MDP SFA node.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.PreserveDimNode-class.html">mdp.PreserveDimNode</a></strong>:
+      <em class="summary">Abstract base class with <code class="link">output_dim == input_dim</code>.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.ClassifierNode-class.html">mdp.ClassifierNode</a></strong>:
+      <em class="summary">A ClassifierNode can be used for classification tasks that should not
+interfere with the normal execution flow. A reason for that is that the
+labels used for classification do not form a vector space, and so they don't
+make much sense in a flow.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.ClassifierCumulator-class.html">mdp.ClassifierCumulator</a></strong>:
+      <em class="summary">A ClassifierCumulator is a Node whose training phase simply collects
+all input data and labels. In this way it is possible to easily implement
+batch-mode learning.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GNBScikitsLearnNode-class.html">mdp.nodes.GNBScikitsLearnNode</a></strong>:
+      <em class="summary">Gaussian Naive Bayes (GNB)
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.naive_bayes.GNB</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LDAScikitsLearnNode-class.html">mdp.nodes.LDAScikitsLearnNode</a></strong>:
+      <em class="summary">Linear Discriminant Analysis (LDA)
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.lda.LDA</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LinearSVCScikitsLearnNode-class.html">mdp.nodes.LinearSVCScikitsLearnNode</a></strong>:
+      <em class="summary">Linear Support Vector Classification, Sparse Version
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.svm.sparse.classes.LinearSVC</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Similar to SVC with parameter kernel='linear', but uses internally
+liblinear rather than libsvm, so it has more flexibility in the
+choice of penalties and loss functions and should be faster for
+huge datasets.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.LogisticRegressionScikitsLearnNode-class.html">mdp.nodes.LogisticRegressionScikitsLearnNode</a></strong>:
+      <em class="summary">Logistic Regression.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.linear_model.logistic.LogisticRegression</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+Implements L1 and L2 regularized logistic regression.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NeighborsClassifierScikitsLearnNode-class.html">mdp.nodes.NeighborsClassifierScikitsLearnNode</a></strong>:
+      <em class="summary">Classifier implementing k-Nearest Neighbor Algorithm.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.neighbors.NeighborsClassifier</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NeighborsRegressorScikitsLearnNode-class.html">mdp.nodes.NeighborsRegressorScikitsLearnNode</a></strong>:
+      <em class="summary">Regression based on k-Nearest Neighbor Algorithm
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.neighbors.NeighborsRegressor</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+The target is predicted by local interpolation of the targets
+associated of the k-Nearest Neighbors in the training set.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NuSVCScikitsLearnNode-class.html">mdp.nodes.NuSVCScikitsLearnNode</a></strong>:
+      <em class="summary">NuSVC for sparse matrices (csr).</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.QDAScikitsLearnNode-class.html">mdp.nodes.QDAScikitsLearnNode</a></strong>:
+      <em class="summary">Quadratic Discriminant Analysis (QDA)
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.qda.QDA</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SGDClassifierScikitsLearnNode-class.html">mdp.nodes.SGDClassifierScikitsLearnNode</a></strong>:
+      <em class="summary">Linear model fitted by minimizing a regularized empirical loss with SGD.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SVCScikitsLearnNode-class.html">mdp.nodes.SVCScikitsLearnNode</a></strong>:
+      <em class="summary">C-Support Vector Classification.
+This node has been automatically generated by wrapping the <code class="link">scikits.learn.svm.classes.SVC</code> class
+from the <code class="link">sklearn</code> library.  The wrapped instance can be accessed
+through the <code class="link">scikits_alg</code> attribute.
+<strong>Parameters</strong></em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.DiscreteHopfieldClassifier-class.html">mdp.nodes.DiscreteHopfieldClassifier</a></strong>:
+      <em class="summary">Node for simulating a simple discrete Hopfield model</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GaussianClassifier-class.html">mdp.nodes.GaussianClassifier</a></strong>:
+      <em class="summary">Perform a supervised Gaussian classification.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.KMeansClassifier-class.html">mdp.nodes.KMeansClassifier</a></strong>:
+      <em class="summary">Employs K-Means Clustering for a given number of centroids.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.KNNClassifier-class.html">mdp.nodes.KNNClassifier</a></strong>:
+      <em class="summary">K-Nearest-Neighbour Classifier.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NearestMeanClassifier-class.html">mdp.nodes.NearestMeanClassifier</a></strong>:
+      <em class="summary">Nearest-Mean classifier.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.PerceptronClassifier-class.html">mdp.nodes.PerceptronClassifier</a></strong>:
+      <em class="summary">A simple perceptron with input_dim input nodes.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SignumClassifier-class.html">mdp.nodes.SignumClassifier</a></strong>:
+      <em class="summary">This classifier node classifies as <code class="link">1</code> if the sum of the data points
+is positive and as <code class="link">-1</code> if the data point is negative.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SimpleMarkovClassifier-class.html">mdp.nodes.SimpleMarkovClassifier</a></strong>:
+      <em class="summary">A simple version of a Markov classifier.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.CutoffNode-class.html">mdp.nodes.CutoffNode</a></strong>:
+      <em class="summary">Node to cut off values at specified bounds.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.HistogramNode-class.html">mdp.nodes.HistogramNode</a></strong>:
+      <em class="summary">Node which stores a history of the data during its training phase.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.AdaptiveCutoffNode-class.html">mdp.nodes.AdaptiveCutoffNode</a></strong>:
+      <em class="summary">Node which uses the data history during training to learn cutoff values.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelHistogramNode-class.html">mdp.parallel.ParallelHistogramNode</a></strong>:
+      <em class="summary">Parallel version of the HistogramNode.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.HitParadeNode-class.html">mdp.nodes.HitParadeNode</a></strong>:
+      <em class="summary">Collect the first <code class="link">n</code> local maxima and minima of the training signal
+which are separated by a minimum gap <code class="link">d</code>.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.IdentityNode-class.html">mdp.nodes.IdentityNode</a></strong>:
+      <em class="summary">Execute returns the input data and the node is not trainable.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NoiseNode-class.html">mdp.nodes.NoiseNode</a></strong>:
+      <em class="summary">Inject multiplicative or additive noise into the input data.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NormalNoiseNode-class.html">mdp.nodes.NormalNoiseNode</a></strong>:
+      <em class="summary">Special version of <a href="mdp.nodes.NoiseNode-class.html" class="link">NoiseNode</a> for Gaussian additive noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NormalizeNode-class.html">mdp.nodes.NormalizeNode</a></strong>:
+      <em class="summary">Make input signal meanfree and unit variance.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.PreserveDimOnlineNode-class.html">mdp.PreserveDimOnlineNode</a></strong>:
+      <em class="summary">Abstract base class with <code class="link">output_dim == input_dim</code>.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.OnlineCenteringNode-class.html">mdp.nodes.OnlineCenteringNode</a></strong>:
+      <em class="summary">OnlineCenteringNode centers the input data, that is, subtracts the arithmetic mean (average) from the
+input data. This is an online learnable node.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.OnlineTimeDiffNode-class.html">mdp.nodes.OnlineTimeDiffNode</a></strong>:
+      <em class="summary">Compute the discrete time derivative of the input using backward difference approximation:</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RBFExpansionNode-class.html">mdp.nodes.RBFExpansionNode</a></strong>:
+      <em class="summary">Expand input space with Gaussian Radial Basis Functions (RBFs).</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RBMNode-class.html">mdp.nodes.RBMNode</a></strong>:
+      <em class="summary">Restricted Boltzmann Machine node. An RBM is an undirected
+probabilistic network with binary variables. The graph is
+bipartite into observed (<em>visible</em>) and hidden (<em>latent</em>) variables.
+By default, the <a href="mdp.nodes.RBMNode-class.html#execute" class="link">execute</a> method returns the <em>probability</em> of
+one of the hiden variables being equal to 1 given the input.
+Use the <a href="mdp.nodes.RBMNode-class.html#sample_v" class="link">sample_v</a> method to sample from the observed variables
+given a setting of the hidden variables, and <a href="mdp.nodes.RBMNode-class.html#sample_h" class="link">sample_h</a> to do the
+opposite. The <a href="mdp.nodes.RBMNode-class.html#energy" class="link">energy</a> method can be used to compute the energy
+of a given setting of all variables.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RBMWithLabelsNode-class.html">mdp.nodes.RBMWithLabelsNode</a></strong>:
+      <em class="summary">Restricted Boltzmann Machine with softmax labels. An RBM is an
+undirected probabilistic network with binary variables. In this
+case, the node is partitioned into a set of observed (<em>visible</em>)
+variables, a set of hidden (<em>latent</em>) variables, and a set of
+label variables (also observed), only one of which is active at
+any time. The node is able to learn associations between the
+visible variables and the labels.
+By default, the <a href="mdp.nodes.RBMWithLabelsNode-class.html#execute" class="link">execute</a> method returns the <em>probability</em> of
+one of the hiden variables being equal to 1 given the input.
+Use the <a href="mdp.nodes.RBMWithLabelsNode-class.html#sample_v" class="link">sample_v</a> method to sample from the observed variables
+(visible and labels) given a setting of the hidden variables, and
+<a href="mdp.nodes.RBMWithLabelsNode-class.html#sample_h" class="link">sample_h</a> to do the opposite. The <a href="mdp.nodes.RBMWithLabelsNode-class.html#energy" class="link">energy</a> method can be used
+to compute the energy of a given setting of all variables.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SFANode-class.html">mdp.nodes.SFANode</a></strong>:
+      <em class="summary">Extract the slowly varying components from the input data.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ParallelSFANode-class.html">mdp.parallel.ParallelSFANode</a></strong>:
+      <em class="summary">Parallel version of MDP SFA node.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.SFA2Node-class.html">mdp.nodes.SFA2Node</a></strong>:
+      <em class="summary">Get an input signal, expand it in the space of
+inhomogeneous polynomials of degree 2 and extract its slowly varying
+components.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.VartimeSFANode-class.html">mdp.nodes.VartimeSFANode</a></strong>:
+      <em class="summary">Extract the slowly varying components from the input data.
+This node can be understood as a generalization of the <em>SFANode</em> that
+allows non-constant time increments between samples.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.Switchboard-class.html">mdp.hinet.Switchboard</a></strong>:
+      <em class="summary">Does the routing associated with the connections between layers.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.hinet.ChannelSwitchboard-class.html">mdp.hinet.ChannelSwitchboard</a></strong>:
+      <em class="summary">Base class for Switchboards in which the data is bundled into channels.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.hinet.DoubleRect2dSwitchboard-class.html">mdp.hinet.DoubleRect2dSwitchboard</a></strong>:
+      <em class="summary">Special 2d Switchboard where each inner point is covered twice.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.DoubleRhomb2dSwitchboard-class.html">mdp.hinet.DoubleRhomb2dSwitchboard</a></strong>:
+      <em class="summary">Rectangular lattice switchboard covering a rhombic lattice.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.hinet.Rectangular2dSwitchboard-class.html">mdp.hinet.Rectangular2dSwitchboard</a></strong>:
+      <em class="summary">Switchboard for a 2-dimensional topology.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.TimeFramesNode-class.html">mdp.nodes.TimeFramesNode</a></strong>:
+      <em class="summary">Copy delayed version of the input signal on the space dimensions.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.TimeDelayNode-class.html">mdp.nodes.TimeDelayNode</a></strong>:
+      <em class="summary">Copy delayed version of the input signal on the space dimensions.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.TimeDelaySlidingWindowNode-class.html">mdp.nodes.TimeDelaySlidingWindowNode</a></strong>:
+      <em class="summary"><a href="mdp.nodes.TimeDelaySlidingWindowNode-class.html" class="link">TimeDelaySlidingWindowNode</a> is an alternative to <a href="mdp.nodes.TimeDelayNode-class.html" class="link">TimeDelayNode</a>
+which should be used for online learning/execution. Whereas the
+<a href="mdp.nodes.TimeDelayNode-class.html" class="link">TimeDelayNode</a> works in a batch manner, for online application
+a sliding window is necessary which yields only one row per call.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.XSFANode-class.html">mdp.nodes.XSFANode</a></strong>:
+      <em class="summary">Perform Non-linear Blind Source Separation using Slow Feature Analysis.
+This node is designed to iteratively extract statistically
+independent sources from (in principle) arbitrary invertible
+nonlinear mixtures. The method relies on temporal correlations in
+the sources and consists of a combination of nonlinear SFA and a
+projection algorithm. More details can be found in the reference
+given below (once it's published).</em>
+    </li>
+    <li> <strong class="uidlink"><i>unreachable</i>._ExpansionNode</strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.GeneralExpansionNode-class.html">mdp.nodes.GeneralExpansionNode</a></strong>:
+      <em class="summary">Expands the input samples by applying to them one or more functions provided.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.PolynomialExpansionNode-class.html">mdp.nodes.PolynomialExpansionNode</a></strong>:
+      <em class="summary">Perform expansion in a polynomial space.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.QuadraticExpansionNode-class.html">mdp.nodes.QuadraticExpansionNode</a></strong>:
+      <em class="summary">Perform expansion in the space formed by all linear and quadratic
+monomials.
+<a href="mdp.nodes.QuadraticExpansionNode-class.html" class="link">QuadraticExpansionNode()</a> is equivalent to a
+<a href="mdp.nodes.PolynomialExpansionNode-class.html" class="link">PolynomialExpansionNode(2)</a></em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.RecursiveExpansionNode-class.html">mdp.nodes.RecursiveExpansionNode</a></strong>:
+      <em class="summary">Recursively computable (orthogonal) expansions.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.NormalizingRecursiveExpansionNode-class.html">mdp.nodes.NormalizingRecursiveExpansionNode</a></strong>:
+      <em class="summary">Recursively computable (orthogonal) expansions and a
+trainable transformation to the domain of the expansions.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.iGSFANode-class.html">mdp.nodes.iGSFANode</a></strong>:
+      <em class="summary">This node implements &quot;information-preserving graph-based SFA (iGSFA)&quot;,
+which is the main component of hierarchical iGSFA (HiGSFA).</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><i>unreachable</i>.ProjectMatrixMixin</strong>:
+      <em class="summary">Mixin class to be inherited by all ICA-like algorithms</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.ICANode-class.html" onclick="show_private();">mdp.nodes.ICANode</a></strong>:
+      <em class="summary">ICANode is a general class to handle different batch-mode algorithm for
+Independent Component Analysis.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.nodes.CuBICANode-class.html">mdp.nodes.CuBICANode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the CuBICA algorithm.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.FastICANode-class.html">mdp.nodes.FastICANode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the FastICA algorithm.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.JADENode-class.html">mdp.nodes.JADENode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the JADE algorithm.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes.TDSEPNode-class.html">mdp.nodes.TDSEPNode</a></strong>:
+      <em class="summary">Perform Independent Component Analysis using the TDSEP algorithm.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.utils.QuadraticForm-class.html">mdp.utils.QuadraticForm</a></strong>:
+      <em class="summary">Define an inhomogeneous quadratic form as 1/2 x'Hx + f'x + c .
+This class implements the quadratic form analysis methods
+presented in:</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ResultContainer-class.html">mdp.parallel.ResultContainer</a></strong>:
+      <em class="summary">Abstract base class for result containers.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ListResultContainer-class.html">mdp.parallel.ListResultContainer</a></strong>:
+      <em class="summary">Basic result container using simply a list.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.OrderedResultContainer-class.html">mdp.parallel.OrderedResultContainer</a></strong>:
+      <em class="summary">Default result container with automatic restoring of the result order.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ExecuteResultContainer-class.html">mdp.parallel.ExecuteResultContainer</a></strong>:
+      <em class="summary">Default result container with automatic restoring of the result order.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.TrainResultContainer-class.html">mdp.parallel.TrainResultContainer</a></strong>:
+      <em class="summary">Container for parallel nodes.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.Scheduler-class.html">mdp.parallel.Scheduler</a></strong>:
+      <em class="summary">Base class and trivial implementation for schedulers.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ProcessScheduler-class.html">mdp.parallel.ProcessScheduler</a></strong>:
+      <em class="summary">Scheduler that distributes the task to multiple processes.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.ThreadScheduler-class.html">mdp.parallel.ThreadScheduler</a></strong>:
+      <em class="summary">Thread based scheduler.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><i>unreachable</i>.StringTemplate</strong>:
+      <em class="summary">A base class for string template classes.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.utils.HTMLSlideShow-class.html">mdp.utils.HTMLSlideShow</a></strong>:
+      <em class="summary">Abstract slideshow base class.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.utils.ImageHTMLSlideShow-class.html">mdp.utils.ImageHTMLSlideShow</a></strong>:
+      <em class="summary">Slideshow for images.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.utils.SectionImageHTMLSlideShow-class.html">mdp.utils.SectionImageHTMLSlideShow</a></strong>:
+      <em class="summary">Image slideshow with section markers.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.utils.SectionHTMLSlideShow-class.html">mdp.utils.SectionHTMLSlideShow</a></strong>:
+      <em class="summary">Astract slideshow with additional support for section markers.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.utils.SectionImageHTMLSlideShow-class.html">mdp.utils.SectionImageHTMLSlideShow</a></strong>:
+      <em class="summary">Image slideshow with section markers.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.TaskCallable-class.html">mdp.parallel.TaskCallable</a></strong>:
+      <em class="summary">Abstract base class for task callables.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.FlowTaskCallable-class.html">mdp.parallel.FlowTaskCallable</a></strong>:
+      <em class="summary">Base class for all flow callables.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.parallel.FlowExecuteCallable-class.html">mdp.parallel.FlowExecuteCallable</a></strong>:
+      <em class="summary">Implements data execution through a Flow.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.FlowTrainCallable-class.html">mdp.parallel.FlowTrainCallable</a></strong>:
+      <em class="summary">Implements a single training phase in a flow for a data block.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.SleepSqrTestCallable-class.html">mdp.parallel.SleepSqrTestCallable</a></strong>:
+      <em class="summary">Callable for testing.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.SqrTestCallable-class.html">mdp.parallel.SqrTestCallable</a></strong>:
+      <em class="summary">Callable for testing.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.parallel.TaskCallableWrapper-class.html">mdp.parallel.TaskCallableWrapper</a></strong>:
+      <em class="summary">Wrapper to provide a fork method for simple callables like a function.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.utils.TemporaryDirectory-class.html">mdp.utils.TemporaryDirectory</a></strong>:
+      <em class="summary">Create and return a temporary directory.  This has the same
+behavior as mkdtemp but can be used as a context manager.  For
+example:</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.config._ExternalDep-class.html" onclick="show_private();">mdp.config._ExternalDep</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.nodes._OneDimensionalHitParade-class.html">mdp.nodes._OneDimensionalHitParade</a></strong>:
+      <em class="summary">Class to produce hit-parades (i.e., a list of the locally largest
+and smallest values) out of a one-dimensional time-series.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.caching.cache-class.html">mdp.caching.cache</a></strong>:
+      <em class="summary">Context manager for the 'cache_execute' extension.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.config-class.html">mdp.config</a></strong>:
+      <em class="summary">Provide information about optional dependencies.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="mdp.extension-class.html">mdp.extension</a></strong>:
+      <em class="summary">Context manager for MDP extension.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">type</strong>:
+      <em class="summary">type(object) -&gt; the object's type...</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.NodeMetaclass-class.html" onclick="show_private();">mdp.NodeMetaclass</a></strong>:
+      <em class="summary">A metaclass which copies docstrings from private to public methods.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="mdp.ExtensionNodeMetaclass-class.html">mdp.ExtensionNodeMetaclass</a></strong>:
+      <em class="summary">This is the metaclass for node extension superclasses.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+</ul>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="mdp-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://mdp-toolkit.github.io">Modular toolkit for Data Processing MDP</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1-MDP on Mon Apr 27 21:56:15 2020
+    </td>
+    <td align="right" class="footer">
+      <a target="_blank" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Checkpoints &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Node Extensions" href="extensions.html" />
+    <link rel="prev" title="Iterables" href="iterables.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="extensions.html" title="Node Extensions"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="iterables.html" title="Iterables"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="checkpoints">
+<span id="id1"></span><h1>Checkpoints<a class="headerlink" href="#checkpoints" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/tutorial/checkpoints.html">code snippets directory</a></p>
+</div>
+<p>It can sometimes be useful to execute arbitrary functions at the end
+of the training or execution phase, for example to save the internal
+structures of a node for later analysis. This can easily be done
+by defining a <code class="docutils literal"><span class="pre">CheckpointFlow</span></code>. As an example imagine the following
+situation: you want to perform Principal Component Analysis (PCA) on
+your data to reduce the dimensionality. After this you want to expand
+the signals into a nonlinear space and then perform Slow Feature
+Analysis to extract slowly varying signals. As the expansion will increase
+the number of components, you don’t want to run out of memory, but at the same
+time you want to keep as much information as possible after the dimensionality
+reduction. You could do that by specifying the percentage of
+the total input variance that has to be conserved in the dimensionality
+reduction. As the number of output components of the PCA node now can become
+as large as the that of the input components, you want to check, after training the
+PCA node, that this number is below a certain threshold. If this is not
+the case you want to abort the execution and maybe start again requesting
+less variance to be kept.</p>
+<p>Let start defining a generator to be used through the whole example</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">gen_data</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span><span class="n">dims</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">dims</span><span class="p">,</span><span class="n">dims</span><span class="p">))</span><span class="o">-</span><span class="mf">0.5</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">blocks</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="c1"># put variables on columns and observations on rows</span>
+<span class="gp">... </span>        <span class="n">block</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">mult</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="n">dims</span><span class="p">)),</span> <span class="n">mat</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">yield</span> <span class="n">block</span>
+</pre></div>
+</div>
+<p>Define a <code class="docutils literal"><span class="pre">PCANode</span></code> which reduces dimensionality of the input,
+a <code class="docutils literal"><span class="pre">PolynomialExpansionNode</span></code> to expand the signals in the space
+of polynomials of degree 2 and a <code class="docutils literal"><span class="pre">SFANode</span></code> to perform SFA</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCANode</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exp</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PolynomialExpansionNode</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sfa</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">SFANode</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>As you see we have set the output dimension of the <code class="docutils literal"><span class="pre">PCANode</span></code> to be <code class="docutils literal"><span class="pre">0.9</span></code>.
+This means that we want to keep at least 90% of the variance of the original signal.
+We define a <code class="docutils literal"><span class="pre">PCADimensionExceededException</span></code> that has to be thrown when
+the number of output components exceeds a certain threshold</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">PCADimensionExceededException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Exception base class for PCA exceeded dimensions case.&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Then, write a <code class="docutils literal"><span class="pre">CheckpointFunction</span></code> that checks the number of output
+dimensions of the <code class="docutils literal"><span class="pre">PCANode</span></code> and aborts if this number is larger than <code class="docutils literal"><span class="pre">max_dim</span></code></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">CheckPCA</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">CheckpointFunction</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">max_dim</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">max_dim</span> <span class="o">=</span> <span class="n">max_dim</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">node</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">node</span><span class="o">.</span><span class="n">stop_training</span><span class="p">()</span>
+<span class="gp">... </span>        <span class="n">act_dim</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get_output_dim</span><span class="p">()</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="n">act_dim</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_dim</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="n">errstr</span> <span class="o">=</span> <span class="s1">&#39;PCA output dimensions exceeded maximum &#39;</span><span class="o">+</span>\
+<span class="gp">... </span>                     <span class="s1">&#39;(</span><span class="si">%d</span><span class="s1"> &gt; </span><span class="si">%d</span><span class="s1">)&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">act_dim</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">max_dim</span><span class="p">)</span>
+<span class="gp">... </span>            <span class="k">raise</span> <span class="n">PCADimensionExceededException</span><span class="p">,</span> <span class="n">errstr</span>
+<span class="gp">... </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="nb">print</span> <span class="s1">&#39;PCA output dimensions = </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">act_dim</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Define the CheckpointFlow</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">CheckpointFlow</span><span class="p">([</span><span class="n">pca</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sfa</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>To train it we have to supply 3 generators and 3 checkpoint functions</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">gen_data</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="n">gen_data</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">)],</span> 
+<span class="gp">... </span>           <span class="p">[</span><span class="n">CheckPCA</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">2</span>, in <span class="n">?</span>
+<span class="gr">  [...]</span>
+<span class="gr">__main__.PCADimensionExceededException</span>: <span class="n">PCA output dimensions exceeded maximum (25 &gt; 10)</span>
+</pre></div>
+</div>
+<p>The training fails with a <code class="docutils literal"><span class="pre">PCADimensionExceededException</span></code>.
+If we only had 12 input dimensions instead of 50 we would have passed
+the checkpoint</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCANode</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">gen_data</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="n">gen_data</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">)],</span>
+<span class="gp">... </span>           <span class="p">[</span><span class="n">CheckPCA</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+<span class="go">PCA output dimensions = 7</span>
+</pre></div>
+</div>
+<p>We could use the built-in <code class="docutils literal"><span class="pre">CheckpoinSaveFunction</span></code> to save the <code class="docutils literal"><span class="pre">SFANode</span></code>
+and analyze the results later</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCANode</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exp</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PolynomialExpansionNode</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sfa</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">SFANode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">CheckpointFlow</span><span class="p">([</span><span class="n">pca</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sfa</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">gen_data</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="n">gen_data</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">)],</span>
+<span class="gp">... </span>           <span class="p">[</span><span class="n">CheckPCA</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="kc">None</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="n">mdp</span><span class="o">.</span><span class="n">CheckpointSaveFunction</span><span class="p">(</span><span class="s1">&#39;dummy.pic&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                                       <span class="n">stop_training</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>                                       <span class="n">protocol</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="go">PCA output dimensions = 6</span>
+</pre></div>
+</div>
+<p>We can now reload and analyze the <code class="docutils literal"><span class="pre">SFANode</span></code></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fl</span> <span class="o">=</span> <span class="n">file</span><span class="p">(</span><span class="s1">&#39;dummy.pic&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cPickle</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sfa_reloaded</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fl</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sfa_reloaded</span>
+<span class="go">SFANode(input_dim=27, output_dim=27, dtype=&#39;float64&#39;)</span>
+</pre></div>
+</div>
+<p>Don’t forget to clean the rubbish</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fl</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;dummy.pic&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="extensions.html" title="Node Extensions"
+             >next</a></li>
+        <li class="right" >
+          <a href="iterables.html" title="Iterables"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

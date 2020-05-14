@@ -1,0 +1,445 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Development &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Talks" href="talks/talks.html" />
+    <link rel="prev" title="Additional utilities" href="additional_utilities.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="examples/logo/logo_animation.html">
+		    <img src="_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#maintainers">Maintainers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contributors">Contributors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#information-for-new-developers">Information for new developers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#development-process">Development process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-style-guidelines">General Style Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="development">
+<span id="id1"></span><h1>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="maintainers">
+<span id="id2"></span><h2>Maintainers<a class="headerlink" href="#maintainers" title="Permalink to this headline">¶</a></h2>
+<p>MDP has been originally written by <a class="reference external" href="http://people.brandeis.edu/~berkes/">Pietro Berkes</a> and <a class="reference external" href="https://github.com/otizonaizit">Tiziano Zito</a>
+at the <a class="reference external" href="http://itb.biologie.hu-berlin.de/">Institute for Theoretical Biology</a>
+of the <a class="reference external" href="http://www.hu-berlin.de/">Humboldt University</a>, Berlin in 2003.</p>
+<p>Since 2017, MDP is primarily maintained by the reasearch group
+<a class="reference external" href="https://www.ini.rub.de/research/groups/theory_of_neural_systems/">Theory of Neural Systems</a>
+at the <a class="reference external" href="https://www.ini.rub.de/">Institute for Neural Computation</a>
+of the <a class="reference external" href="https://www.ruhr-uni-bochum.de/en">Ruhr University Bochum</a>.</p>
+<p>Current maintainers are:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.ini.rub.de/the_institute/people/nils-mller/">Nils Müller</a></li>
+<li><a class="reference external" href="https://www.ini.rub.de/the_institute/people/stefan-richthofer/">Stefan Richthofer</a></li>
+<li><a class="reference external" href="https://github.com/otizonaizit">Tiziano Zito</a></li>
+</ul>
+<p>MDP is open to user contributions. Users have already contributed some
+of the nodes, and more contributions are currently being reviewed for
+inclusion in future releases of the package. The package development
+can be followed online on the public git code <a class="reference external" href="http://github.com/mdp-toolkit">repositories</a> or
+cloned with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mdp</span><span class="o">-</span><span class="n">toolkit</span><span class="o">/</span><span class="n">mdp</span><span class="o">-</span><span class="n">toolkit</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mdp</span><span class="o">-</span><span class="n">toolkit</span><span class="o">/</span><span class="n">mdp</span><span class="o">-</span><span class="n">docs</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>You can install the development version by changing to the newly
+created <code class="docutils literal"><span class="pre">mdp-toolkit</span></code> directory and running:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>For comments, patches, feature requests, support requests, and bug reports
+you can use the users’ <a class="reference external" href="https://mail.python.org/mm3/mailman3/lists/mdp-toolkit.python.org/">mailing list</a>.</p>
+<p>If you want to contribute some code or a new algorithm, please do not
+hesitate to submit it!</p>
+</div>
+<div class="section" id="contributors">
+<h2>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h2>
+<p>Strictly in alphabetical order:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.gbeckers.nl/">Gabriel Beckers</a></li>
+<li><a class="reference external" href="http://people.brandeis.edu/~berkes/">Pietro Berkes</a></li>
+<li>Sven Dähne</li>
+<li>Philip DeBoer</li>
+<li>Kamel Ibn Aziz Derouiche</li>
+<li><a class="reference external" href="https://www.ini.rub.de/the_institute/people/alberto-escalante/">Alberto Escalante</a></li>
+<li><a class="reference external" href="https://www.bcp.fu-berlin.de/en/biologie/arbeitsgruppen/neurobiologie/ag_nawrot/people/alumni/farkhooi/index.html">Farzad Farkhooi</a></li>
+<li>Mathias Franzius</li>
+<li><a class="reference external" href="https://github.com/esc">Valentin Haenel</a></li>
+<li><a class="reference external" href="http://centerforopenneuroscience.org/whoweare#yaroslav_o_halchenko_">Yaroslav Halchenko</a></li>
+<li><a class="reference external" href="https://github.com/mih">Michael Hanke</a></li>
+<li><a class="reference external" href="http://dirac.cnrs-orleans.fr/~hinsen/">Konrad Hinsen</a></li>
+<li>Christian Hinze</li>
+<li><a class="reference external" href="http://www.sebastianhoefer.de">Sebastian Höfer</a></li>
+<li>Michael Hull</li>
+<li><a class="reference external" href="https://github.com/keszybz">Zbigniew Jędrzejewski-Szmek</a></li>
+<li><a class="reference external" href="http://www.samueljohn.de/">Samuel John</a></li>
+<li><a class="reference external" href="https://varunrajk.gitlab.io/">Varun Kompella</a></li>
+<li>Susanne Lezius</li>
+<li>Maximilian Nickel</li>
+<li><a class="reference external" href="http://fseoane.net/blog/">Fabian Pedregosa</a></li>
+<li><a class="reference external" href="https://github.com/quesada">José Quesada</a></li>
+<li><a class="reference external" href="https://www.ini.rub.de/the_institute/people/stefan-richthofer/">Stefan Richthofer</a></li>
+<li><a class="reference external" href="http://argentum.ucbso.berkeley.edu/ariel.html">Ariel Rokem</a></li>
+<li><a class="reference external" href="https://github.com/Huitzilo">Michael Schmuker</a></li>
+<li><a class="reference external" href="https://about.me/benjamin_schrauwen">Benjamin Schrauwen</a></li>
+<li><a class="reference external" href="https://www.ini.rub.de/the_institute/people/fabian-schonfeld/">Fabian Schönfeld</a></li>
+<li><a class="reference external" href="https://github.com/Debilski">Rike-Benjamin Schuppner</a></li>
+<li><a class="reference external" href="https://www.cognition.tu-berlin.de/menue/members/henning_sprekeler/">Henning Sprekeler</a></li>
+<li><a class="reference external" href="https://github.com/jakevdp">Jake VanderPlas</a></li>
+<li><a class="reference external" href="https://we.vub.ac.be/en/david-verstraeten">David Verstraeten</a></li>
+<li><a class="reference external" href="https://github.com/nwilbert">Niko Wilbert</a></li>
+<li>Ben Willmore</li>
+<li><a class="reference external" href="http://dgppf.de/dr-katharina-m-zeiner/">Katharina Maria Zeiner</a></li>
+</ul>
+</div>
+<div class="section" id="information-for-new-developers">
+<h2>Information for new developers<a class="headerlink" href="#information-for-new-developers" title="Permalink to this headline">¶</a></h2>
+<p>We try here to summarize some policies
+and best-practices specific to new developers. You should also follow
+the <a class="reference internal" href="#general-style-guidelines">General style guidelines</a>, which are applicable to
+all developers.</p>
+<ul class="simple">
+<li>If you do not already own one, create an account on github.com and tell
+us your username there, so that we can add you to the list of developers
+and give you access to our git repositories</li>
+<li>Since our migration to git, the repository setup consists of
+two separate repositories:<ul>
+<li><code class="docutils literal"><span class="pre">mdp-toolkit</span></code></li>
+<li><code class="docutils literal"><span class="pre">mdp-docs</span></code></li>
+</ul>
+</li>
+<li>If you want to commit code, it may be easiest to fork the MDP repository
+on github and give us a note on the mailing list. We may then discuss
+how to integrate your modifications.
+For simple fixes that don’t need much discussion, you can also send
+a mail patch to the list using <code class="docutils literal"><span class="pre">git</span> <span class="pre">format-patch</span></code> or similar.</li>
+<li>Your code contribution should not have any additional
+dependencies, i.e. they should require only the numpy module to be
+installed. If your code requires some other module, e.g. scipy or
+C/C++ compilation, ask
+<a class="reference external" href="mailto:mdp-toolkit&#37;&#52;&#48;python&#46;org">mdp-toolkit<span>&#64;</span>python<span>&#46;</span>org</a>
+for assistance.</li>
+</ul>
+</div>
+<div class="section" id="development-process">
+<h2>Development process<a class="headerlink" href="#development-process" title="Permalink to this headline">¶</a></h2>
+<p>Development takes place on the <code class="docutils literal"><span class="pre">master</span></code> branch, but it doesn’t mean
+that everything should be immediately commited there.</p>
+<p>Small commits and bugfixes and the like should go immediately on the
+main branch, if the commiter thinks that nothing will be broken by the
+patch:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="c1"># make a small fix :)</span>
+<span class="n">sed</span> <span class="o">-</span><span class="n">ir</span> <span class="n">s</span><span class="o">/</span><span class="n">develepement</span><span class="o">/</span><span class="n">development</span><span class="o">/</span><span class="n">g</span> <span class="n">development_process</span><span class="o">.</span><span class="n">rst</span>
+<span class="n">git</span> <span class="n">add</span> <span class="n">development_process</span><span class="o">.</span><span class="n">rst</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s1">&#39;FIX: correct spelling of development&#39;</span>
+</pre></div>
+</div>
+<p>More complicated commits should go on a feature branch:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">my_new_feature</span>
+<span class="o">&lt;</span><span class="n">do</span> <span class="n">some</span> <span class="n">changes</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">some</span><span class="o">-</span><span class="n">file</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">some</span><span class="o">-</span><span class="n">other</span><span class="o">-</span><span class="n">file</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s1">&#39;NEW: add subfeature-1&#39;</span>
+<span class="o">&lt;</span><span class="n">do</span> <span class="n">some</span> <span class="n">more</span> <span class="n">changes</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s1">&#39;NEW: implement this and that&#39;</span>
+</pre></div>
+</div>
+<p>When a developer wants to show the branch to other people, she should
+push it into the main repo:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">my_new_feature</span>
+</pre></div>
+</div>
+<div class="section" id="temporary-branches">
+<h3>Temporary branches<a class="headerlink" href="#temporary-branches" title="Permalink to this headline">¶</a></h3>
+<p>If you are about to test something and you’ve got the idea that your
+code won’t last long in the repository, (maybe you want to show your
+code to another developer or you want to just check, if you can commit
+to the server,) you should create another branch for that, the same as
+for any new feature.</p>
+<p>The advantage is, that it keeps our master branch clean from all those
+‘testing some really strange new stuff – please have a look’ commits,
+which are likely to be reverted again. When you feel good about your
+commit, you can cherry-pick or merge the good stuff to master.</p>
+<p>Alternatively, ‘please have a look’ commits may also be pushed to a
+separate repository (e.g. a github fork).</p>
+</div>
+<div class="section" id="merging-feature-branches-back-into-the-master-branch">
+<h3>Merging feature branches back into the <code class="docutils literal"><span class="pre">master</span></code> branch<a class="headerlink" href="#merging-feature-branches-back-into-the-master-branch" title="Permalink to this headline">¶</a></h3>
+<p>Development is consensus based, so new features should be posted for
+review and gain acceptance before being merged back into the main
+branch. After the decision to merge has been made:</p>
+<ol class="arabic">
+<li><p class="first">Check that all tests pass on the feature branch. Ideally, the branch
+should already include tests for all code it introduces or
+significantly changes.</p>
+<p>Some things to test in special circumstances:</p>
+<ul>
+<li><p class="first">If the code does anything version specific, it should be tested on
+all supported python versions:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python2</span><span class="o">.</span><span class="mi">5</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">py</span><span class="o">.</span><span class="n">test</span>
+<span class="n">python2</span><span class="o">.</span><span class="mi">6</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">py</span><span class="o">.</span><span class="n">test</span>
+<span class="n">python2</span><span class="o">.</span><span class="mi">7</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">py</span><span class="o">.</span><span class="n">test</span>
+<span class="n">python3</span><span class="o">.</span><span class="mi">1</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">build</span>
+<span class="p">(</span><span class="n">cd</span> <span class="n">build</span><span class="o">/</span><span class="n">py3k</span> <span class="o">&amp;&amp;</span> <span class="n">py</span><span class="o">.</span><span class="n">test</span><span class="o">-</span><span class="mf">3.1</span><span class="p">)</span>
+<span class="p">(</span><span class="n">cd</span> <span class="n">build</span><span class="o">/</span><span class="n">py3k</span> <span class="o">&amp;&amp;</span> <span class="n">python3</span><span class="o">.</span><span class="mi">2</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">py</span><span class="o">.</span><span class="n">test</span><span class="o">-</span><span class="mf">3.1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>TODO: add windows and mac equivalents</p>
+</li>
+<li><p class="first">If the code does anything platform specific if should also be
+tested on Windows.</p>
+</li>
+<li><p class="first">Code should be tested with both numpy and scipy as backends.
+Since scipy will be selected by default if installed, the extra
+step that can be performed is testing while selecting numpy
+explicitely:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MDPNUMX</span><span class="o">=</span><span class="n">numpy</span> <span class="n">py</span><span class="o">.</span><span class="n">test</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Before merging also make sure that the master branch passes tests :)</p>
+</li>
+<li><p class="first">The merge should be performed in a way that preserves the history
+of the branch:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ff</span> <span class="n">my_new_feature</span>
+</pre></div>
+</div>
+<p>The merge commit should retain the name of the branch in the
+message. E.g. a commit with a message <em>Merge branch my_new_feature</em>
+is OK, commit with a message
+<em>Merge commit 1234567890123456789012345678901234567890</em> is not so good.</p>
+</li>
+<li><p class="first">After merging, tests should also pass.</p>
+<p>If tests fail and the failures are caused by a problem with the
+merge, the merge commit should be amended:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">fix</span> <span class="n">code</span><span class="o">&gt;</span>
+<span class="n">py</span><span class="o">.</span><span class="n">test</span> <span class="o">...</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">amend</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+<p>If the changes introduced in the branch simply uncovered problems in
+other parts of the codebase, the fixes can be committed as separate
+changesets.</p>
+</li>
+<li><p class="first">Only when tests after the merge execute satisfactorily, changes
+should be pushed to sourceforge. The old branch can be deleted.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="p">:</span><span class="n">my_new_feature</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="git-commit-messages">
+<h3>Git commit messages<a class="headerlink" href="#git-commit-messages" title="Permalink to this headline">¶</a></h3>
+<p>Commit messages are supposed to start with a prefix that specifies the
+type of change:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">DOC:</span></code> documentation</li>
+<li><code class="docutils literal"><span class="pre">FIX:</span></code> fixes something</li>
+<li><code class="docutils literal"><span class="pre">ERF:</span></code> enhancement, refactoring</li>
+<li><code class="docutils literal"><span class="pre">NEW:</span></code> a new feature</li>
+<li><code class="docutils literal"><span class="pre">OTH:</span></code> other (use with care)</li>
+</ul>
+<p>The message should consist of a short summary (up to about 70
+characters) and a longer explanation after an empty line. The summary
+messages will are used to generate a changelog for distribution
+tarballs.</p>
+</div>
+<div class="section" id="history-rewriting">
+<h3>History rewriting<a class="headerlink" href="#history-rewriting" title="Permalink to this headline">¶</a></h3>
+<p>The developer that created a feature branch is free to rewrite the
+history of the branch if she finds it reasonable:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span># do some history cleaning
+git rebase -i $(git merge-base origin/master my_new_feature)
+# upload a new version of the branch and override the old one
+git push --force origin my_new_feature
+</pre></div>
+</div>
+<p>If multiple developers wants to cooperate on <code class="docutils literal"><span class="pre">feature_branch</span></code>, they
+should agree between themselves on a history rewriting policy.</p>
+</div>
+</div>
+<div class="section" id="general-style-guidelines">
+<h2>General Style Guidelines<a class="headerlink" href="#general-style-guidelines" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Read carefully the <a class="reference internal" href="tutorial/nodes.html#write-your-own-nodes"><span class="std std-ref">Writing your own
+nodes: subclassing Node</span></a>
+section of the <a class="reference internal" href="tutorial/tutorial.html#tutorial"><span class="std std-ref">Tutorial</span></a>.</p>
+</li>
+<li><p class="first">Remember to set the supported dtypes for your nodes.
+Example of a node supporting only single and double precision:
+* <code class="docutils literal"><span class="pre">SFANode</span></code> in mdp-toolkit/mdp/nodes/sfa_nodes.py
+Example of a node supporting almost every dtype:
+* <code class="docutils literal"><span class="pre">HitParadeNode</span></code> in mdp-toolkit/mdp/nodes/misc_nodes.py</p>
+</li>
+<li><p class="first">If setting <code class="docutils literal"><span class="pre">input_dim</span></code>, <code class="docutils literal"><span class="pre">output_dim</span></code> or <code class="docutils literal"><span class="pre">dtype</span></code> has side
+effects, remember to implement that in the <code class="docutils literal"><span class="pre">_set_input_dim</span></code>,
+<code class="docutils literal"><span class="pre">_set_output_dim</span></code>, <code class="docutils literal"><span class="pre">_set_dtype</span></code> functions.  Several examples are
+available in <code class="docutils literal"><span class="pre">mdp-toolkit/mdp/nodes/</span></code></p>
+</li>
+<li><p class="first">Your code should strictly follow the <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP 8</a>
+coding conventions. Note that some older code
+sections in MDP do not follow PEP 8 100%, but when the opportunity arises
+(e.g., when we make changes in the code) we are improving this. So new code
+should always follow PEP 8. Additional style guidelines can be learned from
+the famous <a class="reference external" href="http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html">Code like a Pythonista</a>.</p>
+</li>
+<li><p class="first">Always import numpy in your code as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mdp</span> <span class="kn">import</span> <span class="n">numx</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">numx</span></code> is a placeholder we use to automatically import scipy
+instead of numpy when scipy is installed on the system.  Similarly,
+import <code class="docutils literal"><span class="pre">numx_fft</span></code>, <code class="docutils literal"><span class="pre">numx_linalg</span></code>, <code class="docutils literal"><span class="pre">numx_rand</span></code>, for the
+corresponding submodules in NumPy or SciPy. This way your code will
+work independently of the numerical backend.</p>
+</li>
+<li><p class="first">Only raise <code class="docutils literal"><span class="pre">mdp.NodeException</span></code>. If you need custom exceptions, derive
+them from <code class="docutils literal"><span class="pre">mdp.NodeException</span></code>.</p>
+</li>
+<li><p class="first">Your nodes needs to pass the automatic tests for setting and
+consistency of <code class="docutils literal"><span class="pre">input_dim</span></code>, <code class="docutils literal"><span class="pre">output_dim</span></code> and <code class="docutils literal"><span class="pre">dtype</span></code> <em>and</em> at
+least one functional test, which should test the algorithm possibly
+in a non-trivial way and compare its results with exact data you can
+derive analytically. If the latter is not possible, you should
+compare results and expected data within a certain precision. Look
+for example at <code class="docutils literal"><span class="pre">testPCANode</span></code> in
+<code class="docutils literal"><span class="pre">mdp-toolkit/mdp/test/test_PCANode.py</span></code>.
+For the generic tests, the relevant code is in
+<code class="docutils literal"><span class="pre">mdp-toolkit/mdp/test/test_nodes_generic.py</span></code>  in the functions
+<code class="docutils literal"><span class="pre">test_dtype_consistency</span></code>, <code class="docutils literal"><span class="pre">test_outputdim_consistency</span></code>,
+<code class="docutils literal"><span class="pre">test_dimdtypeset</span></code>, <code class="docutils literal"><span class="pre">test_inverse</span></code>.</p>
+</li>
+<li><p class="first">You nodes must have telling and explicit doc-strings. In
+particular, the class doc-string must cite references (if any) for
+the algorithm, and list the internal attributes of interest for
+the user. Any method not belonging to the base <code class="docutils literal"><span class="pre">Node</span></code> class must be
+clearly documented in its doc-string. Error messages must give an
+hint to the user what’s wrong and possible ways around the
+problem.</p>
+</li>
+<li><p class="first">Any non trivial algorithmic step in the code must be
+commented, so that other developers understand what’s going on. If
+you have doubts, mark the code with <code class="docutils literal"><span class="pre">#???</span></code> or <code class="docutils literal"><span class="pre">#XXX</span></code>.
+If you think a better implementation is possible or additional
+work is needed, mark the code with <code class="docutils literal"><span class="pre">#TODO</span></code>.
+Other useful tags are <code class="docutils literal"><span class="pre">#FIXME</span></code> if you know something is broken or
+inefficient, <code class="docutils literal"><span class="pre">#NOTE</span></code> or <code class="docutils literal"><span class="pre">#WARNING</span></code> to remember you or your
+fellow developer about issues, and finally <code class="docutils literal"><span class="pre">#YYY</span></code> as an answer to
+the question marked with <code class="docutils literal"><span class="pre">#???</span></code>.</p>
+<p>Have a look at the <code class="docutils literal"><span class="pre">SFANode</span></code> implementation for an example.</p>
+</li>
+<li><p class="first">When you commit your code <em>always</em> provide a meaningful log
+message: it will be mailed automatically to all other developers!</p>
+</li>
+<li><p class="first">This list is far from being complete, please let us know your
+comments and remarks :-)</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

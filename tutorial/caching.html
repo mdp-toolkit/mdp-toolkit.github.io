@@ -1,0 +1,254 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Caching execution results &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Classifier nodes" href="classifiers.html" />
+    <link rel="prev" title="Parallelization" href="parallel.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="classifiers.html" title="Classifier nodes"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="parallel.html" title="Parallelization"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="caching-execution-results">
+<span id="caching"></span><h1>Caching execution results<a class="headerlink" href="#caching-execution-results" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/tutorial/caching.html">code snippets directory</a></p>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>It is relatively common for nodes to process the same data several
+times. Usually this happens when training a long sequence of nodes
+using a fixed data set: to train the nodes at end of the sequence, the
+data has to be processed by all the preceding ones. This duplication
+of efforts may be costly, for example in image processing, when one
+needs to repeatedly filter the images (<a class="reference internal" href="../examples/convolution/image_convolution.html#convolution2d"><span class="std std-ref">as in this
+example</span></a>).</p>
+<p>MDP offers a <a class="reference internal" href="extensions.html#extensions"><span class="std std-ref">node extension</span></a> that automatically
+caches the result of the <code class="docutils literal"><span class="pre">execute</span></code> method, which can boost the speed
+of an application considerably in such scenarios. The cache can be
+activated globally (i.e., for all node instances), for some node
+classes only, or for specific instances.</p>
+<p>The caching mechanism is based on the library
+<a class="reference external" href="http://packages.python.org/joblib/">joblib</a>, version 0.4.3 or higher.</p>
+</div>
+<div class="section" id="activating-the-caching-extension">
+<h2>Activating the caching extension<a class="headerlink" href="#activating-the-caching-extension" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to activate the caching extension as for regular
+extension using the extension name <code class="docutils literal"><span class="pre">'cache_execute'</span></code>. By default,
+the cached results will be stored in a database created in a
+temporary directory for the duration of the Python session. To
+change the caching directory, which may be useful to create a
+permanent cache over multiple sessions, one can call the function
+<code class="docutils literal"><span class="pre">mdp.caching.set_cachedir</span></code>.</p>
+<p>We will illustrate the caching extension using a simple but relatively
+large Principal Component Analysis problem:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># set up a relatively large PCA run</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mdp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">Timer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># create a PCANode and train it using the random data in &#39;x&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca_node</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCANode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca_node</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca_node</span><span class="o">.</span><span class="n">stop_training</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The time for projecting the data <code class="docutils literal"><span class="pre">x</span></code> on the principal components
+drops dramatically after the caching extension is activated:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># we will use this timer to measure the speed of &#39;pca_node.execute&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">timer</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="s2">&quot;pca_node.execute(x)&quot;</span><span class="p">,</span> <span class="s2">&quot;from __main__ import pca_node, x&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mdp</span><span class="o">.</span><span class="n">caching</span><span class="o">.</span><span class="n">set_cachedir</span><span class="p">(</span><span class="s2">&quot;/tmp/my_cache&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mdp</span><span class="o">.</span><span class="n">activate_extension</span><span class="p">(</span><span class="s2">&quot;cache_execute&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># all calls to the &#39;execute&#39; method will now be cached in &#39;my_cache&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the first time execute is called, the method is run</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># and the result is cached</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">timer</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;sec&#39;</span> 
+<span class="go">1.188946008682251 sec</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the second time, the result is retrieved from the cache</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">timer</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;sec&#39;</span> 
+<span class="go">0.112375974655 sec</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mdp</span><span class="o">.</span><span class="n">deactivate_extension</span><span class="p">(</span><span class="s2">&quot;cache_execute&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># when the cache extension is deactivated, the &#39;execute&#39; method is</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># called as usual</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">timer</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;sec&#39;</span> 
+<span class="go">0.801102161407 sec</span>
+</pre></div>
+</div>
+<p>Alternative ways to activate the caching extension, which also expose
+more functionalities, can be found in the <code class="docutils literal"><span class="pre">mdp.caching</span></code> module.
+The functions <code class="docutils literal"><span class="pre">activate_caching</span></code> and <code class="docutils literal"><span class="pre">deactivate_caching</span></code> allow
+activating the cache only on certain Node classes, or specific
+instances. For example, the following line starts the cache extension,
+caching only instances of the classes <code class="docutils literal"><span class="pre">SFANode</span></code> and <code class="docutils literal"><span class="pre">FDANode</span></code>,
+and the instance <code class="docutils literal"><span class="pre">pca_node</span></code>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mdp</span><span class="o">.</span><span class="n">caching</span><span class="o">.</span><span class="n">activate_caching</span><span class="p">(</span><span class="n">cachedir</span><span class="o">=</span><span class="s1">&#39;/tmp/my_cache&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">cache_classes</span><span class="o">=</span><span class="p">[</span><span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">SFANode</span><span class="p">,</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">FDANode</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">cache_instances</span><span class="o">=</span><span class="p">[</span><span class="n">pca_node</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># all calls to the &#39;execute&#39; method of instances of &#39;SFANode&#39; and</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># &#39;FDANode&#39;, and of &#39;pca_node&#39; will now be cached in &#39;my_cache&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mdp</span><span class="o">.</span><span class="n">caching</span><span class="o">.</span><span class="n">deactivate_caching</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Make sure to call the <code class="docutils literal"><span class="pre">deactivate_caching</span></code> method before the end of
+the session, or the cache directory may remain in a broken state.</p>
+<p>Finally, the module <code class="docutils literal"><span class="pre">mdp.caching</span></code> also defines a context manager
+that closes the cache properly at the end of the block:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">mdp</span><span class="o">.</span><span class="n">caching</span><span class="o">.</span><span class="n">cache</span><span class="p">(</span><span class="n">cachedir</span><span class="o">=</span><span class="s1">&#39;/tmp/my_cache&#39;</span><span class="p">,</span> <span class="n">cache_instances</span><span class="o">=</span><span class="p">[</span><span class="n">pca_node</span><span class="p">]):</span>
+<span class="gp">... </span>    <span class="c1"># in the block, the cache is active</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="n">timer</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;sec&#39;</span> 
+<span class="gp">...</span>
+<span class="go">0.101263999939 sec</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># at the end of the block, the cache is deactivated</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">timer</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;sec&#39;</span> 
+<span class="go">0.801436901093 sec</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="classifiers.html" title="Classifier nodes"
+             >next</a></li>
+        <li class="right" >
+          <a href="parallel.html" title="Parallelization"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

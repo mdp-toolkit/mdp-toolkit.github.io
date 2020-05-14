@@ -1,0 +1,207 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Interfacing with other libraries &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BiMDP" href="bimdp.html" />
+    <link rel="prev" title="Classifier nodes" href="classifiers.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="bimdp.html" title="BiMDP"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="classifiers.html" title="Classifier nodes"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="interfacing-with-other-libraries">
+<span id="wrappers"></span><h1>Interfacing with other libraries<a class="headerlink" href="#interfacing-with-other-libraries" title="Permalink to this headline">¶</a></h1>
+<p>MDP is, of course, not the only Python library to offer an
+implementation of signal processing and machine learning methods.
+Several other projects, often specialized in different algorithms, or
+based on different approaches, are being developed in parallel. In
+order to avoid an excessive duplication of efforts, the long-term
+philosophy of MDP is that of automatically wrapping the algorithms
+defined in external libraries, if these are installed. In this way, MDP
+users have access to a larger number of algorithms, and at the same
+time,we offer the MDP infrastructure (flows, caching, etc.) to
+users of the wrapped libraries.</p>
+<p>At present, MDP automatically creates wrapper nodes for the following
+libraries if they are installed:</p>
+<ul>
+<li><p class="first"><strong>Shogun</strong> (<a class="reference external" href="http://www.shogun-toolbox.org/">http://www.shogun-toolbox.org/</a>):
+The Shogun machine learning toolbox provides a large set of
+different support vector machine implementations and classifiers.
+Each of them can be combined with another large set of kernels.</p>
+<p>The MDP wrapper simplifies setting the parameters for the kernels
+and classifiers, and provides reasonable default values.
+In order to avoid conflicts, users are encouraged to keep an eye on
+the original C++ API and provide as many parameters as specified.</p>
+</li>
+<li><p class="first"><strong>libsvm</strong> (<a class="reference external" href="http://www.csie.ntu.edu.tw/~cjlin/libsvm/">http://www.csie.ntu.edu.tw/~cjlin/libsvm/</a>):
+libsvm is a library for support vector machines. Even though there
+is also a libsvm wrapper in the Shogun toolbox, the direct libsvm interface
+is simpler to use and it provides estimates of the
+probability of different labels.</p>
+<p>Note that starting with MDP 3.0 we only support the Python API
+for the recent libsvm versions 2.91 and 3.0.</p>
+</li>
+<li><p class="first"><strong>scikits.learn</strong> (<a class="reference external" href="http://scikit-learn.sourceforge.net/index.html">http://scikit-learn.sourceforge.net/index.html</a>):
+scikits.learn is a collection of efficient machine learning
+algorithms.  We offer automatic wrappers to all algorithms defined
+by in the library scikits.learn, and there are a lot of them!
+The wrapped algorithms can be recognised as their name end
+with <code class="docutils literal"><span class="pre">ScikitsLearnNode</span></code>.</p>
+<p>All <code class="docutils literal"><span class="pre">ScikitsLearnNode</span></code> contain an instance of the wrapped
+scikits.learn instance in the attribute <code class="docutils literal"><span class="pre">scikits_alg</span></code>, and allow
+setting all the parameters using the original keywords. You can see
+the scikits.learn wrapper in action in this <a class="reference internal" href="../examples/scikits_learn/digit_classification.html#digit-classification"><span class="std std-ref">example
+application</span></a> that uses scikits.learn to
+perform handwritten digits recognition.</p>
+<p>As of MDP 3.0, the wrappers must be considered experimental, because
+there are still a few inconsistencies in the scikits.learn interface
+that we need to address.</p>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="bimdp.html" title="BiMDP"
+             >next</a></li>
+        <li class="right" >
+          <a href="classifiers.html" title="Classifier nodes"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

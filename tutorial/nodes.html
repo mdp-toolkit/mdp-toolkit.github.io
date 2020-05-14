@@ -1,0 +1,792 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Nodes &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Flows" href="flows.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="flows.html" title="Flows"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nodes">
+<span id="id1"></span><h1>Nodes<a class="headerlink" href="#nodes" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/tutorial/nodes.html">code snippets directory</a></p>
+</div>
+<p>A <em>node</em> is the basic building block of an MDP application.  It
+represents a data processing element, for example a learning
+algorithm, a data filter, or a visualization step (see the <a class="reference internal" href="../node_list.html#node-list"><span class="std std-ref">Node List</span></a>
+section for an exhaustive list and references).</p>
+<p>Each node can have one or more <em>training phases</em>, during which the
+internal structures are learned from training data (e.g. the weights
+of a neural network are adapted or the covariance matrix is estimated)
+and an <em>execution phase</em>, where new data can be processed forwards (by
+processing the data through the node) or backwards (by applying the
+inverse of the transformation computed by the node if defined).</p>
+<p>Nodes have been designed to be applied to arbitrarily long sets of data;
+provided the underlying algorithms support it, the internal structures can
+be updated incrementally by sending multiple batches of data (this is
+equivalent to online learning if the chunks consists of single
+observations, or to batch learning if the whole data is sent in a
+single chunk). This makes it possible to perform computations on large amounts
+of data that would not fit into memory and to generate data on-the-fly.</p>
+<p>A <a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.Node-class.html">Node</a> also defines some utility methods, for example
+<a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.Node-class.html#copy">copy</a>, which returns an exact copy of a node,  and
+<a class="reference external" href="https://mdp-toolkit.github.io/api/mdp.Node-class.html#save">save</a>, which writes to
+in a file. Additional methods may also be present, depending on the
+algorithm.</p>
+<div class="section" id="node-instantiation">
+<h2>Node Instantiation<a class="headerlink" href="#node-instantiation" title="Permalink to this headline">¶</a></h2>
+<p>A node can be obtained by creating an instance of the <code class="docutils literal"><span class="pre">Node</span></code> class.</p>
+<p>Each node is characterized by an input dimension (i.e., the
+dimensionality of the input vectors), an output dimension, and a
+<code class="docutils literal"><span class="pre">dtype</span></code>, which determines the numerical type of the internal
+structures and of the output signal. By default, these attributes are
+inherited from the input data if left unspecified. The constructor of
+each node class can require other task-specific arguments. The full
+documentation is always available in the doc-string of the node’s
+class.</p>
+<div class="section" id="some-examples-of-node-instantiation">
+<h3>Some examples of node instantiation<a class="headerlink" href="#some-examples-of-node-instantiation" title="Permalink to this headline">¶</a></h3>
+<p>Create a node that performs Principal Component Analysis (PCA)
+whose input dimension and <code class="docutils literal"><span class="pre">dtype</span></code>
+are inherited from the input data during training. Output dimensions
+default to input dimensions.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode1</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCANode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode1</span>
+<span class="go">PCANode(input_dim=None, output_dim=None, dtype=None)</span>
+</pre></div>
+</div>
+<p>Setting <code class="docutils literal"><span class="pre">output_dim</span> <span class="pre">=</span> <span class="pre">10</span></code> means that the node will keep only the
+first 10 principal components of the input.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode2</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCANode</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode2</span>
+<span class="go">PCANode(input_dim=None, output_dim=10, dtype=None)</span>
+</pre></div>
+</div>
+<p>The output dimensionality can also be specified in terms of the explained
+variance. If we want to keep the number of principal components which can
+account for 80% of the input variance, we set</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode3</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCANode</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode3</span><span class="o">.</span><span class="n">desired_variance</span>
+<span class="go">0.8</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal"><span class="pre">dtype</span></code> is set to <code class="docutils literal"><span class="pre">float32</span></code> (32-bit float), the input
+data is cast to single precision when received and the internal
+structures are also stored as <code class="docutils literal"><span class="pre">float32</span></code>. <code class="docutils literal"><span class="pre">dtype</span></code> influences the
+memory space necessary for a node and the precision with which the
+computations are performed.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode4</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCANode</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode4</span>
+<span class="go">PCANode(input_dim=None, output_dim=None, dtype=&#39;float32&#39;)</span>
+</pre></div>
+</div>
+<p>You can obtain a list of the numerical types supported by a node
+looking at its <code class="docutils literal"><span class="pre">supported_dtypes</span></code> property</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode4</span><span class="o">.</span><span class="n">supported_dtypes</span>             
+<span class="go">[dtype(&#39;float32&#39;), dtype(&#39;float64&#39;)...]</span>
+</pre></div>
+</div>
+<p>This attribute is a list of <code class="docutils literal"><span class="pre">numpy.dtype</span></code> objects.</p>
+<p>A <code class="docutils literal"><span class="pre">PolynomialExpansionNode</span></code> expands its input in the space
+of polynomials of a given degree by computing all monomials up
+to the specified degree. Its constructor needs as first argument
+the degree of the polynomials space (3 in this case):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">expnode</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PolynomialExpansionNode</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="node-training">
+<h2>Node Training<a class="headerlink" href="#node-training" title="Permalink to this headline">¶</a></h2>
+<p>Some nodes need to be trained to perform their task. For example, the
+Principal Component Analysis (PCA) algorithm requires the computation
+of the mean and covariance matrix of a set of training data from which
+the principal eigenvectors of the data distribution are estimated.</p>
+<p>This can be done during a training phases by calling the <code class="docutils literal"><span class="pre">train</span></code>
+method.  MDP supports both supervised and unsupervised training, and
+algorithms with multiple training phases.</p>
+<p>Some examples of node training:</p>
+<p>Create some random data to train the node</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>  <span class="c1"># 25 variables, 100 observations</span>
+</pre></div>
+</div>
+<p>Analyzes the batch of data <code class="docutils literal"><span class="pre">x</span></code> and update the estimation of
+mean and covariance matrix</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode1</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>At this point the input dimension and the <code class="docutils literal"><span class="pre">dtype</span></code> have been
+inherited from <code class="docutils literal"><span class="pre">x</span></code></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode1</span>
+<span class="go">PCANode(input_dim=25, output_dim=None, dtype=&#39;float64&#39;)</span>
+</pre></div>
+</div>
+<p>We can train our node with more than one chunk of data. This
+is especially useful when the input data is too long to
+be stored in memory or when it has to be created on-the-fly.
+(See also the <a class="reference internal" href="iterables.html#iterables"><span class="std std-ref">Iterables</span></a> section)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="n">pcanode1</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Some nodes don’t need to or cannot be trained</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">expnode</span><span class="o">.</span><span class="n">is_trainable</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Trying to train them anyway would raise
+an <code class="docutils literal"><span class="pre">IsNotTrainableException</span></code>.</p>
+<p>The training phase ends when the <code class="docutils literal"><span class="pre">stop_training</span></code>, <code class="docutils literal"><span class="pre">execute</span></code>,
+<code class="docutils literal"><span class="pre">inverse</span></code>, and possibly some other node-specific methods are called.
+For example we can finalize the PCA algorithm by computing and selecting
+the principal eigenvectors</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode1</span><span class="o">.</span><span class="n">stop_training</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If the <code class="docutils literal"><span class="pre">PCANode</span></code> was declared to have a number of output components
+dependent on the input variance to be explained, we can check after
+training the number of output components and the actually explained variance</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode3</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode3</span><span class="o">.</span><span class="n">stop_training</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode3</span><span class="o">.</span><span class="n">output_dim</span> 
+<span class="go">16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode3</span><span class="o">.</span><span class="n">explained_variance</span> 
+<span class="go">0.85261144755506446</span>
+</pre></div>
+</div>
+<p>It is now possible to access the trained internal data. In general,
+a list of the interesting internal attributes can be found in the
+class documentation.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">avg</span> <span class="o">=</span> <span class="n">pcanode1</span><span class="o">.</span><span class="n">avg</span>            <span class="c1"># mean of the input data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">pcanode1</span><span class="o">.</span><span class="n">get_projmatrix</span><span class="p">()</span> <span class="c1"># projection matrix</span>
+</pre></div>
+</div>
+<p>Some nodes, namely the one corresponding to supervised algorithms, e.g.
+Fisher Discriminant Analysis (FDA), may need some labels or other
+supervised signals to be passed
+during training. Detailed information about the signature of the
+<code class="docutils literal"><span class="pre">train</span></code> method can be read in its doc-string.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fdanode</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">FDANode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]:</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="n">fdanode</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A node could also require multiple training phases. For example, the
+training of <code class="docutils literal"><span class="pre">fdanode</span></code> is not complete yet, since it has two
+training phases: The first one computing the mean of the data
+conditioned on the labels, and the second one computing the overall
+and within-class covariance matrices and solving the FDA
+problem. The first phase must be stopped and the second one trained</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fdanode</span><span class="o">.</span><span class="n">stop_training</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]:</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="n">fdanode</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The easiest way to train multiple phase nodes is using flows,
+which automatically handle multiple phases (see the <a class="reference internal" href="flows.html#flows"><span class="std std-ref">Flows</span></a> section).</p>
+</div>
+<div class="section" id="node-execution">
+<h2>Node Execution<a class="headerlink" href="#node-execution" title="Permalink to this headline">¶</a></h2>
+<p>Once the training is finished, it is possible to execute the node:</p>
+<p>The input data is projected on the principal components learned
+in the training phase</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_pca</span> <span class="o">=</span> <span class="n">pcanode1</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Calling a node instance is equivalent to executing it</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">y_pca</span> <span class="o">=</span> <span class="n">pcanode1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The input data is expanded in the space of polynomials of
+degree 3</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_exp</span> <span class="o">=</span> <span class="n">expnode</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The input data is projected to the directions learned by FDA</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_fda</span> <span class="o">=</span> <span class="n">fdanode</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Some nodes may allow for optional arguments in the <code class="docutils literal"><span class="pre">execute</span></code> method.
+As always the complete information can be found in the doc-string.</p>
+</div>
+<div class="section" id="node-inversion">
+<h2>Node Inversion<a class="headerlink" href="#node-inversion" title="Permalink to this headline">¶</a></h2>
+<p>If the operation computed by the node is invertible, the node can also
+be executed <em>backwards</em>, thus computing the inverse transformation:</p>
+<p>In the case of PCA, for example, this corresponds to projecting a
+vector in the principal components space back to the original data
+space</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pcanode1</span><span class="o">.</span><span class="n">is_invertible</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">pcanode1</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">y_pca</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The expansion node in not invertible</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">expnode</span><span class="o">.</span><span class="n">is_invertible</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Trying to compute the inverse would raise an <code class="docutils literal"><span class="pre">IsNotInvertibleException</span></code>.</p>
+</div>
+<div class="section" id="writing-your-own-nodes-subclassing-node">
+<span id="write-your-own-nodes"></span><h2>Writing your own nodes: subclassing <code class="docutils literal"><span class="pre">Node</span></code><a class="headerlink" href="#writing-your-own-nodes-subclassing-node" title="Permalink to this headline">¶</a></h2>
+<p>MDP tries to make it easy to write new nodes that interface with the
+existing data processing elements.</p>
+<p>The <code class="docutils literal"><span class="pre">Node</span></code> class is designed to make the implementation of new
+algorithms easy and intuitive. This base class takes care of setting
+input and output dimension and casting the data to match the numerical
+type (e.g. <code class="docutils literal"><span class="pre">float</span></code> or <code class="docutils literal"><span class="pre">double</span></code>) of the internal variables, and offers
+utility methods that can be used by the developer.</p>
+<p>To expand the MDP library of implemented nodes with user-made nodes,
+it is sufficient to subclass <code class="docutils literal"><span class="pre">Node</span></code>, overriding some of
+the methods according to the algorithm one wants to implement,
+typically the <code class="docutils literal"><span class="pre">_train</span></code>, <code class="docutils literal"><span class="pre">_stop_training</span></code>, and <code class="docutils literal"><span class="pre">_execute</span></code>
+methods.</p>
+<p>In its namespace MDP offers references to the main modules <code class="docutils literal"><span class="pre">numpy</span></code>
+or <code class="docutils literal"><span class="pre">scipy</span></code>, and the subpackages <code class="docutils literal"><span class="pre">linalg</span></code>, <code class="docutils literal"><span class="pre">random</span></code>, and <code class="docutils literal"><span class="pre">fft</span></code>
+as <code class="docutils literal"><span class="pre">mdp.numx</span></code>, <code class="docutils literal"><span class="pre">mdp.numx_linalg</span></code>, <code class="docutils literal"><span class="pre">mdp.numx_rand</span></code>, and
+<code class="docutils literal"><span class="pre">mdp.numx_fft</span></code>. This is done to possibly support additional
+numerical extensions in the future. For this reason it is recommended
+to refer to the <code class="docutils literal"><span class="pre">numpy</span></code> or <code class="docutils literal"><span class="pre">scipy</span></code> numerical extensions through
+the MDP aliases <code class="docutils literal"><span class="pre">mdp.numx</span></code>, <code class="docutils literal"><span class="pre">mdp.numx_linalg</span></code>, <code class="docutils literal"><span class="pre">mdp.numx_fft</span></code>,
+and <code class="docutils literal"><span class="pre">mdp.numx_rand</span></code> when writing <code class="docutils literal"><span class="pre">Node</span></code> subclasses. This shall
+ensure that your nodes can be used without modifications should MDP
+support alternative numerical extensions in the future.</p>
+<p>We’ll illustrate all this with some toy examples.</p>
+<p>We start by defining a node that multiplies its input by 2.</p>
+<p>Define the class as a subclass of <code class="docutils literal"><span class="pre">Node</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">TimesTwoNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>This node cannot be trained. To specify this, one has to overwrite
+the <code class="docutils literal"><span class="pre">is_trainable</span></code> method to return False:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">is_trainable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Execute only needs to multiply <code class="docutils literal"><span class="pre">x</span></code> by 2:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal"><span class="pre">execute</span></code> method, which should never be overwritten
+and which is inherited from the <code class="docutils literal"><span class="pre">Node</span></code> parent class, will perform
+some tests, for example to make sure that <code class="docutils literal"><span class="pre">x</span></code> has the right rank,
+dimensionality and casts it to have the right <code class="docutils literal"><span class="pre">dtype</span></code>.  After that
+the user-supplied <code class="docutils literal"><span class="pre">_execute</span></code> method is called.  Each subclass has
+to handle the <code class="docutils literal"><span class="pre">dtype</span></code> defined by the user or inherited by the
+input data, and make sure that internal structures are stored
+consistently. To help with this the <code class="docutils literal"><span class="pre">Node</span></code> base class has a method
+called <code class="docutils literal"><span class="pre">_refcast(array)</span></code> that casts the input <code class="docutils literal"><span class="pre">array</span></code> only when its
+<code class="docutils literal"><span class="pre">dtype</span></code> is different from the <code class="docutils literal"><span class="pre">Node</span></code> instance’s <code class="docutils literal"><span class="pre">dtype</span></code>.</p>
+<p>The inverse of the multiplication by 2 is of course the division by 2</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>Test the new node</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">TimesTwoNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>     <span class="k">def</span> <span class="nf">is_trainable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>         <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">... </span>     <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>         <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+<span class="gp">... </span>     <span class="k">def</span> <span class="nf">_inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="gp">... </span>         <span class="k">return</span> <span class="n">y</span><span class="o">/</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">TimesTwoNode</span><span class="p">(</span><span class="n">dtype</span> <span class="o">=</span> <span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">node</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;* 2 =  &#39;</span><span class="p">,</span> <span class="n">y</span>
+<span class="go">[[ 1.  2.  3.]] * 2 =   [[ 2.  4.  6.]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;/ 2 =&#39;</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">[[ 2.  4.  6.]] / 2 = [[ 1.  2.  3.]]</span>
+</pre></div>
+</div>
+<p>We then define a node that raises the input to the power specified
+in the initialiser:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">PowerNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>We redefine the init method to take the power as first argument.
+In general one should always give the possibility to set the <code class="docutils literal"><span class="pre">dtype</span></code>
+and the input dimensions. The default value is <code class="docutils literal"><span class="pre">None</span></code>, which means that
+the exact value is going to be inherited from the input data:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Initialize the parent class:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>         <span class="nb">super</span><span class="p">(</span><span class="n">PowerNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Store the power:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">power</span> <span class="o">=</span> <span class="n">power</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">PowerNode</span></code> is not trainable:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">is_trainable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>nor invertible:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">is_invertible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>It is possible to overwrite the function <code class="docutils literal"><span class="pre">_get_supported_dtypes</span></code>
+to return a list of <code class="docutils literal"><span class="pre">dtype</span></code> supported by the node:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_get_supported_dtypes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The supported types can be specified in any format allowed by the
+<code class="docutils literal"><span class="pre">numpy.dtype</span></code> constructor. The interface method <code class="docutils literal"><span class="pre">get_supported_dtypes</span></code>
+converts them and sets the property <code class="docutils literal"><span class="pre">supported_dtypes</span></code>, which is
+a list of <code class="docutils literal"><span class="pre">numpy.dtype</span></code> objects.</p>
+<p>The <code class="docutils literal"><span class="pre">_execute</span></code> method:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_refcast</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">power</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Test the new node</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">PowerNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="nb">super</span><span class="p">(</span><span class="n">PowerNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">power</span> <span class="o">=</span> <span class="n">power</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">is_trainable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">is_invertible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_get_supported_dtypes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_refcast</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">power</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">PowerNode</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">node</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;**&#39;</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">power</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">node</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">[[ 1.  2.  3.]] ** 3 = [[  1.   8.  27.]]</span>
+</pre></div>
+</div>
+<p>We now define a node that needs to be trained. The <code class="docutils literal"><span class="pre">MeanFreeNode</span></code>
+computes the mean of its training data and subtracts it from the input
+during execution:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MeanFreeNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="nb">super</span><span class="p">(</span><span class="n">MeanFreeNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">input_dim</span><span class="p">,</span>
+<span class="gp">... </span>                                           <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We store the mean of the input data in an attribute. We initialize it
+to <code class="docutils literal"><span class="pre">None</span></code> since we still don’t know how large is an input vector:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Same for the number of training points:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>The subclass only needs to overwrite the <code class="docutils literal"><span class="pre">_train</span></code> method, which
+will be called by the parent <code class="docutils literal"><span class="pre">train</span></code> after some testing and casting has
+been done:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>         <span class="c1"># Initialize the mean vector with the right</span>
+<span class="o">...</span>         <span class="c1"># size and dtype if necessary:</span>
+<span class="o">...</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="o">...</span>             <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span>
+<span class="o">...</span>                                       <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Update the mean with the sum of the new data:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">+=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Count the number of points processed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">+=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal"><span class="pre">train</span></code> method can have further arguments, which might be
+useful to implement algorithms that require supervised learning.
+For example, if you want to define a node that performs some form
+of classification you can define a <code class="docutils literal"><span class="pre">_train(self,</span> <span class="pre">data,</span> <span class="pre">labels)</span></code>
+method. The parent <code class="docutils literal"><span class="pre">train</span></code> checks <code class="docutils literal"><span class="pre">data</span></code> and takes care to pass
+the <code class="docutils literal"><span class="pre">labels</span></code> on (cf. for example <code class="docutils literal"><span class="pre">mdp.nodes.FDANode</span></code>).</p>
+<p>The <code class="docutils literal"><span class="pre">_stop_training</span></code> function is called by the parent <code class="docutils literal"><span class="pre">stop_training</span></code>
+method when the training phase is over. We divide the sum of the training
+data by the number of training vectors to obtain the mean:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_stop_training</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span>
+<span class="o">...</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="o">...</span>             <span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span>
+</pre></div>
+</div>
+<p>Note that we <code class="docutils literal"><span class="pre">input_dim</span></code> are set automatically by the <code class="docutils literal"><span class="pre">train</span></code> method,
+and we want to ensure that the node has <code class="docutils literal"><span class="pre">output_dim</span></code> set after training.
+For nodes that do not need training, the setting is performed automatically
+upon execution. The <code class="docutils literal"><span class="pre">_execute</span></code> and <code class="docutils literal"><span class="pre">_inverse</span></code> methods:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">_inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span>
+</pre></div>
+</div>
+<p>Test the new node</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MeanFreeNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="nb">super</span><span class="p">(</span><span class="n">MeanFreeNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">input_dim</span><span class="p">,</span>
+<span class="gp">... </span>                                           <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="c1"># Initialize the mean vector with the right</span>
+<span class="gp">... </span>        <span class="c1"># size and dtype if necessary:</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span>
+<span class="gp">... </span>                                      <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">+=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">+=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_stop_training</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">MeanFreeNode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">node</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Mean of y (should be zero):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">15</span><span class="p">))</span>
+<span class="go">Mean of y (should be zero):</span>
+<span class="go">[ 0.  0.  0.  0.]</span>
+</pre></div>
+</div>
+<p>It is also possible to define nodes with multiple training phases.
+In such a case, calling the <code class="docutils literal"><span class="pre">train</span></code> and <code class="docutils literal"><span class="pre">stop_training</span></code> functions
+multiple times is going to execute successive training phases
+(this kind of node is much easier to train using <a class="reference internal" href="flows.html#flows"><span class="std std-ref">Flows</span></a>).
+Here we’ll define a node that returns a meanfree, unit variance signal.
+We define two training phases: first we compute the mean of the
+signal and next we sum the squared, meanfree input to compute
+the standard deviation  (of course it is possible to solve this
+problem in one single step - remember this is just a toy example).</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">UnitVarianceNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="nb">super</span><span class="p">(</span><span class="n">UnitVarianceNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">input_dim</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># average</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># standard deviation</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>The training sequence is defined by the user-supplied method
+<code class="docutils literal"><span class="pre">_get_train_seq</span></code>, that returns a list of tuples, one for each
+training phase. The tuples contain references to the training
+and stop-training methods of each of them. The default output
+of this method is <code class="docutils literal"><span class="pre">[(_train,</span> <span class="pre">_stop_training)]</span></code>, which explains
+the standard behavior illustrated above. We overwrite the method to
+return the list of our training/stop_training methods:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_get_train_seq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">_train_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_mean</span><span class="p">),</span>
+<span class="o">...</span>                 <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_train_std</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_std</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Next we define the training methods. The first phase is identical
+to the one in the previous example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_train_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="o">...</span>             <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span>
+<span class="o">...</span>                                       <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">+=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">+=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">_stop_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span>
+</pre></div>
+</div>
+<p>The second one is only marginally different and does not require many
+explanations:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_train_std</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="o">...</span>             <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="o">...</span>             <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span>
+<span class="o">...</span>                                       <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">+=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span><span class="p">)</span><span class="o">**</span><span class="mf">2.</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">+=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">_stop_std</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">...</span>         <span class="c1"># compute the standard deviation</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">std</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tlen</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">_execute</span></code> and <code class="docutils literal"><span class="pre">_inverse</span></code> methods are not surprising, either:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">std</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">_inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="n">y</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span>
+</pre></div>
+</div>
+<p>Test the new node</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">UnitVarianceNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="nb">super</span><span class="p">(</span><span class="n">UnitVarianceNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">input_dim</span><span class="p">,</span>
+<span class="gp">... </span>                                                <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># average</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># standard deviation</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_get_train_seq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">_train_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_mean</span><span class="p">),</span>
+<span class="gp">... </span>                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_train_std</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_std</span><span class="p">)]</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_train_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span>
+<span class="gp">... </span>                                      <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">+=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">+=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_stop_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">avg</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_train_std</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">... </span>            <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span>
+<span class="gp">... </span>                                      <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">+=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span><span class="p">)</span><span class="o">**</span><span class="mf">2.</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">tlen</span> <span class="o">+=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_stop_std</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="c1"># compute the standard deviation</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">std</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tlen</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">std</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">y</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">UnitVarianceNode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># loop over phases</span>
+<span class="gp">... </span><span class="k">for</span> <span class="n">phase</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">node</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">node</span><span class="o">.</span><span class="n">stop_training</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># execute</span>
+<span class="gp">... </span><span class="n">y</span> <span class="o">=</span> <span class="n">node</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Standard deviation of y (should be one): &#39;</span><span class="p">,</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">Standard deviation of y (should be one):  [ 1.  1.  1.  1.]</span>
+</pre></div>
+</div>
+<p>In our last example we’ll define a node that returns two copies of its input.
+The output is going to have twice as many dimensions.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">TwiceNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">is_trainable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">is_invertible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal"><span class="pre">Node</span></code> inherits the input dimension, output dimension, and <code class="docutils literal"><span class="pre">dtype</span></code>
+from the input data, it calls the methods <code class="docutils literal"><span class="pre">set_input_dim</span></code>,
+<code class="docutils literal"><span class="pre">set_output_dim</span></code>, and <code class="docutils literal"><span class="pre">set_dtype</span></code>. Those are the setters for
+<code class="docutils literal"><span class="pre">input_dim</span></code>, <code class="docutils literal"><span class="pre">output_dim</span></code> and <code class="docutils literal"><span class="pre">dtype</span></code>, which are Python
+<a class="reference external" href="http://www.python.org/download/releases/2.2/descrintro/#property">properties</a>.
+If a subclass needs to change the default behavior, the internal methods
+<code class="docutils literal"><span class="pre">_set_input_dim</span></code>, <code class="docutils literal"><span class="pre">_set_output_dim</span></code> and <code class="docutils literal"><span class="pre">_set_dtype</span></code> can
+be overwritten. The property setter will call the internal method after
+some basic testing and internal settings. The private methods
+<code class="docutils literal"><span class="pre">_set_input_dim</span></code>, <code class="docutils literal"><span class="pre">_set_output_dim</span></code> and <code class="docutils literal"><span class="pre">_set_dtype</span></code> are responsible
+for setting the private attributes <code class="docutils literal"><span class="pre">_input_dim</span></code>, <code class="docutils literal"><span class="pre">_output_dim</span></code>,
+and <code class="docutils literal"><span class="pre">_dtype</span></code> that contain the actual value.</p>
+<p>Here we overwrite
+<code class="docutils literal"><span class="pre">_set_input_dim</span></code> to automatically set the output dimension to be twice the
+input one, and <code class="docutils literal"><span class="pre">_set_output_dim</span></code> to raise an exception, since
+the output dimension should not be set explicitly.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_set_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_input_dim</span> <span class="o">=</span> <span class="n">n</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_output_dim</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="nf">_set_output_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">raise</span> <span class="n">mdp</span><span class="o">.</span><span class="n">NodeException</span><span class="p">,</span> <span class="s2">&quot;Output dim can not be set explicitly!&quot;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">_execute</span></code> method:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>     <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>         <span class="k">return</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Test the new node</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">TwiceNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">is_trainable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">is_invertible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_set_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">_input_dim</span> <span class="o">=</span> <span class="n">n</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">_output_dim</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_set_output_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">raise</span> <span class="n">mdp</span><span class="o">.</span><span class="n">NodeException</span><span class="p">,</span> <span class="s2">&quot;Output dim can not be set explicitly!&quot;</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">TwiceNode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">array([[ 0.,  0.],</span>
+<span class="go">       [ 0.,  0.],</span>
+<span class="go">       [ 0.,  0.],</span>
+<span class="go">       [ 0.,  0.],</span>
+<span class="go">       [ 0.,  0.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">array([[ 0.,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0.,  0.]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="flows.html" title="Flows"
+             >next</a></li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

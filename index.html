@@ -1,0 +1,158 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Homepage &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="examples/logo/logo_animation.html">
+		    <img src="_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="#">Home</a></div>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<div class="admonition-news admonition">
+<p class="first admonition-title">News</p>
+<p>01.05.2020</p>
+<blockquote class="last">
+<div><p>MDP 3.6 released!
+Some of the most compelling new features of MDP 3.6 are</p>
+<ul class="simple">
+<li>A new online mode to enable use of MDP in reinforcement learning using
+OnlineNode, OnlineFlow and other new nodes.
+This notably includes incremental Slow Feature Analysis in IncSFANode.</li>
+<li>SFA-based supervised learning, specifically graph-based SFA nodes
+GSFANode as well as iGSFANode, and hierarchical GSFA (HGSFA).</li>
+<li>New solvers in SFA-node that are robust against rank deficiencies in the
+covariance matrix. This cures the common issue
+SymeigException (‘Covariance matrices may be singular’).</li>
+<li>A new family of expansion nodes, including Legendre, Hermite and
+Chebyshev polynomials allows for numerically stable data expansion
+to high   degrees.</li>
+<li>VartimeSFANode supports SFA on data with non-constant time increments.
+This node is a pilot effort to support non-constant time increments in
+various mdp nodes.</li>
+</ul>
+<p>MDP 3.6 supports the newest versions of Python, NumPy, SciPy and
+scikit-learn. More specifically, it supports Python 3.5-3.8 and 2.7. It is
+the last release that officially supports Python 2.7.</p>
+</div></blockquote>
+</div>
+<p><strong>Modular toolkit for Data Processing (MDP)</strong> is a Python data processing framework.</p>
+<p>From the user’s perspective, MDP is a collection of supervised and unsupervised
+learning algorithms and other data processing units that can be combined into
+data processing sequences and more complex feed-forward network architectures.</p>
+<p>From the scientific developer’s perspective, MDP is a modular framework, which
+can easily be expanded. The implementation of new algorithms is easy and
+intuitive. The new implemented units are then automatically integrated with
+the rest of the library.</p>
+<p>The base of available algorithms is steadily increasing and includes
+signal processing methods (Principal Component Analysis,
+Independent Component Analysis, Slow Feature Analysis),
+manifold learning methods ([Hessian] Locally Linear Embedding),
+several classifiers, probabilistic methods (Factor Analysis, RBM),
+data pre-processing methods, and many others.</p>
+<p id="using-mdp-is-as-easy">Using MDP is as easy as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mdp</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># perform PCA on some data x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># perform ICA on some data x using single precision</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">fastica</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p>To learn more about MDP, read through the <a class="reference internal" href="documentation.html#documentation"><span class="std std-ref">Documentation</span></a>.</p>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

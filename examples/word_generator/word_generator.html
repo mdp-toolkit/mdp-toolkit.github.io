@@ -1,0 +1,296 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Word generator &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Slideshow" href="../slideshow/slideshow.html" />
+    <link rel="prev" title="Bayes Guesser" href="../bayes_guesser/bayes_guesser.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logmap/logmap.html">Logistic Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lle/lle.html">Locally Linear Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gng/gng.html">Growing Neural Gas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution/image_convolution.html">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bayes_guesser/bayes_guesser.html">Bayes Guesser</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binetdbn/dbn.html">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_custom_inspection.html">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="word-generator">
+<h1>Word generator<a class="headerlink" href="#word-generator" title="Permalink to this headline">¶</a></h1>
+<p>Download <a class="reference download internal" href="../../_downloads/word_generator.py" download=""><code class="xref download docutils literal"><span class="pre">word_generator.py</span></code></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Demo to show how mdp can help with creating a simple word generator based on</span>
+<span class="sd">Markovian assumptions.</span>
+
+<span class="sd">This demo assumes locate is installed and some OpenOffice dictionaries are available.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">codecs</span>
+
+<span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
+
+<span class="kn">import</span> <span class="nn">mdp</span>
+<span class="kn">from</span> <span class="nn">mdp.nodes</span> <span class="kn">import</span> <span class="n">SimpleMarkovClassifier</span>
+<span class="kn">from</span> <span class="nn">mdp.utils</span> <span class="kn">import</span> <span class="n">weighted_choice</span>
+
+<span class="k">def</span> <span class="nf">show_available_dicts</span><span class="p">():</span>
+    <span class="n">available_dicts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;/usr/share/dict/words&#39;</span><span class="p">,</span> <span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">available_dicts</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">possible_dicts</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">&quot;locate&quot;</span><span class="p">,</span> <span class="s2">&quot;.dic&quot;</span><span class="p">],</span>
+                                          <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span><span class="o">.</span><span class="n">stdout</span>
+    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Sorry, you need to have ‘locate’ on your system.&quot;</span><span class="p">)</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;.*\/\w{2,3}_\w{2,3}\.dic$&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">possible_dicts</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="n">available_dicts</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">size</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                <span class="k">pass</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dict_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">available_dicts</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot; </span><span class="si">%2i</span><span class="s2">) </span><span class="si">%s</span><span class="s2"> [</span><span class="si">%i</span><span class="s2"> kB]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dict_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dict_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">))</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s2">&quot;Which dictionary do you want to use? &quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">available_dicts</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+
+
+<span class="k">class</span> <span class="nc">DictionaryDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This demo generates words from a selected dictionary by calculating</span>
+<span class="sd">    the transition probabilities from two consecutive letters to the next.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">,</span> <span class="n">correlation</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_correlation</span> <span class="o">=</span> <span class="n">correlation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dictionary</span> <span class="o">=</span> <span class="n">dictionary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__doc__</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mc</span> <span class="o">=</span> <span class="n">SimpleMarkovClassifier</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;unicode&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainSimpleMarkovClassifier</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">print_transition_probabilities</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">trainSimpleMarkovClassifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">))</span>
+        <span class="n">dictfile</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dictionary</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;latin-1&quot;</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">file_len</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+                <span class="k">pass</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;Start learning from ‘</span><span class="si">%s</span><span class="s2">’.&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dictionary</span>
+        <span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">progressinfo</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">dictfile</span><span class="p">),</span>
+                                                <span class="n">file_len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dictionary</span><span class="p">)):</span>
+            <span class="c1"># transform input to our needs</span>
+            <span class="c1">#if num == 100: break</span>
+
+            <span class="c1"># remove punctuation</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">shifted_words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">word</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_correlation</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">shifted_words</span><span class="p">)</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">word</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mc</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="n">labels</span><span class="p">)</span>
+
+        <span class="n">dictfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">print_transition_probabilities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="s2">&quot;Transition probabilities:&quot;</span>
+        <span class="n">features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mc</span><span class="o">.</span><span class="n">features</span>
+        <span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">features</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">count</span><span class="p">:</span>
+                <span class="n">prob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mc</span><span class="o">.</span><span class="n">prob</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">feature</span><span class="p">]))</span>
+                <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prob</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="k">if</span> <span class="n">v</span><span class="p">:</span>
+                            <span class="nb">print</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">),</span> \
+                                  <span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">),</span> \
+                                  <span class="s2">&quot;(&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%7.3f</span><span class="s2"> </span><span class="si">%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">v</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)),</span> <span class="s2">&quot;)&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_words</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_words</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_words</span><span class="p">):</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot; &quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_correlation</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">__</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span> <span class="c1"># have a maximum length</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">features</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_correlation</span><span class="p">:]])</span>
+                <span class="n">new_f</span> <span class="o">=</span> <span class="n">weighted_choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mc</span><span class="o">.</span><span class="n">prob</span><span class="p">(</span><span class="n">f</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">True</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">new_f</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_f</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">(</span><span class="s2">&quot;usage: %prog [options] dictionary&quot;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--correlation&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The amount of correlation between the letters.&quot;</span><span class="p">,</span>
+                      <span class="n">default</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-n&quot;</span><span class="p">,</span> <span class="s2">&quot;--number&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;num_words&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The number of examples.&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="s2">&quot;--quiet&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_false&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="sa">u</span><span class="s2">&quot;Don’t give any statistical information.&quot;</span><span class="p">,</span>
+                      <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">epilog</span> <span class="o">=</span> <span class="s2">&quot;If no dictionary is given, a list of possible dictionaries is produced.&quot;</span>
+
+    <span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Only one dictionary file is supported.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">:</span>
+        <span class="n">dictionary</span> <span class="o">=</span> <span class="n">show_available_dicts</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dictionary</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">dictionary</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">exit</span>
+
+    <span class="n">demo</span> <span class="o">=</span> <span class="n">DictionaryDemo</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">correlation</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+    <span class="n">demo</span><span class="o">.</span><span class="n">get_words</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">num_words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

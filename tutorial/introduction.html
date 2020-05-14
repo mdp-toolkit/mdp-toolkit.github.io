@@ -1,0 +1,236 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Introduction &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nodes" href="nodes.html" />
+    <link rel="prev" title="Quick Start" href="quick_start.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="nodes.html" title="Nodes"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="quick_start.html" title="Quick Start"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction">
+<span id="id1"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The use of the Python programming language in computational
+neuroscience has been growing steadily over the past few years. The
+maturation of two important open source projects, the scientific
+libraries <a class="reference external" href="http://numpy.scipy.org">NumPy</a> and
+<a class="reference external" href="http://www.scipy.org">SciPy</a>, gives access to a large
+collection of scientific functions which rival in size and speed those from
+well known commercial alternatives such as <cite>Matlab</cite>® from The MathWorks™.</p>
+<p>Furthermore, the flexible and dynamic nature of Python offers
+scientific programmers the opportunity to quickly develop efficient and
+structured software while maximizing prototyping and reusability
+capabilities.</p>
+<p><strong>The Modular toolkit for Data Processing (MDP)</strong> package is a library
+of widely used data processing algorithms, and the possibility to
+combine them together to form pipelines for building more complex
+data processing software.</p>
+<p>MDP has been designed to be used as-is and as a framework for
+scientific data processing development.</p>
+<p>From the user’s perspective, MDP consists of a collection of <em>units</em>,
+which process data. For example, these include algorithms for
+supervised and unsupervised learning, principal and independent
+components analysis and classification.</p>
+<p>These units can be chained into data processing flows, to create
+pipelines as well as more complex feed-forward network
+architectures. Given a set of input data, MDP takes care of training
+and executing all nodes in the network in the correct order and
+passing intermediate data between the nodes. This allows the user to
+specify complex algorithms as a series of simpler data processing
+steps.</p>
+<p>The number of available algorithms is steadily increasing and includes
+signal processing methods (Principal Component Analysis, Independent
+Component Analysis, Slow Feature Analysis), manifold learning methods
+([Hessian] Locally Linear Embedding), several classifiers,
+probabilistic methods (Factor Analysis, RBM), data pre-processing
+methods, and many others.</p>
+<p>Particular care has been taken to make computations efficient in terms
+of speed and memory. To reduce the memory footprint, it is possible to
+perform learning using batches of data. For large data-sets, it is
+also possible to specify that MDP should use single precision floating
+point numbers rather than double precision ones. Finally, calculations
+can be parallelised using the <code class="docutils literal"><span class="pre">parallel</span></code> subpackage, which offers a
+parallel implementation of the basic nodes and flows.</p>
+<p>From the developer’s perspective, MDP is a framework that makes the
+implementation of new supervised and unsupervised learning algorithms
+easy and straightforward. The basic class, <code class="docutils literal"><span class="pre">Node</span></code>, takes care of tedious
+tasks like numerical type and dimensionality checking, leaving the
+developer free to concentrate on the implementation of the learning
+and execution phases. Because of the common interface, the node then
+automatically integrates with the rest of the library and can be used
+in a network together with other nodes.</p>
+<p>A node can have multiple training phases and even an undetermined
+number of phases. Multiple training phases mean that the training data
+is presented multiple times to the same node. This allows the
+implementation of algorithms that need to collect some statistics on
+the whole input before proceeding with the actual training, and others
+that need to iterate over a training phase until a convergence
+criterion is satisfied. It is possible to train each phase using
+chunks of input data if the chunks are given as an iterable. Moreover,
+crash recovery can be optionally enabled, which will save the state of
+the flow in case of a failure for later inspection.</p>
+<p>MDP is distributed under the open source BSD license. It has been
+written in the context of theoretical research in neuroscience, but it
+has been designed to be helpful in any context where trainable data
+processing algorithms are used. Its simplicity on the user’s side, the
+variety of readily available algorithms, and the reusability of the
+implemented nodes also make it a useful educational tool.</p>
+<p><a class="reference external" href="https://mdp-toolkit.github.io">https://mdp-toolkit.github.io</a></p>
+<p>With over 20,000 downloads since its first public release in 2004, MDP
+has become a widely used Python scientific software. It has minimal
+dependencies, requiring only the NumPy numerical extension, is
+completely platform-independent, and is available in several Linux
+distribution, and the <a class="reference external" href="http://www.pythonxy.com">Python(x,y)</a>
+scientific Python distribution.</p>
+<p>As the number of users and contributors is increasing, MDP appears
+to be a good candidate for becoming a community-driven common
+repository of user-supplied, freely available, Python implemented data
+processing algorithms.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="nodes.html" title="Nodes"
+             >next</a></li>
+        <li class="right" >
+          <a href="quick_start.html" title="Quick Start"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

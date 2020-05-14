@@ -1,0 +1,198 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Quick Start &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="introduction.html" />
+    <link rel="prev" title="Tutorial" href="tutorial.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="introduction.html" title="Introduction"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="quick-start">
+<span id="id1"></span><h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p id="using-mdp-is-as-easy">Using MDP is as easy as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mdp</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># perform PCA on some data x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># perform ICA on some data x using single precision</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">fastica</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p>MDP requires the numerical Python extensions
+<a class="reference external" href="http://numpy.scipy.org/">NumPy</a> or <a class="reference external" href="http://www.scipy.org/">SciPy</a>. At
+import time MDP will select <code class="docutils literal"><span class="pre">scipy</span></code> if available, otherwise
+<code class="docutils literal"><span class="pre">numpy</span></code> will be loaded. You can force the use of a numerical
+extension by setting the environment variable <code class="docutils literal"><span class="pre">MDPNUMX=numpy</span></code> or
+<code class="docutils literal"><span class="pre">MDPNUMX=scipy</span></code>.</p>
+<div class="admonition-an-important-remark admonition">
+<p class="first admonition-title">An important remark</p>
+<p>Input data is assumed to be a two-dimensional numpy array, such that
+observations of variables are stored in the rows of the array, individual
+variables are stored in the columns. This means that one row contains one
+particular observation/measurement of all variables, and one column contains
+all observations/measurements of one particular variable.</p>
+<p>For example, let’s call <code class="docutils literal"><span class="pre">x</span></code>, <code class="docutils literal"><span class="pre">y</span></code>, <code class="docutils literal"><span class="pre">z</span></code> the variables you are measuring and
+<code class="docutils literal"><span class="pre">x1</span></code>, <code class="docutils literal"><span class="pre">x2</span></code>, <code class="docutils literal"><span class="pre">x3</span></code>, <code class="docutils literal"><span class="pre">x4</span></code> different observations/measurements of variable <code class="docutils literal"><span class="pre">x</span></code>,
+for example taken at time <code class="docutils literal"><span class="pre">t1</span></code>, <code class="docutils literal"><span class="pre">t2</span></code>, <code class="docutils literal"><span class="pre">t3</span></code>, <code class="docutils literal"><span class="pre">t4</span></code>.</p>
+<p>The input 2-D numpy array should look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="n">x1</span> <span class="n">y1</span> <span class="n">z1</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">x2</span> <span class="n">y2</span> <span class="n">z2</span>
+    <span class="n">x3</span> <span class="n">y3</span> <span class="n">z3</span>
+    <span class="n">x4</span> <span class="n">y4</span> <span class="n">z4</span>
+</pre></div>
+</div>
+<p>In this case <code class="docutils literal"><span class="pre">X[:,0]</span></code> gives you all rows corresponding to column <code class="docutils literal"><span class="pre">0</span></code>, i.e. all observations
+of variable <code class="docutils literal"><span class="pre">x</span></code>: <code class="docutils literal"><span class="pre">x1</span></code>, <code class="docutils literal"><span class="pre">x2</span></code>, <code class="docutils literal"><span class="pre">x3</span></code>, <code class="docutils literal"><span class="pre">x4</span></code>.</p>
+<p class="last">On the other hand <code class="docutils literal"><span class="pre">X[0,:]</span></code> gives you al columns corresponding to row <code class="docutils literal"><span class="pre">0</span></code>,
+i.e. all variables as they were measured at time <code class="docutils literal"><span class="pre">1</span></code>: <code class="docutils literal"><span class="pre">x1</span></code>, <code class="docutils literal"><span class="pre">y1</span></code>, <code class="docutils literal"><span class="pre">z1</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="introduction.html" title="Introduction"
+             >next</a></li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

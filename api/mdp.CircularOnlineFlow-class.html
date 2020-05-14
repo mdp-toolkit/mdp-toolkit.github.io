@@ -1,0 +1,1576 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>mdp.CircularOnlineFlow</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="mdp-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://mdp-toolkit.github.io">Modular toolkit for Data Processing MDP</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="mdp-module.html">Package&nbsp;mdp</a> ::
+        Class&nbsp;CircularOnlineFlow
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="mdp.CircularOnlineFlow-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class CircularOnlineFlow</h1><p class="nomargin-top"></p>
+<center>
+
+</center>
+<hr />
+<p>A 'CircularOnlineFlow' is a cyclic sequence of online/non-trainable nodes that are trained and executed
+together to form a more complex algorithm. This type of flow is useful when one needs to train the nodes
+internally for several iterations using stored inputs before training with the next external input.</p>
+<p>input=x(i) -&gt; [node1, node2, node3] -&gt; output=y'     ----External input training----         (1 iteration)</p>
+<p>input=y'   -&gt; [node1, node2, node3] -&gt; output=y'     ---- Internal
+...                                                               input                      (n-1 iterations)
+input=y'   -&gt; [node1, node2, node3] -&gt; output=y(i)                      training----</p>
+<p>This type of processing is especially useful for implementing control algorithms, reinforcement learning, etc.</p>
+<p>The input and the output nodes of the flow can be changed at any time using the functions &quot;set_input_node&quot;
+and &quot;set_output_node&quot;.</p>
+<p>Examples:</p>
+<p>If input node and output node are set equal to node1 :</p>
+<blockquote>
+<dl class="rst-docutils">
+<dt>Input -&gt; [node1] -&gt; output</dt>
+<dd>/                 [node3] &lt;- [node2]</dd>
+</dl>
+</blockquote>
+<p>If input node = node1 and output node is equal to node2</p>
+<blockquote>
+<dl class="rst-docutils">
+<dt>Input -&gt; [node1] -&gt; [node2] -&gt; output</dt>
+<dd><blockquote class="rst-first">
+   /</blockquote>
+<p class="rst-last">[node3]</p>
+</dd>
+</dl>
+</blockquote>
+<p>CircularOnlineFlow also supports training nodes while ignoring external input data at all times. In this case,
+the flow iterates everytime using the previously stored output as the input. Input data can be arbitrary (with same
+input_dim and dtype) and is only used as a clock signal to trigger flow processing.
+See the docstring of the train method for more information about different training types.</p>
+<p>Crash recovery is optionally available: in case of failure the current
+state of the flow is saved for later inspection.</p>
+<p>CircularOnlineFlow objects are Python containers. Most of the builtin 'list'
+methods are available. CircularOnlineFlow can be saved or copied using the
+corresponding 'save' and 'copy' methods.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#__add__" class="summary-sig-name">__add__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">other</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#__delitem__" class="summary-sig-name">__delitem__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#__getitem__" class="summary-sig-name">__getitem__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#__iadd__" class="summary-sig-name">__iadd__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">other</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">flow</span>,
+        <span class="summary-sig-arg">crash_recovery</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">verbose</span>=<span class="summary-sig-default">False</span>)</span><br />
+      flow - a list of nodes.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#__setitem__" class="summary-sig-name">__setitem__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#_check_compatibility" class="summary-sig-name" onclick="show_private();">_check_compatibility</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">flow</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#_inverse_seq" class="summary-sig-name" onclick="show_private();">_inverse_seq</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#_train_nodes" class="summary-sig-name" onclick="show_private();">_train_nodes</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data_iterables</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#append" class="summary-sig-name">append</a>(<span class="summary-sig-arg">flow</span>,
+        <span class="summary-sig-arg">node</span>)</span><br />
+      append node to flow end</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#execute" class="summary-sig-name">execute</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">iterable</span>,
+        <span class="summary-sig-arg">nodenr</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Process the data through all nodes between input and the output node.
+This is functionally similar to the execute method of an OnlineFlow.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#extend" class="summary-sig-name">extend</a>(<span class="summary-sig-arg">flow</span>,
+        <span class="summary-sig-arg">iterable</span>)</span><br />
+      extend flow by appending
+elements from the iterable</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#get_stored_input" class="summary-sig-name">get_stored_input</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      return the current stored input</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#ignore_input" class="summary-sig-name">ignore_input</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">flag</span>)</span><br />
+      CircularOnlineFlow also supports training nodes while ignoring external input data at all times.
+This mode is enabled/disabled using this method. See train method docstring for information on
+different training modes.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#insert" class="summary-sig-name">insert</a>(<span class="summary-sig-arg">flow</span>,
+        <span class="summary-sig-arg">index</span>,
+        <span class="summary-sig-arg">node</span>)</span><br />
+      insert node before index</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#reset_output_node" class="summary-sig-name">reset_output_node</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Resets the output node to the last node of the provided node sequence</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#set_flow_iterations" class="summary-sig-name">set_flow_iterations</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">n</span>)</span><br />
+      This method sets the number of total flow iterations:
+If self._ignore_input is False, then the total flow iterations = 1 external + (n-1) internal iterations.
+If self._ignore input is True, then the total flow iterations = n internal iterations.
+See train method docstring for information on different training modes.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#set_input_node" class="summary-sig-name">set_input_node</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">node_idx</span>)</span><br />
+      Set the input node of the flow</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#set_output_node" class="summary-sig-name">set_output_node</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">node_idx</span>)</span><br />
+      Set the output node of the flow</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#set_stored_input" class="summary-sig-name">set_stored_input</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>)</span><br />
+      CircularOnlineFlow also supports training nodes while ignoring external input data at all times.
+In this case, the flow iterates every time using an initially stored input that can be set using this method.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.CircularOnlineFlow-class.html#train" class="summary-sig-name">train</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data_iterables</span>)</span><br />
+      Train all trainable-nodes in the flow.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><i>unreachable</i>.newobject</code></b>:
+      <code>__long__</code>,
+      <code>__native__</code>,
+      <code>__nonzero__</code>,
+      <code>__unicode__</code>,
+      <code>next</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+<tr bgcolor="#e8f0f8"  class="private">
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Inherited from <a href="mdp.OnlineFlow-class.html">OnlineFlow</a></th></tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.OnlineFlow-class.html#_check_value_type_is_online_or_nontrainable_node" class="summary-sig-name" onclick="show_private();">_check_value_type_is_online_or_nontrainable_node</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.OnlineFlow-class.html#_get_required_train_args_from_flow" class="summary-sig-name" onclick="show_private();">_get_required_train_args_from_flow</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">flow</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.OnlineFlow-class.html#_train_check_iterables" class="summary-sig-name" onclick="show_private();">_train_check_iterables</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data_iterables</span>)</span><br />
+      Return the data iterable after some checks and sanitizing.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.OnlineFlow-class.html#_train_node" class="summary-sig-name" onclick="show_private();">_train_node</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">data_iterable</span>,
+        <span class="summary-sig-arg">nodenr</span>)</span><br />
+      Train a single node in the flow.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr bgcolor="#e8f0f8" >
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Inherited from <a href="mdp.Flow-class.html">Flow</a></th></tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__call__" class="summary-sig-name">__call__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">iterable</span>,
+        <span class="summary-sig-arg">nodenr</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Calling an instance is equivalent to call its 'execute' method.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__contains__" class="summary-sig-name">__contains__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">item</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__iter__" class="summary-sig-name">__iter__</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__len__" class="summary-sig-name">__len__</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      repr(x)</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      str(x)</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_check_dimension_consistency" class="summary-sig-name" onclick="show_private();">_check_dimension_consistency</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">out</span>,
+        <span class="summary-sig-arg">inp</span>)</span><br />
+      Raise ValueError when both dimensions are set and different.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_check_nodes_consistency" class="summary-sig-name" onclick="show_private();">_check_nodes_consistency</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">flow</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check the dimension consistency of a list of nodes.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_check_value_type_isnode" class="summary-sig-name" onclick="show_private();">_check_value_type_isnode</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_close_last_node" class="summary-sig-name" onclick="show_private();">_close_last_node</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_execute_seq" class="summary-sig-name" onclick="show_private();">_execute_seq</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">nodenr</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_propagate_exception" class="summary-sig-name" onclick="show_private();">_propagate_exception</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">except_</span>,
+        <span class="summary-sig-arg">nodenr</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_stop_training_hook" class="summary-sig-name" onclick="show_private();">_stop_training_hook</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Hook method that is called before stop_training is called.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#copy" class="summary-sig-name">copy</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">protocol</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Return a deep copy of the flow.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#inverse" class="summary-sig-name">inverse</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">iterable</span>)</span><br />
+      Process the data through all nodes in the flow backwards
+(starting from the last node up to the first node) by calling the
+inverse function of each node. Of course, all nodes in the
+flow must be invertible.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">node</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#pop" class="summary-sig-name">pop</a>(<span class="summary-sig-arg">flow</span>,
+        <span class="summary-sig-arg">index</span>=<span class="summary-sig-default">...</span>)</span><br />
+      remove and return node at index
+(default last)</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#save" class="summary-sig-name">save</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filename</span>,
+        <span class="summary-sig-arg">protocol</span>=<span class="summary-sig-default">-1</span>)</span><br />
+      Save a pickled serialization of the flow to 'filename'.
+If 'filename' is None, return a string.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#set_crash_recovery" class="summary-sig-name">set_crash_recovery</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">state</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Set crash recovery capabilities.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr bgcolor="#e8f0f8"  class="private">
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Inherited from <a href="mdp.Flow-class.html">Flow</a></th></tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.Flow-class.html#_get_required_train_args" class="summary-sig-name" onclick="show_private();">_get_required_train_args</a>(<span class="summary-sig-arg">node</span>)</span><br />
+      Return arguments in addition to self and x for node.train.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__add__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__add__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">other</span>)</span>
+    <br /><em class="fname">(Addition operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#__add__">Flow.__add__</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__delitem__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__delitem__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">key</span>)</span>
+    <br /><em class="fname">(Index deletion operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#__delitem__">Flow.__delitem__</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__getitem__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__getitem__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">key</span>)</span>
+    <br /><em class="fname">(Indexing operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#__getitem__">Flow.__getitem__</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__iadd__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__iadd__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">other</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#__iadd__">Flow.__iadd__</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">flow</span>,
+        <span class="sig-arg">crash_recovery</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">verbose</span>=<span class="sig-default">False</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  flow - a list of nodes.
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__setitem__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__setitem__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">key</span>,
+        <span class="sig-arg">value</span>)</span>
+    <br /><em class="fname">(Index assignment operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#__setitem__">Flow.__setitem__</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_check_compatibility"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_check_compatibility</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">flow</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.OnlineFlow-class.html#_check_compatibility" onclick="show_private();">OnlineFlow._check_compatibility</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_inverse_seq"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_inverse_seq</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#_inverse_seq" onclick="show_private();">Flow._inverse_seq</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_train_nodes"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_train_nodes</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">data_iterables</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.OnlineFlow-class.html#_train_nodes" onclick="show_private();">OnlineFlow._train_nodes</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="append"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">append</span>(<span class="sig-arg">flow</span>,
+        <span class="sig-arg">node</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  append node to flow end
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#append">Flow.append</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="execute"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">execute</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">iterable</span>,
+        <span class="sig-arg">nodenr</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Process the data through all nodes between input and the output node.
+This is functionally similar to the execute method of an OnlineFlow.</p>
+<p>'iterable' is an iterable or iterator (note that a list is also an
+iterable), which returns data arrays that are used as input to the flow.
+Alternatively, one can specify one data array as input.</p>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#execute">Flow.execute</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="extend"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">extend</span>(<span class="sig-arg">flow</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  extend flow by appending
+elements from the iterable
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#extend">Flow.extend</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_stored_input"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_stored_input</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  return the current stored input
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="ignore_input"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ignore_input</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">flag</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  CircularOnlineFlow also supports training nodes while ignoring external input data at all times.
+This mode is enabled/disabled using this method. See train method docstring for information on
+different training modes.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="insert"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">insert</span>(<span class="sig-arg">flow</span>,
+        <span class="sig-arg">index</span>,
+        <span class="sig-arg">node</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  insert node before index
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#insert">Flow.insert</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="reset_output_node"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">reset_output_node</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Resets the output node to the last node of the provided node sequence
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_flow_iterations"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_flow_iterations</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">n</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  This method sets the number of total flow iterations:
+If self._ignore_input is False, then the total flow iterations = 1 external + (n-1) internal iterations.
+If self._ignore input is True, then the total flow iterations = n internal iterations.
+See train method docstring for information on different training modes.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_input_node"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_input_node</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">node_idx</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Set the input node of the flow
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_output_node"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_output_node</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">node_idx</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Set the output node of the flow
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_stored_input"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_stored_input</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  CircularOnlineFlow also supports training nodes while ignoring external input data at all times.
+In this case, the flow iterates every time using an initially stored input that can be set using this method.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="train"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">train</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">data_iterables</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Train all trainable-nodes in the flow.</p>
+<p>'data_iterables' is a single iterable (including generator-type iterators)
+that must return data arrays to train nodes (so the data arrays are the 'x'
+for the nodes). Note that the data arrays are processed by the nodes
+which are in front of the node that gets trained,
+so the data dimension must match the input dimension of the first node.</p>
+<p>'data_iterables' can also be a 2D or a 3D numpy array. A 2D array trains
+all the nodes incrementally, while a 3D array supports online training
+in batches (=shape[1]).</p>
+<p>Circular flow does not support passing training arguments.</p>
+<p>There are three ways that the training can proceed based on the values
+of self._ignore_input (default=False, can be set via 'ignore_input' method) and
+self._flow_iterations argument (default=1, can be set via 'set_flow_iterations' method).</p>
+<ol class="rst-arabic">
+<li><p class="rst-first">self._ignore_input = False, self._flow_iterations = 1 (default case)</p>
+<blockquote>
+<p>This is functionally similar to the standard OnlineFlow.
+Each data array returned by the data_iterables is used to
+train the nodes simultaneously.</p>
+</blockquote>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>self._ignore_input = False, self._flow_iterations &gt; 1</dt>
+<dd><p class="rst-first rst-last">For each data_array returned by the data_iterables, the flow
+trains 1 loop with the data_array and 'self._flow_iterations-1'
+loops with the updating stored inputs.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>self._ignore_input = True, self._flow_iterations &gt; 1</dt>
+<dd><p class="rst-first rst-last">The data_arrays returned by the data_iterables are ignored, however,
+for each data_array, the flow trains 'self._flow_iterations' loops
+with the updating stored inputs.</p>
+</dd>
+</dl>
+</li>
+</ol>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="mdp.Flow-class.html#train">Flow.train</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="mdp-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://mdp-toolkit.github.io">Modular toolkit for Data Processing MDP</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1-MDP on Mon Apr 27 21:56:15 2020
+    </td>
+    <td align="right" class="footer">
+      <a target="_blank" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

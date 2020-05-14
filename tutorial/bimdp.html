@@ -1,0 +1,610 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>BiMDP &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="../examples/examples.html" />
+    <link rel="prev" title="Interfacing with other libraries" href="wrappers.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterables.html">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../examples/examples.html" title="Examples"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="wrappers.html" title="Interfacing with other libraries"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bimdp">
+<span id="id1"></span><h1>BiMDP<a class="headerlink" href="#bimdp" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/tutorial/bimdp.html">code snippets directory</a></p>
+</div>
+<p>BiMDP defines a framework for more general flow sequences, involving
+top-down processes (e.g. for error backpropagation) and loops. So
+the <em>bi</em> in BiMDP primarily stands for <em>bidirectional</em>. It also adds
+a couple of other features, like a standardized way to transport
+additional data, and a HTML based flow inspection utility. Because BiMDP
+is a rather large addition and changes a few things compared to
+standard MDP it is not included in <code class="docutils literal"><span class="pre">mdp</span></code> but must be imported
+separately as <code class="docutils literal"><span class="pre">bimdp</span></code> (BiMDP is included in the standard MDP
+installation)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bimdp</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">BiMDP is a relatively new addition to MDP (it was added in MDP 2.6).
+Even though it already went through long testing and several refactoring
+rounds it is still not as mature and polished as the rest of MDP. The
+API of BiMDP should be stable now, we don’t expect any significant
+breakages in the future.</p>
+</div>
+<p>Here is a brief summary of the most important new features in BiMDP:</p>
+<ul>
+<li><p class="first">Nodes can specify other nodes as jump targets, where the execution or
+training will be continued. It is now possible to use loops or
+backpropagation, in contrast to the strictly linear execution of a
+normal MDP flow. This is enabled by the new <code class="docutils literal"><span class="pre">BiFlow</span></code> class. The new
+<code class="docutils literal"><span class="pre">BiNode</span></code> base class adds a <code class="docutils literal"><span class="pre">node_id</span></code> string attribute, which can be
+used to target a node.</p>
+<p>The complexities of arbitrary data flows are evenly split up
+between <code class="docutils literal"><span class="pre">BiNode</span></code> and <code class="docutils literal"><span class="pre">BiFlow</span></code>: Nodes specify their data and target
+using a standardized interface, which is then interpreted by the flow
+(somewhat like a very primitive domain specific language). The
+alternative approach would have been to use specialized flow classes or
+container nodes for each use case, which ultimately comes down to a
+design decision. Of course you can (and should) still take that route if
+for some reason BiMDP is not an adequate solution for your problem.</p>
+</li>
+<li><p class="first">In addition to the standard array data, nodes can transport more data
+in a message dictionary (these are really just standard Python dictionaries,
+so they are <code class="docutils literal"><span class="pre">dict</span></code> instances). The new <code class="docutils literal"><span class="pre">BiNode</span></code> base class provides
+functionality to make this as convenient as possible.</p>
+</li>
+<li><p class="first">An interactive HTML-based inspection for flow training and execution is
+available. This allows you to step through your flow for debugging or add
+custom visualizations to analyze what is going on.</p>
+</li>
+<li><p class="first">BiMDP supports and extends the <code class="docutils literal"><span class="pre">hinet</span></code> and the <code class="docutils literal"><span class="pre">parallel</span></code>
+packages from MDP. BiMDP in general is compatible with MDP, so you can use
+standard MDP nodes in a <code class="docutils literal"><span class="pre">BiFlow</span></code>. You can also use <code class="docutils literal"><span class="pre">BiNode</span></code> instances
+in a standard MDP flow, as long as you don’t use certain BiMDP features.</p>
+</li>
+</ul>
+<p>The structure of BiMDP closely follows that of MDP, so there are
+submodules <code class="docutils literal"><span class="pre">bimdp.nodes</span></code>, <code class="docutils literal"><span class="pre">bimdp.parallel</span></code>, and <code class="docutils literal"><span class="pre">bimdp.hinet</span></code>. The
+module <code class="docutils literal"><span class="pre">bimdp.nodes</span></code> contains <code class="docutils literal"><span class="pre">BiNode</span></code> versions of nearly all MDP nodes.
+For example <code class="docutils literal"><span class="pre">bimdp.nodes.PCABiNode</span></code> is derived from both <code class="docutils literal"><span class="pre">BiNode</span></code>
+and <code class="docutils literal"><span class="pre">mdp.nodes.PCANode</span></code>.</p>
+<p>There are several examples available in the <code class="docutils literal"><span class="pre">mdp-examples</span></code> repository,
+which demonstrate how BiMDP can be used. For example <code class="docutils literal"><span class="pre">backpropagation</span></code>
+demonstrates how to implement a simple multilayer perceptron, using
+backpropagation for learning. The example <code class="docutils literal"><span class="pre">binetdbn</span></code> is a
+proof-of-concept implementation of a deep belief network. In addition
+there are a couple of smaller examples in <code class="docutils literal"><span class="pre">bimdp_examples</span></code>.</p>
+<p>Finally note that this tutorial is intended to serve as an introduction,
+covering all the basic aspects of BiMDP. For more detailed specifications
+have a look at the docstrings.</p>
+<div class="section" id="targets-id-s-and-messages">
+<h2>Targets, id’s and Messages<a class="headerlink" href="#targets-id-s-and-messages" title="Permalink to this headline">¶</a></h2>
+<p>In a normal MDP node the return value of the <code class="docutils literal"><span class="pre">execute</span></code> method is
+restricted to a single 2d array. A BiMDP <code class="docutils literal"><span class="pre">BiNode</span></code> on the other hand can
+optionally return a tuple containing an additional message dictionary
+and a target value. So in general the return value is a tuple <code class="docutils literal"><span class="pre">(x,</span> <span class="pre">msg,</span>
+<span class="pre">target)</span></code>, where <code class="docutils literal"><span class="pre">x</span></code> is a the usual 2d array. Alternatively a
+<code class="docutils literal"><span class="pre">BiNode</span></code> is also allowed to return only the array <code class="docutils literal"><span class="pre">x</span></code> or a 2-tuple
+<code class="docutils literal"><span class="pre">(x,</span> <span class="pre">msg)</span></code> (specifying no target value). Unless stated otherwise the
+last entry in the tuple should not be <code class="docutils literal"><span class="pre">None</span></code>, but all the other values
+are allowed to be <code class="docutils literal"><span class="pre">None</span></code> (so if you specify a target then <code class="docutils literal"><span class="pre">msg</span></code> can
+be <code class="docutils literal"><span class="pre">None</span></code>, and even <code class="docutils literal"><span class="pre">x</span></code> can be <code class="docutils literal"><span class="pre">None</span></code>).</p>
+<p>The <code class="docutils literal"><span class="pre">msg</span></code> message is a normal Python dictionary. You can use it to
+transport any data that does not fit into the <code class="docutils literal"><span class="pre">x</span></code> 2d data array. Nodes
+can take data from to the message and add data to it. The message is
+propagated along with the <code class="docutils literal"><span class="pre">x</span></code> data. If a normal MDP node is contained
+in a <code class="docutils literal"><span class="pre">BiFlow</span></code> then the message is simply passed around it. A
+<code class="docutils literal"><span class="pre">BiNode</span></code> can freely decide how to interact with the message (see the
+BiNode section for more information).</p>
+<p>The target value is either a string or a number. The number is the
+relative position of the target node in the flow, so a target value of 1
+corresponds to the following node, while -1 is the previous node. The
+<code class="docutils literal"><span class="pre">BiNode</span></code> base class also allows the specification of a <code class="docutils literal"><span class="pre">node_id</span></code>
+string in the <code class="docutils literal"><span class="pre">__init__</span></code> method. This string can then be used as a
+target value.</p>
+<p>The <code class="docutils literal"><span class="pre">node_id</span></code> string is also useful to access nodes in a <code class="docutils literal"><span class="pre">BiFlow</span></code>
+instance. The standard MDP <code class="docutils literal"><span class="pre">Flow</span></code> class already implements
+standard Python container methods, so <code class="docutils literal"><span class="pre">flow[2]</span></code> will return the third
+node in the flow. <code class="docutils literal"><span class="pre">BiFlow</span></code> in addition enables you to use the
+<code class="docutils literal"><span class="pre">node_id</span></code> to index nodes in the flow, just like for a dictionary. Here is
+a simple example</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pca_node</span> <span class="o">=</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCABiNode</span><span class="p">(</span><span class="n">node_id</span><span class="o">=</span><span class="s2">&quot;pca&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">biflow</span> <span class="o">=</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">BiFlow</span><span class="p">([</span><span class="n">pca_node</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">biflow</span><span class="p">[</span><span class="s2">&quot;pca&quot;</span><span class="p">]</span>
+<span class="go">PCABiNode(input_dim=None, output_dim=None, dtype=None, node_id=&quot;pca&quot;)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="biflow">
+<h2>BiFlow<a class="headerlink" href="#biflow" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">BiFlow</span></code> class mostly works in the same way as the normal <code class="docutils literal"><span class="pre">Flow</span></code>
+class. We already mentioned several of the new features, like support
+for targets, messages, and retrieving nodes based on their <code class="docutils literal"><span class="pre">node_id</span></code>.
+Apart from that the only major difference is the way in which you can
+provide additional arguments for nodes. For example the <code class="docutils literal"><span class="pre">FDANode</span></code> in
+MDP requires class labels in addition to the data array (telling the
+node to which class each data point belongs). In the <code class="docutils literal"><span class="pre">Flow</span></code> class the
+additional training data (the class labels) is provided by the same
+iterable as the data. In a <code class="docutils literal"><span class="pre">BiFlow</span></code> this is no longer allowed, since
+this functionality is provided by the more general message mechanism. In
+addition to the <code class="docutils literal"><span class="pre">data_iterables</span></code> keyword argument of <code class="docutils literal"><span class="pre">train</span></code> there
+is a new <code class="docutils literal"><span class="pre">msg_iterables</span></code> argument, to provide iterables for the
+message dictionary. The structure of the <code class="docutils literal"><span class="pre">msg_iterables</span></code> argument must
+be the same as that of <code class="docutils literal"><span class="pre">data_iterables</span></code>, but instead of yielding
+arrays it should yield dictionaries (containing the additional data
+values with the corresponding keys). Here is an example</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">biflow</span> <span class="o">=</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">BiFlow</span><span class="p">([</span><span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCANode</span><span class="p">(),</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">FDABiNode</span><span class="p">()])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">biflow</span><span class="o">.</span><span class="n">train</span><span class="p">([[</span><span class="n">samples</span><span class="p">],[</span><span class="n">samples</span><span class="p">]],</span> <span class="n">msg_iterables</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,[{</span><span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="n">labels</span><span class="p">}]])</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">_train</span></code> method of <code class="docutils literal"><span class="pre">FDANode</span></code> requires the <code class="docutils literal"><span class="pre">labels</span></code> argument, so
+this is used as the key value. Note that we have to use the <code class="docutils literal"><span class="pre">BiNode</span></code>
+version of <code class="docutils literal"><span class="pre">FDANode</span></code>, called <code class="docutils literal"><span class="pre">FDABiNode</span></code> (alomost every MDP node has
+a <code class="docutils literal"><span class="pre">BiNode</span></code> version following this naming convention). The <code class="docutils literal"><span class="pre">BiNode</span></code>
+class provides the <code class="docutils literal"><span class="pre">cl</span></code> value from the message to the <code class="docutils literal"><span class="pre">_train</span></code>
+method.</p>
+<p>In a normal <code class="docutils literal"><span class="pre">Flow</span></code> the additional arguments can only be given to the
+node which is currently in training. This limitation does not apply to a
+<code class="docutils literal"><span class="pre">BiFlow</span></code>, where the message can be accessed by all nodes (more on this
+later). Message iterators can also be used during execution, via the
+<code class="docutils literal"><span class="pre">msg_iterable</span></code> argument in <code class="docutils literal"><span class="pre">BiFlow.execute</span></code>. Of course messages can
+be also returned by <code class="docutils literal"><span class="pre">BiFlow.execute</span></code>, so the return value always has
+the form <code class="docutils literal"><span class="pre">(y,</span> <span class="pre">msg)</span></code> (where <code class="docutils literal"><span class="pre">msg</span></code> can be an empty dictionary). For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">biflow</span> <span class="o">=</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PCABiNode</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">SFABiNode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">biflow</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">biflow</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">msg</span>
+<span class="go">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># include a message that is not used</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">biflow</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">msg_iterable</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">msg</span>
+<span class="go">{&#39;test&#39;: 1}</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal"><span class="pre">BiNode</span></code> overloads the plus operator to create a <code class="docutils literal"><span class="pre">BiFlow</span></code>.
+If iterables are used for execution then the <code class="docutils literal"><span class="pre">BiFlow</span></code> not only
+concatenates the <code class="docutils literal"><span class="pre">y</span></code> result arrays, but also tries to join the <code class="docutils literal"><span class="pre">msg</span></code>
+dictionaries into a single one. Arrays in the <code class="docutils literal"><span class="pre">msg</span></code> will be
+concatenated, for all other types the plus operator is used.</p>
+<p>The <code class="docutils literal"><span class="pre">train</span></code> method of <code class="docutils literal"><span class="pre">BiFlow</span></code> also has an additional argument
+called <code class="docutils literal"><span class="pre">stop_messages</span></code>, which can be used to provide message iterables
+for <code class="docutils literal"><span class="pre">stop_training</span></code>. The <code class="docutils literal"><span class="pre">execute</span></code> method on the other hand has an
+argument <code class="docutils literal"><span class="pre">target_iterable</span></code>, which can be used to specify the initial
+target in the flow execution (if the <code class="docutils literal"><span class="pre">iterable</span></code> is just a single array
+then of course the <code class="docutils literal"><span class="pre">target_iterable</span></code> should be just a single <code class="docutils literal"><span class="pre">node_id</span></code>).</p>
+</div>
+<div class="section" id="binode">
+<h2>BiNode<a class="headerlink" href="#binode" title="Permalink to this headline">¶</a></h2>
+<p>We now want to give an overview of the <code class="docutils literal"><span class="pre">BiNode</span></code> API, which is mostly an
+extension of the <code class="docutils literal"><span class="pre">Node</span></code> API. First we take a look at the possible return
+values of a <code class="docutils literal"><span class="pre">BiNode</span></code> and briefly explain their meaning:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">execute</span></code></dt>
+<dd><ul class="first last">
+<li><code class="docutils literal"><span class="pre">x</span></code> or <code class="docutils literal"><span class="pre">(x,</span> <span class="pre">msg)</span></code> or <code class="docutils literal"><span class="pre">(x,</span> <span class="pre">msg,</span> <span class="pre">target)</span></code>. Normal execution continues,
+directly jumping to the target if one is specified.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">train</span></code></dt>
+<dd><ul class="first last">
+<li><code class="docutils literal"><span class="pre">None</span></code> terminates training.</li>
+<li><code class="docutils literal"><span class="pre">x</span></code> or <code class="docutils literal"><span class="pre">(x,</span> <span class="pre">msg)</span></code> or <code class="docutils literal"><span class="pre">(x,</span> <span class="pre">msg,</span> <span class="pre">target)</span></code>. Means that execution is
+continued and that this node will be reached again to terminate training.
+If <code class="docutils literal"><span class="pre">x</span></code> is <code class="docutils literal"><span class="pre">None</span></code> and no target is specified then the remaining
+<code class="docutils literal"><span class="pre">msg</span></code> is dropped (so it is not required to “clear” the message
+manually in <code class="docutils literal"><span class="pre">_train</span></code> for custom nodes to terminate training).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">stop_training</span></code></dt>
+<dd><ul class="first last">
+<li><code class="docutils literal"><span class="pre">None</span></code> doesn’t do anything, like the normal MDP <code class="docutils literal"><span class="pre">stop_training</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">x</span></code> or <code class="docutils literal"><span class="pre">(x,</span> <span class="pre">msg)</span></code> or <code class="docutils literal"><span class="pre">(x,</span> <span class="pre">msg,</span> <span class="pre">target)</span></code>. Causes an execute
+like phase, which terminates when the end of the flow is reached
+or when <code class="docutils literal"><span class="pre">EXIT_TARGET</span></code> is given as target value (just like during a
+normal execute phase, <code class="docutils literal"><span class="pre">EXIT_TARGET</span></code> is explained later).</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Of course all these methods also accept messages. Compared to <code class="docutils literal"><span class="pre">Node</span></code>
+methods they have a new <code class="docutils literal"><span class="pre">msg</span></code> argument. The <code class="docutils literal"><span class="pre">target</span></code> part on the
+other hand is only used by the <code class="docutils literal"><span class="pre">BiFlow</span></code>.</p>
+<p>As you can see from <code class="docutils literal"><span class="pre">train</span></code>, the training does not always stop when
+the training node is reached. Instead it is possible to continue with
+the execution to come back later. For example this is used in the
+backpropagation example (in the MDP examples repository). There are also
+the new <code class="docutils literal"><span class="pre">stop_training</span></code> result options that start an execute phase.
+This can be used to propagate results from the node training or to
+prepare nodes for their upcoming training.</p>
+<p>Some of these new options might be confusing at first. However, you
+can simply ignore those that you don’t need and concentrate on the
+features that are useful for your current project. For example you could
+use messages without ever worrying about targets.</p>
+<p>There are also two more additions to the <code class="docutils literal"><span class="pre">BiNode</span></code> API:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">node_id</span></code></dt>
+<dd>This is a read-only property, which returns the node id
+(which is <code class="docutils literal"><span class="pre">None</span></code> if it wasn’t specified). The <code class="docutils literal"><span class="pre">__init__</span></code>
+method of a <code class="docutils literal"><span class="pre">BiNode</span></code> generally accepts a <code class="docutils literal"><span class="pre">node_id</span></code> keyword argument
+to set this value.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">bi_reset</span></code></dt>
+<dd>This method is called by the <code class="docutils literal"><span class="pre">BiFlow</span></code> before and after training and
+execution (and after the <code class="docutils literal"><span class="pre">stop_training</span></code> execution phase). You
+can be override the private <code class="docutils literal"><span class="pre">_bi_reset</span></code> method to reset internal
+state variables (<code class="docutils literal"><span class="pre">_bi_reset</span></code> is called by <code class="docutils literal"><span class="pre">bi_reset</span></code>).</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="inspection">
+<h2>Inspection<a class="headerlink" href="#inspection" title="Permalink to this headline">¶</a></h2>
+<p>Using jumps and messages can result in complex data flows. Therefore
+BiMDP offers some convenient inspection capabilities to help with
+debugging and analyzing what is going on. This functionality is based on
+the static HTML view from the <code class="docutils literal"><span class="pre">mdp.hinet</span></code> module. Instead of a static
+view of the flow you get an animated slideshow of the flow training or
+execution. An example is provided in
+<code class="docutils literal"><span class="pre">bimdp/test/demo_hinet_inspection.py</span></code>. You can simply call
+<code class="docutils literal"><span class="pre">bimdp.show_execution(flow,</span> <span class="pre">data)</span></code> instead of the normal
+<code class="docutils literal"><span class="pre">flow.execute(data)</span></code>. This will automatically perform the inspection
+and open it in your webbrowser. Similar functionality is available for
+training. Just call <code class="docutils literal"><span class="pre">bimdp.show_execution(flow,</span> <span class="pre">data_iterables)</span></code>,
+which will perform training as in <code class="docutils literal"><span class="pre">flow.train(data_iterables)</span></code>. Have a
+look at the docstrings to learn about additional options.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/bimdp_inspection.png"><img alt="bimdp inspection example" src="../_images/bimdp_inspection.png" style="width: 550px;" /></a>
+</div></blockquote>
+<p>The BiMDP inspection is also useful to visualize the data processing
+that is happening inside a flow. This is especially handy if you are
+trying to build or understand new algorithms and want to know what is
+going on. Therefore we made it very easy to customize the HTML views in
+the inspection. One simple example is provided in
+<code class="docutils literal"><span class="pre">bimdp/test/demo_custom_inspection.py</span></code>, where we use matplotlib to
+plot the data and present it inside the HTML view. Note that
+<code class="docutils literal"><span class="pre">bimdp.show_training</span></code> and <code class="docutils literal"><span class="pre">bimdp.show_execution</span></code> are just helper
+functions. If you need more flexibility you can directly access the
+machinery below (but this is rather messy and hardly ever needed).</p>
+<div class="admonition-browser-compatibility admonition">
+<p class="first admonition-title">Browser Compatibility</p>
+<p class="last">The inspection works with all browser except Chrome.
+This is due to a controversial <a class="reference external" href="http://code.google.com/p/chromium/issues/detail?id=47416">chromium issue</a>. Until
+this is fixed by the Chrome developers the only workarounds
+are to either start Chrome with the <code class="docutils literal"><span class="pre">--allow-file-access-from-files</span></code>
+flag or to access the inspection via a webserver.</p>
+</div>
+</div>
+<div class="section" id="extending-binode-and-message-handling">
+<h2>Extending BiNode and Message Handling<a class="headerlink" href="#extending-binode-and-message-handling" title="Permalink to this headline">¶</a></h2>
+<p>As in the <code class="docutils literal"><span class="pre">Node</span></code> class any derived <code class="docutils literal"><span class="pre">BiNode</span></code> classes should not
+directly overwrite the public <code class="docutils literal"><span class="pre">execute</span></code> or <code class="docutils literal"><span class="pre">train</span></code> methods but
+instead the private versions with an underscore in front (for training
+you can of course also overwrite <code class="docutils literal"><span class="pre">_get_train_seq</span></code>). In addition to the
+dimensionality checks performed on <code class="docutils literal"><span class="pre">x</span></code> by the <code class="docutils literal"><span class="pre">Node</span></code> class this
+enables a couple of message handling features.</p>
+<p>The automatic message handling is a major feature in <code class="docutils literal"><span class="pre">BiNode</span></code> and
+relies on the dynamic nature of Python. In the <code class="docutils literal"><span class="pre">FDABiNode</span></code> and
+<code class="docutils literal"><span class="pre">BiFlow</span></code> example we have already seen how a value from the message is
+automatically passed to the <code class="docutils literal"><span class="pre">_train</span></code> method, because the key of the
+value is also the name of a keyword argument.</p>
+<p>Public methods like <code class="docutils literal"><span class="pre">execute</span></code> in <code class="docutils literal"><span class="pre">BiNode</span></code> accept not only a data
+array <code class="docutils literal"><span class="pre">x</span></code>, but also a message dictionary <code class="docutils literal"><span class="pre">msg</span></code>. When given a message
+they perform introspection to determine the arguments for the
+corresponding private methods (like <code class="docutils literal"><span class="pre">_train</span></code>). If there is a matching
+key for an argument in the message then the value is provided as a
+keyword argument. It remains in the dictionary and can therefore be used
+by other nodes in the flow as well.</p>
+<p>A private method like <code class="docutils literal"><span class="pre">_train</span></code> has the same return options as the
+public <code class="docutils literal"><span class="pre">train</span></code> method, so one can for example return a tuple <code class="docutils literal"><span class="pre">(x,</span>
+<span class="pre">msg)</span></code>. The <code class="docutils literal"><span class="pre">msg</span></code> in the return value from <code class="docutils literal"><span class="pre">_train</span></code> is then used by
+<code class="docutils literal"><span class="pre">train</span></code> to update the original <code class="docutils literal"><span class="pre">msg</span></code>. Thereby <code class="docutils literal"><span class="pre">_train</span></code> can
+overwrite or add new values to the message. There are also some special
+features (“magic”) to make handling messages more convenient:</p>
+<ul class="simple">
+<li>You can use message keys of the form <code class="docutils literal"><span class="pre">node_id-&gt;argument_key</span></code> to
+address parts of the message to a specific node. When the node with the
+corresponding id is reached then the value is not only provided as an
+argument, but the key is also deleted from the message. If the
+<code class="docutils literal"><span class="pre">argument_key</span></code> is not an argument of the method then the whole key is
+simply erased.</li>
+<li>If a private method like <code class="docutils literal"><span class="pre">_train</span></code> has a keyword argument called
+<code class="docutils literal"><span class="pre">msg</span></code> then the complete message is provided. The message from the
+return value replaces the original message in this case. For example
+this makes it possible to delete parts of the message (instead of just
+updating them with new values).</li>
+<li>The key <code class="docutils literal"><span class="pre">&quot;method&quot;</span></code> is treated in a special way. Instead of calling the
+standard private method like <code class="docutils literal"><span class="pre">_train</span></code> (or <code class="docutils literal"><span class="pre">_execute</span></code>, depending on the
+called public method) the <code class="docutils literal"><span class="pre">&quot;method&quot;</span></code> value will be used as the method
+name, with an underscore in front. For example the message <code class="docutils literal"><span class="pre">{&quot;method&quot;:</span>
+<span class="pre">&quot;classify&quot;}</span></code> has the effect that a method <code class="docutils literal"><span class="pre">_classify</span></code> will be called.
+Note that this feature can be combined with the extension mechanism,
+when methods are added at runtime.</li>
+<li>The key <code class="docutils literal"><span class="pre">&quot;target&quot;</span></code> is treated in a special way. If the called private
+method does not return a target value (e.g., if it just returned <code class="docutils literal"><span class="pre">x</span></code>)
+then the <code class="docutils literal"><span class="pre">&quot;target&quot;</span></code> value is used as target return value (e.g, instead of
+<code class="docutils literal"><span class="pre">x</span></code> the return value of <code class="docutils literal"><span class="pre">execute</span></code> would then have the form <code class="docutils literal"><span class="pre">x,</span>
+<span class="pre">None,</span> <span class="pre">target</span></code>).</li>
+<li>If the key <code class="docutils literal"><span class="pre">&quot;method&quot;</span></code> has the value <code class="docutils literal"><span class="pre">inverse</span></code> then, as expected, the
+<code class="docutils literal"><span class="pre">_inverse</span></code> method is called. However, additionally the checks from
+<code class="docutils literal"><span class="pre">inverse</span></code> are run on the data array. If <code class="docutils literal"><span class="pre">_inverse</span></code> does not return a
+target value then the target -1 is returned. So with the message
+<code class="docutils literal"><span class="pre">{&quot;method&quot;:</span> <span class="pre">&quot;inverse&quot;}</span></code> one can execute a <code class="docutils literal"><span class="pre">BiFlow</span></code> in inverse node
+(note that one also has to provide the last node in the flow as the
+initial target to the flow).</li>
+<li>This is more of a <code class="docutils literal"><span class="pre">BiFlow</span></code> feature, but the target value specified in
+<code class="docutils literal"><span class="pre">bimdp.EXIT_TARGET</span></code> (currently set to <code class="docutils literal"><span class="pre">&quot;exit&quot;</span></code>) causes <code class="docutils literal"><span class="pre">BiFlow</span></code> to
+terminate the execution and to return the last return value.</li>
+</ul>
+<p>Of course all these features can be combined, or can be ignored when they
+are not needed.</p>
+</div>
+<div class="section" id="hinet-in-bimdp">
+<h2>HiNet in BiMDP<a class="headerlink" href="#hinet-in-bimdp" title="Permalink to this headline">¶</a></h2>
+<p>BiMDP is mostly compatible with the hierarchical networks introduced in
+<code class="docutils literal"><span class="pre">mdp.hinet</span></code>. For the full BiMDP functionality it is of
+required to use the BiMDP versions of the the building blocks.</p>
+<p>The <code class="docutils literal"><span class="pre">bimdp.hinet</span></code> module provides a <code class="docutils literal"><span class="pre">BiFlowNode</span></code> class, which is
+offers the same functionality as a <code class="docutils literal"><span class="pre">FlowNode</span></code> but with the added
+capability of handling messages, targets, and all other BiMDP concepts.</p>
+<p>There is also a new <code class="docutils literal"><span class="pre">BiSwitchboard</span></code> base class, which is able to deal
+with messages. Arrays present in the message are mapped with the
+switchboard routing if the second axis matches the switchboard dimension
+(this works for both execute and inverse).</p>
+<p>Finally there is a <code class="docutils literal"><span class="pre">CloneBiLayer</span></code> class, which is the BiMDP version of
+the <code class="docutils literal"><span class="pre">CloneLayer</span></code> class in <code class="docutils literal"><span class="pre">mdp.hinet</span></code>. To support all the features
+of BiMDP some significant functionality has been added to this class.
+The most important new aspect is the <code class="docutils literal"><span class="pre">use_copies</span></code> property. If it is
+set to <code class="docutils literal"><span class="pre">True</span></code> then multiple deep copies are used instead of just a
+reference to the same node. This makes it possible to use internal
+variables in a node that persist while the node is left and later
+reentered. You can set this property as often as you like (note that
+there is of course some overhead for the deep copying). You can also set
+the <code class="docutils literal"><span class="pre">use_copies</span></code> property via the message mechanism by simply adding a
+<code class="docutils literal"><span class="pre">&quot;use_copies&quot;</span></code> key with the required boolean value. The <code class="docutils literal"><span class="pre">CloneBiLayer</span></code>
+class also looks for this key in outgoing messages (so it can be send
+by nodes inside the layer). A <code class="docutils literal"><span class="pre">CloneBiLayer</span></code> can also split arrays in the
+message to feed them to the nodes (see the doctring for more details).
+<code class="docutils literal"><span class="pre">CloneBiLayer</span></code> is compatible with the target mechanism (e.g. if the
+<code class="docutils literal"><span class="pre">CloneBiLayer</span></code> contains a <code class="docutils literal"><span class="pre">BiFlowNode</span></code> you can target an internal node).</p>
+</div>
+<div class="section" id="parallel-in-bimdp">
+<h2>Parallel in BiMDP<a class="headerlink" href="#parallel-in-bimdp" title="Permalink to this headline">¶</a></h2>
+<p>The parallelisation capabilites introduced in <code class="docutils literal"><span class="pre">mdp.parallel</span></code> can be
+used for BiMDP. The <code class="docutils literal"><span class="pre">bimdp.parallel</span></code> module provides a
+<code class="docutils literal"><span class="pre">ParallelBiFlow</span></code> class which can be used like the normal
+<code class="docutils literal"><span class="pre">ParallelFlow</span></code>. No changes to schedulers are required.</p>
+<p>Note that a <code class="docutils literal"><span class="pre">ParallelBiFlow</span></code> uses a special callable class to handle
+the message data. So if you want to use a custom callable you will have
+to make a few modifications (compared to the standard callable class
+used by <code class="docutils literal"><span class="pre">ParallFlow</span></code>).</p>
+</div>
+<div class="section" id="coroutine-decorator">
+<h2>Coroutine Decorator<a class="headerlink" href="#coroutine-decorator" title="Permalink to this headline">¶</a></h2>
+<p>For complex flow control (like in the DBN example) one might need a node
+that keeps track of the current status in the execution. The standard
+pattern for this is to implement a state machine, which would require
+some boilerplate code. Python on the other hand supports so called
+<em>continuations</em> via <em>coroutines</em>. A coroutine is very similar to a
+generator function, but the <code class="docutils literal"><span class="pre">yield</span></code> statement can also return a value
+(i.e., the coroutine is receiving a value). Coroutines might be
+difficult to grasp, but they are well documented on the web. Most
+importantly, coroutines can be a very elegant implementation of the
+state machine pattern.</p>
+<p>Using a couroutine in a BiNode to maintain a state would still require
+some boilerplate code. Therefore BiMDP provides a special function
+decorator to minimize the effort, making it extremely convenient to use
+coroutines. This is demonstrated in the <code class="docutils literal"><span class="pre">gradnewton</span></code> and <code class="docutils literal"><span class="pre">binetdbn</span></code>
+examples. For example decorating the <code class="docutils literal"><span class="pre">_execute</span></code> method can be done
+like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SimpleCoroutineNode</span><span class="p">(</span><span class="n">bimdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">IdentityBiNode</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="c1"># the arg [&quot;b&quot;] means that that the signature will be (x, b)</span>
+<span class="gp">... </span>   <span class="nd">@bimdp</span><span class="o">.</span><span class="n">binode_coroutine</span><span class="p">([</span><span class="s2">&quot;b&quot;</span><span class="p">])</span>
+<span class="gp">... </span>   <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n_iterations</span><span class="p">):</span>
+<span class="gp">... </span>       <span class="sd">&quot;&quot;&quot;Gather all the incomming b and return them finally.&quot;&quot;&quot;</span>
+<span class="gp">... </span>       <span class="n">bs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>       <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iterations</span><span class="p">):</span>
+<span class="gp">... </span>           <span class="n">x</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">x</span>
+<span class="gp">... </span>           <span class="n">bs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">... </span>       <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;all the b&quot;</span><span class="p">:</span> <span class="n">bs</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n_iterations</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">SimpleCoroutineNode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># during the first call the decorator creates the actual coroutine</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;n_iterations&quot;</span><span class="p">:</span> <span class="n">n_iterations</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the following calls go to the yield statement,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># finally the bs are returned</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iterations</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="n">x</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="n">n_iterations</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>You can find the complete runable code in the <code class="docutils literal"><span class="pre">bimdp_simple_coroutine.py</span></code>
+example.</p>
+</div>
+<div class="section" id="classifiers-in-bimdp">
+<h2>Classifiers in BiMDP<a class="headerlink" href="#classifiers-in-bimdp" title="Permalink to this headline">¶</a></h2>
+<p>BiMDP introduces a special <code class="docutils literal"><span class="pre">BiClassifier</span></code> base class for the new
+<code class="docutils literal"><span class="pre">Classifier</span></code> nodes in MDP. This makes it possible to fully use
+classifiers in a normal <code class="docutils literal"><span class="pre">BiFlow</span></code>. Just like for normal nodes
+the BiMDP versions of the classifier are available in <code class="docutils literal"><span class="pre">bimdp.nodes</span></code>
+(the SVM classifiers are currently not available by default, but it is
+possible to manually derive a <code class="docutils literal"><span class="pre">BiClassifier</span></code> version of them).</p>
+<p>The <code class="docutils literal"><span class="pre">BiClassifier</span></code> class makes it possible to provide the training
+labels via the message mechanism (simply store the labels with a
+<code class="docutils literal"><span class="pre">&quot;labels&quot;</span></code> key in the <code class="docutils literal"><span class="pre">msg</span></code> dict). It is also possible to transport
+the classification results in the outgoing message. The <code class="docutils literal"><span class="pre">_execute</span></code> method of a
+<code class="docutils literal"><span class="pre">BiClassifier</span></code> has three keyword arguments called <code class="docutils literal"><span class="pre">return_labels</span></code>,
+<code class="docutils literal"><span class="pre">return_ranks</span></code>, and <code class="docutils literal"><span class="pre">return_probs</span></code>. These can be set via the message
+mechanism. If for example <code class="docutils literal"><span class="pre">return_labels</span></code> is set to <code class="docutils literal"><span class="pre">True</span></code> then
+<code class="docutils literal"><span class="pre">execute</span></code> will call the <code class="docutils literal"><span class="pre">label</span></code> method from the classifier node and
+store the result in the outgoing message (under the key <code class="docutils literal"><span class="pre">&quot;labels&quot;</span></code>). The
+<code class="docutils literal"><span class="pre">return_labels</span></code> argument (and the other two) can also be set to a
+string value, which is then used as a prefix for the <code class="docutils literal"><span class="pre">&quot;labels&quot;</span></code> key in
+the outgoing message (e.g., to target this information at a specific
+node in the flow).</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../examples/examples.html" title="Examples"
+             >next</a></li>
+        <li class="right" >
+          <a href="wrappers.html" title="Interfacing with other libraries"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

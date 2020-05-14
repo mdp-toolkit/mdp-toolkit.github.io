@@ -1,0 +1,290 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DBN nodes &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DBN binodes" href="dbn_binodes.html" />
+    <link rel="prev" title="Deep Belief Network (DBN) based on BiMDP" href="dbn.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logmap/logmap.html">Logistic Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lle/lle.html">Locally Linear Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gng/gng.html">Growing Neural Gas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution/image_convolution.html">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bayes_guesser/bayes_guesser.html">Bayes Guesser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../word_generator/word_generator.html">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dbn.html">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_custom_inspection.html">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dbn-nodes">
+<span id="id1"></span><h1>DBN nodes<a class="headerlink" href="#dbn-nodes" title="Permalink to this headline">¶</a></h1>
+<p>Download <a class="reference download internal" href="../../_downloads/dbn_nodes.py" download=""><code class="xref download docutils literal"><span class="pre">dbn_nodes.py</span></code></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file contains the original DBN node from Pietro.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">mdp</span>
+<span class="kn">from</span> <span class="nn">mdp</span> <span class="kn">import</span> <span class="n">numx</span>
+<span class="kn">from</span> <span class="nn">mdp.utils</span> <span class="kn">import</span> <span class="n">mult</span>
+
+<span class="n">random</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx_rand</span><span class="o">.</span><span class="n">random</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">numx</span><span class="o">.</span><span class="n">exp</span>
+
+<span class="c1"># TODO: DBNLayer with labels</span>
+<span class="c1"># TODO: DBNLayer with Gaussian visible variables</span>
+<span class="c1"># TODO: remove self._rbm after greedy phase</span>
+<span class="c1"># TODO: some functionality of RBMNode is duplicated with small variation;</span>
+<span class="c1">#    should this be a subclass of RBMNode?</span>
+
+<span class="k">class</span> <span class="nc">DBNLayerNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">visible_dim</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DBNLayerNode</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_dim</span> <span class="o">=</span> <span class="n">visible_dim</span><span class="p">,</span>
+                                           <span class="n">output_dim</span> <span class="o">=</span> <span class="n">hidden_dim</span><span class="p">,</span>
+                                           <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span><span class="p">)</span>
+        <span class="c1"># delegates computations to an RBM during the greedy phase</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rbm</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">RBMNode</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">visible_dim</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updown_initialized</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">sample_h</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sample the hidden variables given observations v.</span>
+
+<span class="sd">        Returns a tuple (prob_h, h), where prob_h[n,i] is the</span>
+<span class="sd">        probability that variable &#39;i&#39; is one given the observations</span>
+<span class="sd">        v[n,:], and h[n,i] is a sample from the posterior probability.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pre_execution_checks</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample_h</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sample_v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sample the observed variables given hidden variable state h.</span>
+
+<span class="sd">        Returns a tuple (prob_v, v), where prob_v[n,i] is the</span>
+<span class="sd">        probability that variable &#39;i&#39; is one given the hidden variables</span>
+<span class="sd">        h[n,:], and v[n,i] is a sample from that conditional probability.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pre_inversion_checks</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample_v</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_sample_h</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="c1"># P(h=1|v,W,b)</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">bh</span> <span class="o">-</span> <span class="n">mult</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_rec</span><span class="p">)))</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">probs</span> <span class="o">&gt;</span> <span class="n">random</span><span class="p">(</span><span class="n">probs</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">probs</span><span class="p">,</span> <span class="n">h</span>
+
+    <span class="k">def</span> <span class="nf">_sample_v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+        <span class="c1"># P(v=1|h,W,b)</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">bv</span> <span class="o">-</span> <span class="n">mult</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_gen</span><span class="o">.</span><span class="n">T</span><span class="p">)))</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">probs</span> <span class="o">&gt;</span> <span class="n">random</span><span class="p">(</span><span class="n">probs</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">probs</span><span class="p">,</span> <span class="n">v</span>
+    
+    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">return_probs</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;If &#39;return_probs&#39; is True, returns the probability of the</span>
+<span class="sd">        hidden variables h[n,i] being 1 given the observations v[n,:].</span>
+<span class="sd">        If &#39;return_probs&#39; is False, return a sample from that probability.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">probs</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample_h</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">return_probs</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">probs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">h</span>
+
+    <span class="k">def</span> <span class="nf">_inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+        <span class="n">probs</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample_v</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span>
+
+    <span class="c1"># greedy phase training: delegate to RBM</span>
+    <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rbm</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="n">decay</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="n">momentum</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_stop_training</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rbm</span><span class="o">.</span><span class="n">stop_training</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_updown</span><span class="p">()</span>
+    <span class="c1"># /greedy phase training</span>
+
+    <span class="k">def</span> <span class="nf">_init_updown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The greedy phase of learning is delegated to an RBM.</span>
+<span class="sd">        Here the learned weights are decoupled into generative and</span>
+<span class="sd">        recognition weights, and other parameters are initialized.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updown_initialized</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="c1"># recognition and generative weights</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_rec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rbm</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_gen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rbm</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="c1"># biases</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rbm</span><span class="o">.</span><span class="n">bv</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rbm</span><span class="o">.</span><span class="n">bh</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="c1"># changes in parameters during learning</span>
+        <span class="c1"># used to add momentum</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dw_wake</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dw_sleep</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dbv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbh</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="c1"># this corresponds to the wake phse</span>
+    <span class="k">def</span> <span class="nf">_up_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns (sample from hidden layer, norm of the weight change)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pre_execution_checks</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+        <span class="c1"># sample from hidden layer</span>
+        <span class="n">ph</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample_h</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="c1"># reconstruct input</span>
+        <span class="n">pv1</span><span class="p">,</span> <span class="n">v1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_v</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        
+        <span class="c1"># adapt generative weights</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">mult</span><span class="p">((</span><span class="n">v</span> <span class="o">-</span> <span class="n">pv1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span><span class="o">/</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dw_wake</span> <span class="o">=</span> <span class="p">(</span><span class="n">momentum</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dw_wake</span>
+                        <span class="o">+</span> <span class="n">epsilon</span><span class="o">*</span><span class="p">(</span><span class="n">delta</span> <span class="o">-</span> <span class="n">decay</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">w_gen</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_gen</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dw_wake</span>
+
+        <span class="c1"># adapt biases</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">-</span> <span class="n">pv1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dbv</span> <span class="o">=</span> <span class="n">momentum</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dbv</span> <span class="o">+</span> <span class="n">epsilon</span><span class="o">*</span><span class="n">delta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bv</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbv</span>
+
+        <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="n">ph</span><span class="p">,</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">norm2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dbv</span><span class="p">)</span>
+
+    <span class="c1"># this corresponds to the sleep phase</span>
+    <span class="k">def</span> <span class="nf">_down_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">top_updates</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        top_updates -- set &gt;0 for top node, so that it ends up sampling</span>
+<span class="sd">                       from the prior</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: check input</span>
+
+        <span class="n">pv</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample_v</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">top_updates</span><span class="p">):</span>
+            <span class="n">ph</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample_h</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="n">pv</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample_v</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+            
+        <span class="c1"># reconstruct hidden state</span>
+        <span class="n">ph1</span><span class="p">,</span> <span class="n">h1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample_h</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        
+        <span class="c1"># adapt generative weights</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">mult</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">ph1</span><span class="p">))</span><span class="o">/</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dw_sleep</span> <span class="o">=</span> <span class="p">(</span><span class="n">momentum</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dw_sleep</span>
+                         <span class="o">+</span> <span class="n">epsilon</span><span class="o">*</span><span class="p">(</span><span class="n">delta</span> <span class="o">-</span> <span class="n">decay</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">w_rec</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_rec</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dw_sleep</span>
+
+        <span class="c1"># adapt biases</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">ph1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dbh</span> <span class="o">=</span> <span class="n">momentum</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dbh</span> <span class="o">+</span> <span class="n">epsilon</span><span class="o">*</span><span class="n">delta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bh</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbh</span>
+        
+        <span class="k">return</span> <span class="n">v</span><span class="p">,</span> <span class="n">pv</span><span class="p">,</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">norm2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dbh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

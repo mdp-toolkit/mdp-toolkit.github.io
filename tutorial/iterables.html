@@ -1,0 +1,338 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Iterables &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Checkpoints" href="checkpoints.html" />
+    <link rel="prev" title="Flows" href="flows.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../examples/logo/logo_animation.html">
+		    <img src="../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flows.html">Flows</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Iterables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkpoints.html">Checkpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions.html">Node Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hinet.html">Hierarchical Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html">Parallelization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="caching.html">Caching execution results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classifiers.html">Classifier nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wrappers.html">Interfacing with other libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp.html">BiMDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="checkpoints.html" title="Checkpoints"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="flows.html" title="Flows"
+             accesskey="P">previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" accesskey="U">Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iterables">
+<span id="id1"></span><h1>Iterables<a class="headerlink" href="#iterables" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/tutorial/iterables.html">code snippets directory</a></p>
+</div>
+<p>Python allows user-defined classes to support iteration,
+as described in the <a class="reference external" href="http://docs.python.org/library/stdtypes.html#iterator-types">Python docs</a>. A class is a
+so called iterable if it defines a method <code class="docutils literal"><span class="pre">__iter__</span></code> that returns an
+iterator instance. An iterable is typically some kind of container or
+collection (e.g. <code class="docutils literal"><span class="pre">list</span></code> and <code class="docutils literal"><span class="pre">tuple</span></code> are iterables).</p>
+<p>The iterator instance must have a <code class="docutils literal"><span class="pre">next</span></code> method that returns the next
+element in the iteration. In Python an iterable also has to have an
+<code class="docutils literal"><span class="pre">__iter__</span></code> method itself that returns <code class="docutils literal"><span class="pre">self</span></code> instead of a new iterator.
+It is important to understand that an iterator only manages a single iteration.
+After this iteration it is spend and cannot be used for a second iteration
+(it cannot be restarted). An iterable on the other hand can create as many
+iterators as needed and therefore supports multiple iterations. Even though
+both iterables and iterators have an <code class="docutils literal"><span class="pre">__iter__</span></code> method they are
+semantically very different (duck-typing can be misleading in this case).</p>
+<p>In the context of MDP this means that an iterator can only be used for a
+single training phase, while iterables also support multiple training phases.
+So if you use a node with multiple training phases and train it in a flow
+make sure that you provide an iterable for this node (otherwise an exception
+will be raised). For nodes with a single training phase you can use
+either an iterable or an iterator.</p>
+<p>A convenient implementation of the iterator protocol is provided
+by generators:
+see <a class="reference external" href="http://linuxgazette.net/100/pramode.html">this article</a> for an
+introduction, and the official <a class="reference external" href="http://www.python.org/dev/peps/pep-0255/">PEP 255</a>
+for a complete description.</p>
+<p>Let us define two bogus node classes to be used as examples of nodes</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">BogusNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;This node does nothing.&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">pass</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">BogusNode2</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;This node does nothing. But it&#39;s neither trainable nor invertible.</span>
+<span class="gp">... </span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">is_trainable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">is_invertible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>This generator generates <code class="docutils literal"><span class="pre">blocks</span></code> input blocks to be used as training set.
+In this example one block is a 2-dimensional time series. The first variable
+is [2,4,6,….,1000] and the second one [0,1,3,5,…,999].
+All blocks are equal, this of course would not be the case in a real-life
+example.</p>
+<p>In this example we use a progress bar to get progress information.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">gen_data</span><span class="p">(</span><span class="n">blocks</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">progressinfo</span><span class="p">(</span><span class="n">xrange</span><span class="p">(</span><span class="n">blocks</span><span class="p">)):</span>
+<span class="gp">... </span>        <span class="n">block_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">2.</span><span class="p">,</span><span class="mi">1001</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">... </span>        <span class="n">block_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="mi">1001</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">... </span>        <span class="c1"># put variables on columns and observations on rows</span>
+<span class="gp">... </span>        <span class="n">block</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">block_x</span><span class="p">,</span><span class="n">block_y</span><span class="p">]))</span>
+<span class="gp">... </span>        <span class="k">yield</span> <span class="n">block</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">progressinfo</span></code> function is a fully configurable text-mode
+progress info box tailored to the command-line die-hards. Have a look
+at its doc-string and prepare to be amazed!</p>
+<p>Let’s define a bogus flow consisting of 2 <code class="docutils literal"><span class="pre">BogusNode</span></code>s</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">Flow</span><span class="p">([</span><span class="n">BogusNode</span><span class="p">(),</span><span class="n">BogusNode</span><span class="p">()],</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Train the first node with 5000 blocks and the second node with 3000 blocks.
+Note that the only allowed argument to <code class="docutils literal"><span class="pre">train</span></code> is a sequence (list or
+tuple) of iterables or iterators. In case you don’t want or need to use
+incremental learning and want to do a one-shot training, you can use as
+argument to <code class="docutils literal"><span class="pre">train</span></code> a single array of data.</p>
+<div class="section" id="block-mode-training">
+<h2>Block-mode training<a class="headerlink" href="#block-mode-training" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">gen_data</span><span class="p">(</span><span class="mi">5000</span><span class="p">),</span><span class="n">gen_data</span><span class="p">(</span><span class="mi">3000</span><span class="p">)])</span> 
+<span class="go">Training node #0 (BogusNode)</span>
+
+<span class="go">[===================================100%==================================&gt;]</span>
+
+<span class="go">Training finished</span>
+<span class="go">Training node #1 (BogusNode)</span>
+<span class="go">[===================================100%==================================&gt;]</span>
+
+<span class="go">Training finished</span>
+<span class="go">Close the training phase of the last node</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="one-shot-training-using-one-single-set-of-data-for-both-nodes">
+<h2>One-shot training using one single set of data for both nodes<a class="headerlink" href="#one-shot-training-using-one-single-set-of-data-for-both-nodes" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span> <span class="o">=</span> <span class="n">BogusNode</span><span class="p">()</span> <span class="o">+</span> <span class="n">BogusNode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">2.</span><span class="p">,</span><span class="mi">1001</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="mi">1001</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">single_block</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">block_x</span><span class="p">,</span><span class="n">block_y</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">single_block</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If your flow contains non-trainable nodes, you must specify a <code class="docutils literal"><span class="pre">None</span></code>
+for the non-trainable nodes</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">Flow</span><span class="p">([</span><span class="n">BogusNode2</span><span class="p">(),</span><span class="n">BogusNode</span><span class="p">()],</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span> <span class="n">gen_data</span><span class="p">(</span><span class="mi">5000</span><span class="p">)])</span> 
+<span class="go">Training node #0 (BogusNode2)</span>
+<span class="go">Training finished</span>
+<span class="go">Training node #1 (BogusNode)</span>
+<span class="go">[===================================100%==================================&gt;]</span>
+
+<span class="go">Training finished</span>
+<span class="go">Close the training phase of the last node</span>
+</pre></div>
+</div>
+<p>You can use the one-shot training</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">Flow</span><span class="p">([</span><span class="n">BogusNode2</span><span class="p">(),</span><span class="n">BogusNode</span><span class="p">()],</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">single_block</span><span class="p">)</span> 
+<span class="go">Training node #0 (BogusNode2)</span>
+<span class="go">Training finished</span>
+<span class="go">Training node #1 (BogusNode)</span>
+<span class="go">Training finished</span>
+<span class="go">Close the training phase of the last node</span>
+</pre></div>
+</div>
+<p>Iterators can always be safely used for execution and inversion, since only a
+single iteration is needed</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">Flow</span><span class="p">([</span><span class="n">BogusNode</span><span class="p">(),</span><span class="n">BogusNode</span><span class="p">()],</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span><span class="o">.</span><span class="n">train</span><span class="p">([</span><span class="n">gen_data</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">gen_data</span><span class="p">(</span><span class="mi">1</span><span class="p">)])</span>                     
+<span class="go">Training node #0 (BogusNode)</span>
+<span class="go">Training finished</span>
+<span class="go">Training node #1 (BosgusNode)</span>
+<span class="go">[===================================100%==================================&gt;]</span>
+
+<span class="go">Training finished</span>
+<span class="go">Close the training phase of the last node</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">gen_data</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>                      
+<span class="go">[===================================100%==================================&gt;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">gen_data</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>                      
+<span class="go">[===================================100%==================================&gt;]</span>
+</pre></div>
+</div>
+<p>Execution and inversion can be done in one-shot mode also. Note that
+since training is finished you are not going to get a warning</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">flow</span><span class="p">(</span><span class="n">single_block</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">single_block</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If a node requires multiple training phases (e.g.,
+<code class="docutils literal"><span class="pre">GaussianClassifierNode</span></code>), <code class="docutils literal"><span class="pre">Flow</span></code> automatically takes care of using the
+iterable multiple times. In this case generators (and iterators) are not
+allowed, since they are spend after yielding the last data block.</p>
+<p>However, it is fairly easy to wrap a generator in a simple iterable if you need to</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SimpleIterable</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blocks</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span> <span class="o">=</span> <span class="n">blocks</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="c1"># this is a generator</span>
+<span class="gp">... </span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="p">):</span>
+<span class="gp">... </span>            <span class="k">yield</span> <span class="n">generate_some_data</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Note that if you use random numbers within the generator, you usually
+would like to reset the random number generator to produce the
+same sequence every time</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">RandomIterable</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
+<span class="gp">... </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+<span class="gp">... </span>            <span class="k">yield</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterable</span> <span class="o">=</span> <span class="n">RandomIterable</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="n">x</span>
+<span class="go">[[ 0.5488135   0.71518937  0.60276338  0.54488318]]</span>
+<span class="go">[[ 0.4236548   0.64589411  0.43758721  0.891773  ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="n">x</span>
+<span class="go">[[ 0.5488135   0.71518937  0.60276338  0.54488318]]</span>
+<span class="go">[[ 0.4236548   0.64589411  0.43758721  0.891773  ]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="checkpoints.html" title="Checkpoints"
+             >next</a></li>
+        <li class="right" >
+          <a href="flows.html" title="Flows"
+             >previous</a> |</li>
+          <li class="nav-item nav-item-1"><a href="../documentation.html" >Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorial.html" >Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

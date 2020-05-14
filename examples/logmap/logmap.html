@@ -1,0 +1,238 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Logistic Maps &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Locally Linear Embedding" href="../lle/lle.html" />
+    <link rel="prev" title="Examples" href="../examples.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Logistic Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lle/lle.html">Locally Linear Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gng/gng.html">Growing Neural Gas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution/image_convolution.html">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bayes_guesser/bayes_guesser.html">Bayes Guesser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../word_generator/word_generator.html">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binetdbn/dbn.html">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_custom_inspection.html">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="logistic-maps">
+<span id="logmap"></span><h1>Logistic Maps<a class="headerlink" href="#logistic-maps" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="https://mdp-toolkit.github.io/code/examples/logmap/logmap.html">code snippets directory</a></p>
+</div>
+<p>In this example we show MDP usage in a machine learning application, and
+use non-linear Slow Feature Analysis for processing of non-stationary
+time series. We consider a chaotic time series derived by a logistic map
+(a demographic model of the population biomass of species in the
+presence of limiting factors such as food supply or disease) that is
+non-stationary in the sense that the underlying parameter is not fixed
+but is varying smoothly in time.</p>
+<p>The goal is to extract the slowly varying parameter that is hidden
+in the observed time series. This example reproduces some of the
+results reported in
+Laurenz Wiskott, <cite>Estimating Driving Forces of Nonstationary Time Series
+with Slow Feature Analysis</cite>
+(<a class="reference external" href="http://arxiv.org/abs/cond-mat/0312317">arXiv.org e-Print archive</a>).</p>
+<p>Generate the slowly varying driving force,
+a combination of three sine waves (freqs: 5, 11, 13 Hz), and define a function
+to generate the logistic map</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># time axis 1s, samplerate 10KHz</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dforce</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">p2</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">p2</span><span class="o">*</span><span class="mi">11</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">p2</span><span class="o">*</span><span class="mi">13</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">logistic_map</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that we define <code class="docutils literal"><span class="pre">series</span></code> to be a two-dimensional array.
+Inputs to MDP must be two-dimensional arrays with variables
+on columns and observations on rows. In this case we have only
+one variable:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">series</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;d&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Fix the initial condition:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">series</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.6</span>
+</pre></div>
+</div>
+<p>Generate the time series using the logistic equation.
+The driving force modifies the logistic equation parameter <code class="docutils literal"><span class="pre">r</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">series</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">logistic_map</span><span class="p">(</span><span class="n">series</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mf">3.6</span><span class="o">+</span><span class="mf">0.13</span><span class="o">*</span><span class="n">dforce</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>If you have a plotting package <code class="docutils literal"><span class="pre">series</span></code> should look like this:</p>
+<a class="reference internal image-reference" href="../../_images/series.png"><img alt="chaotic time series" src="../../_images/series.png" style="width: 700px;" /></a>
+<p>To reconstruct the underlying parameter, we define a <code class="docutils literal"><span class="pre">Flow</span></code> to
+perform SFA in the space of polynomials of degree 3. We first use a
+node that embeds the 1-dimensional time series in a 10 dimensional
+space using a sliding temporal window of size 10
+(<code class="docutils literal"><span class="pre">TimeFramesNode(10)</span></code>).  Second, we expand the signal in the space
+of polynomials of degree 3 using a
+<code class="docutils literal"><span class="pre">PolynomialExpansionNode(3)</span></code>. Finally, we perform SFA on the
+expanded signal and keep the slowest feature using the
+<code class="docutils literal"><span class="pre">SFANode(output_dim=1)</span></code>.</p>
+<p>In order to measure the slowness of the input time series before and
+after processing, we put at the beginning and at the end of the node
+sequence a node that computes the <em>eta</em>-value (a measure of slowness)
+of its input (<code class="docutils literal"><span class="pre">EtaComputerNode()</span></code>):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span> <span class="o">=</span> <span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">EtaComputerNode</span><span class="p">()</span> <span class="o">+</span>
+<span class="gp">... </span>        <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">TimeFramesNode</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span>
+<span class="gp">... </span>        <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">PolynomialExpansionNode</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span>
+<span class="gp">... </span>        <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">SFANode</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>
+<span class="gp">... </span>        <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">EtaComputerNode</span><span class="p">()</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Since the time series is short enough to be kept in memory
+we don’t need to define generators and we can feed the flow
+directly with the whole signal:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flow</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Since the second and the third nodes are not trainable we are
+going to get two warnings (<code class="docutils literal"><span class="pre">Training</span> <span class="pre">Interrupted</span></code>). We can safely
+ignore them. Execute the flow to get the slow feature</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">slow</span> <span class="o">=</span> <span class="n">flow</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The slow feature should match the driving force
+up to a scaling factor, a constant offset and the sign.
+To allow a comparison we rescale the driving force
+to have zero mean and unit variance:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">resc_dforce</span> <span class="o">=</span> <span class="p">(</span><span class="n">dforce</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dforce</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dforce</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Print covariance between the rescaled driving force and
+the slow feature. Note that embedding the time series with
+10 time frames leads to a time series with 9 observations less:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">mdp</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">cov2</span><span class="p">(</span><span class="n">resc_dforce</span><span class="p">[:</span><span class="o">-</span><span class="mi">9</span><span class="p">],</span> <span class="n">slow</span><span class="p">)</span>
+<span class="go">1.000</span>
+</pre></div>
+</div>
+<p>Print the <em>eta-values</em> of the chaotic time series and of
+the slow feature</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Eta value (time series): </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">flow</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_eta</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="go">Eta value (time series): 3004</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;Eta value (slow feature): </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">flow</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_eta</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">9996</span><span class="p">)</span>
+<span class="go">Eta value (slow feature): 10.218</span>
+</pre></div>
+</div>
+<p>If you have a plotting package you could plot the real driving force
+is plotted together with the driving force estimated by SFA and see
+that they match perfectly:</p>
+<a class="reference internal image-reference" href="../../_images/results.png"><img alt="SFA estimate" src="../../_images/results.png" style="width: 700px;" /></a>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

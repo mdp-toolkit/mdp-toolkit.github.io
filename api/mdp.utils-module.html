@@ -1,0 +1,2615 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>mdp.utils</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="mdp-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://mdp-toolkit.github.io">Modular toolkit for Data Processing MDP</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="mdp-module.html">Package&nbsp;mdp</a> ::
+        Package&nbsp;utils
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="mdp.utils-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PACKAGE DESCRIPTION ==================== -->
+<h1 class="epydoc">Package utils</h1><p class="nomargin-top"></p>
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.CovarianceMatrix-class.html" class="summary-name">CovarianceMatrix</a><br />
+      This class stores an empirical covariance matrix that can be updated
+incrementally. A call to the 'fix' method returns the current state of
+the covariance matrix, the average and the number of observations, and
+resets the internal data.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.CrossCovarianceMatrix-class.html" class="summary-name">CrossCovarianceMatrix</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.DelayCovarianceMatrix-class.html" class="summary-name">DelayCovarianceMatrix</a><br />
+      This class stores an empirical covariance matrix between the signal and
+time delayed signal that can be updated incrementally.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.HTMLSlideShow-class.html" class="summary-name">HTMLSlideShow</a><br />
+      Abstract slideshow base class.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.ImageHTMLSlideShow-class.html" class="summary-name">ImageHTMLSlideShow</a><br />
+      Slideshow for images.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.MultipleCovarianceMatrices-class.html" class="summary-name">MultipleCovarianceMatrices</a><br />
+      Container class for multiple covariance matrices to easily
+execute operations on all matrices at the same time.
+Note: all operations are done in place where possible.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="collections.OrderedDict-class.html" class="summary-name">OrderedDict</a><br />
+      Dictionary that remembers insertion order
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.QuadraticForm-class.html" class="summary-name">QuadraticForm</a><br />
+      Define an inhomogeneous quadratic form as 1/2 x'Hx + f'x + c .
+This class implements the quadratic form analysis methods
+presented in:
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.QuadraticFormException-class.html" class="summary-name">QuadraticFormException</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.SectionHTMLSlideShow-class.html" class="summary-name">SectionHTMLSlideShow</a><br />
+      Astract slideshow with additional support for section markers.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.SectionImageHTMLSlideShow-class.html" class="summary-name">SectionImageHTMLSlideShow</a><br />
+      Image slideshow with section markers.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.TemporaryDirectory-class.html" class="summary-name">TemporaryDirectory</a><br />
+      Create and return a temporary directory.  This has the same
+behavior as mkdtemp but can be used as a context manager.  For
+example:
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils.VartimeCovarianceMatrix-class.html" class="summary-name">VartimeCovarianceMatrix</a><br />
+      This class stores an empirical covariance matrix that can be updated
+incrementally. A call to the 'fix' method returns the current state of
+the covariance matrix, the average and the number of observations, and
+resets the internal data.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#_fixup_namespace_item" class="summary-sig-name" onclick="show_private();">_fixup_namespace_item</a>(<span class="summary-sig-arg">parent</span>,
+        <span class="summary-sig-arg">mname</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">old_modules</span>,
+        <span class="summary-sig-arg">path</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#_without_prefix" class="summary-sig-name" onclick="show_private();">_without_prefix</a>(<span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">prefix</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#basic_css" class="summary-sig-name">basic_css</a>()</span><br />
+      Return the basic default CSS.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#bool_to_sign" class="summary-sig-name">bool_to_sign</a>(<span class="summary-sig-arg">an_array</span>)</span><br />
+      Return -1 for each False; +1 for each True</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#comb" class="summary-sig-name">comb</a>(<span class="summary-sig-arg">N</span>,
+        <span class="summary-sig-arg">k</span>)</span><br />
+      Return number of combinations of k objects from a set of N objects
+without repetitions, a.k.a. the binomial coefficient of N and k.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#cov2" class="summary-sig-name">cov2</a>(<span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>)</span><br />
+      Compute the covariance between 2D matrices x and y.
+Complies with the old scipy.cov function: different variables
+are on different columns.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#dig_node" class="summary-sig-name">dig_node</a>(<span class="summary-sig-arg">x</span>)</span><br />
+      Crawl recursively an MDP Node looking for arrays.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#fixup_namespace" class="summary-sig-name">fixup_namespace</a>(<span class="summary-sig-arg">mname</span>,
+        <span class="summary-sig-arg">names</span>,
+        <span class="summary-sig-arg">old_modules</span>,
+        <span class="summary-sig-arg">keep_modules</span>=<span class="summary-sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>)</span><br />
+      Update <code class="link">__module__</code> attribute and remove <code class="link">old_modules</code> from namespace</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#gabor" class="summary-sig-name">gabor</a>(<span class="summary-sig-arg">size</span>,
+        <span class="summary-sig-arg">alpha</span>,
+        <span class="summary-sig-arg">phi</span>,
+        <span class="summary-sig-arg">freq</span>,
+        <span class="summary-sig-arg">sgm</span>,
+        <span class="summary-sig-arg">x0</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">res</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">ampl</span>=<span class="summary-sig-default">1.0</span>)</span><br />
+      Return a 2D array containing a Gabor wavelet.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#get_dtypes" class="summary-sig-name">get_dtypes</a>(<span class="summary-sig-arg">typecodes_key</span>,
+        <span class="summary-sig-arg">_safe</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Return the list of dtypes corresponding to the set of
+typecodes defined in numpy.typecodes[typecodes_key].
+E.g., get_dtypes('Float') = [dtype('f'), dtype('d'), dtype('g')].</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#get_node_size" class="summary-sig-name">get_node_size</a>(<span class="summary-sig-arg">x</span>)</span><br />
+      Return node total byte-size using cPickle with protocol=2.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#hermitian" class="summary-sig-name">hermitian</a>(<span class="summary-sig-arg">x</span>)</span><br />
+      Compute the Hermitian, i.e. conjugate transpose, of x.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#image_slideshow" class="summary-sig-name">image_slideshow</a>(<span class="summary-sig-arg">filenames</span>,
+        <span class="summary-sig-arg">image_size</span>,
+        <span class="summary-sig-arg">title</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">section_ids</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">delay</span>=<span class="summary-sig-default">100</span>,
+        <span class="summary-sig-arg">delay_delta</span>=<span class="summary-sig-default">20</span>,
+        <span class="summary-sig-arg">loop</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">slideshow_id</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">magnification</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">mag_control</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">shortcuts</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Return a string with the JS and HTML code for an image slideshow.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#image_slideshow_css" class="summary-sig-name">image_slideshow_css</a>()</span><br />
+      Use nearest neighbour resampling in Firefox 3.6+ and IE.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#inv" class="summary-sig-name">inv</a>(<span class="summary-sig-arg">x</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#irep" class="summary-sig-name">irep</a>(<span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">n</span>,
+        <span class="summary-sig-arg">dim</span>)</span><br />
+      Replicate x n-times on a new dimension dim-th dimension</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#izip_stretched" class="summary-sig-name">izip_stretched</a>(<span class="summary-sig-arg">*iterables</span>)</span><br />
+      Same as izip, except that for convenience non-iterables are repeated ad infinitum.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#lrep" class="summary-sig-name">lrep</a>(<span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">n</span>)</span><br />
+      Replicate x n-times on a new first dimension</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#matmult" class="summary-sig-name">matmult</a>(<span class="summary-sig-arg">a</span>,
+        <span class="summary-sig-arg">b</span>,
+        <span class="summary-sig-arg">alpha</span>=<span class="summary-sig-default">1.0</span>,
+        <span class="summary-sig-arg">beta</span>=<span class="summary-sig-default">0.0</span>,
+        <span class="summary-sig-arg">c</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">trans_a</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">trans_b</span>=<span class="summary-sig-default">0</span>)</span><br />
+      Return alpha*(a*b) + beta*c.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#mult" class="summary-sig-name">mult</a>(<span class="summary-sig-arg">a</span>,
+        <span class="summary-sig-arg">b</span>,
+        <span class="summary-sig-arg">out</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Dot product of two arrays.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#mult_diag" class="summary-sig-name">mult_diag</a>(<span class="summary-sig-arg">d</span>,
+        <span class="summary-sig-arg">mtx</span>,
+        <span class="summary-sig-arg">left</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Multiply a full matrix by a diagonal matrix.
+This function should always be faster than dot.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#nongeneral_svd" class="summary-sig-name">nongeneral_svd</a>(<span class="summary-sig-arg">A</span>,
+        <span class="summary-sig-arg">range</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      SVD routine for simple eigenvalue problem, API is compatible with
+symeig.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#norm2" class="summary-sig-name">norm2</a>(<span class="summary-sig-arg">v</span>)</span><br />
+      Compute the 2-norm for 1D arrays.
+norm2(v) = sqrt(sum(v_i^2))</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#orthogonal_permutations" class="summary-sig-name">orthogonal_permutations</a>(<span class="summary-sig-arg">a_dict</span>)</span><br />
+      Takes a dictionary with lists as keys and returns all permutations
+of these list elements in new dicts.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#permute" class="summary-sig-name">permute</a>(<span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">indices</span>=<span class="summary-sig-default"><code class="variable-group">(</code>0<code class="variable-op">, </code>0<code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">rows</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">cols</span>=<span class="summary-sig-default">1</span>)</span><br />
+      Swap two columns and (or) two rows of 'x', whose indices are specified
+in indices=[i,j].
+Note: permutations are done in-place. You'll lose your original matrix</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#pinv" class="summary-sig-name">pinv</a>(<span class="summary-sig-arg">x</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#progressinfo" class="summary-sig-name">progressinfo</a>(<span class="summary-sig-arg">sequence</span>,
+        <span class="summary-sig-arg">length</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">style</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">bar</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">custom</span>=<span class="summary-sig-default">None</span>)</span><br />
+      A fully configurable text-mode progress info box tailored to the
+  command-line die-hards.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#random_rot" class="summary-sig-name">random_rot</a>(<span class="summary-sig-arg">dim</span>,
+        <span class="summary-sig-arg">dtype</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">d</code><code class="variable-quote">'</code></span>)</span><br />
+      Return a random rotation matrix, drawn from the Haar distribution
+(the only uniform distribution on SO(n)).
+The algorithm is described in the paper
+Stewart, G.W., &quot;The efficient generation of random orthogonal
+matrices with an application to condition estimators&quot;, SIAM Journal
+on Numerical Analysis, 17(3), pp. 403-409, 1980.
+For more information see
+<a class="rst-reference external" href="http://en.wikipedia.org/wiki/Orthogonal_matrix#Randomization" target="_top">http://en.wikipedia.org/wiki/Orthogonal_matrix#Randomization</a></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#refcast" class="summary-sig-name">refcast</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">dtype</span>)</span><br />
+      Cast the array to dtype only if necessary, otherwise return a reference.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#rotate" class="summary-sig-name">rotate</a>(<span class="summary-sig-arg">mat</span>,
+        <span class="summary-sig-arg">angle</span>,
+        <span class="summary-sig-arg">columns</span>=<span class="summary-sig-default"><code class="variable-group">(</code>0<code class="variable-op">, </code>1<code class="variable-group">)</code></span>,
+        <span class="summary-sig-arg">units</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">radians</code><code class="variable-quote">'</code></span>)</span><br />
+      Rotate in-place data matrix (NxM) in the plane defined by the columns=[i,j]
+when observation are stored on rows. Observations are rotated
+counterclockwise. This corresponds to the following matrix-multiplication
+for each data-point (unchanged elements omitted):</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#rrep" class="summary-sig-name">rrep</a>(<span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">n</span>)</span><br />
+      Replicate x n-times on a new last dimension</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#scast" class="summary-sig-name">scast</a>(<span class="summary-sig-arg">scalar</span>,
+        <span class="summary-sig-arg">dtype</span>)</span><br />
+      Convert a scalar in a 0D array of the given dtype.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#sign_to_bool" class="summary-sig-name">sign_to_bool</a>(<span class="summary-sig-arg">an_array</span>,
+        <span class="summary-sig-arg">zero</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Return False for each negative value, else True.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#slideshow_css" class="summary-sig-name">slideshow_css</a>()</span><br />
+      Return the additional CSS for a slideshow.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#solve" class="summary-sig-name">solve</a>(<span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>)</span></td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#sqrtm" class="summary-sig-name">sqrtm</a>(<span class="summary-sig-arg">A</span>)</span><br />
+      This is a symmetric definite positive matrix sqrt function</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#svd" class="summary-sig-name">svd</a>(<span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">compute_uv</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Wrap the numx SVD routine, so that it returns arrays of the correct
+dtype and a SymeigException in case of failures.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#symeig_semidefinite_ldl" class="summary-sig-name">symeig_semidefinite_ldl</a>(<span class="summary-sig-arg">A</span>,
+        <span class="summary-sig-arg">B</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">eigenvectors</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">turbo</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">on</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">rng</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">overwrite</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">rank_threshold</span>=<span class="summary-sig-default">1e-12</span>,
+        <span class="summary-sig-arg">dfc_out</span>=<span class="summary-sig-default">None</span>)</span><br />
+      LDL-based routine to solve generalized symmetric positive semidefinite
+eigenvalue problems.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#symeig_semidefinite_pca" class="summary-sig-name">symeig_semidefinite_pca</a>(<span class="summary-sig-arg">A</span>,
+        <span class="summary-sig-arg">B</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">eigenvectors</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">turbo</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">on</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">range</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">overwrite</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">rank_threshold</span>=<span class="summary-sig-default">1e-12</span>,
+        <span class="summary-sig-arg">dfc_out</span>=<span class="summary-sig-default">None</span>)</span><br />
+      PCA-based routine to solve generalized symmetric positive semidefinite
+eigenvalue problems.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#symeig_semidefinite_reg" class="summary-sig-name">symeig_semidefinite_reg</a>(<span class="summary-sig-arg">A</span>,
+        <span class="summary-sig-arg">B</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">eigenvectors</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">turbo</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">on</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">range</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">overwrite</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">rank_threshold</span>=<span class="summary-sig-default">1e-12</span>,
+        <span class="summary-sig-arg">dfc_out</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Regularization-based routine to solve generalized symmetric positive
+semidefinite eigenvalue problems.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#symeig_semidefinite_svd" class="summary-sig-name">symeig_semidefinite_svd</a>(<span class="summary-sig-arg">A</span>,
+        <span class="summary-sig-arg">B</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">eigenvectors</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">turbo</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">on</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">range</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">overwrite</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">rank_threshold</span>=<span class="summary-sig-default">1e-12</span>,
+        <span class="summary-sig-arg">dfc_out</span>=<span class="summary-sig-default">None</span>)</span><br />
+      SVD-based routine to solve generalized symmetric positive semidefinite
+eigenvalue problems.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#symrand" class="summary-sig-name">symrand</a>(<span class="summary-sig-arg">dim_or_eigv</span>,
+        <span class="summary-sig-arg">dtype</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">d</code><code class="variable-quote">'</code></span>)</span><br />
+      Return a random symmetric (Hermitian) matrix.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#timediff" class="summary-sig-name">timediff</a>(<span class="summary-sig-arg">data</span>)</span><br />
+      Returns the array of the time differences of data.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="mdp.utils-module.html#weighted_choice" class="summary-sig-name">weighted_choice</a>(<span class="summary-sig-arg">a_dict</span>,
+        <span class="summary-sig-arg">normalize</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Returns a key from a dictionary based on the weight that the value suggests.
+If 'normalize' is False, it is assumed the weights sum up to unity. Otherwise,
+the algorithm will take care of normalising.</td>
+          <td align="right" valign="top">
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils-module.html#FIXUP_DEBUG" class="summary-name" onclick="show_private();">FIXUP_DEBUG</a> = <code title="None">None</code><br />
+      hash(x)
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="mdp.utils-module.html#__package__" class="summary-name" onclick="show_private();">__package__</a> = <code title="'mdp.utils'"><code class="variable-quote">'</code><code class="variable-string">mdp.utils</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="_fixup_namespace_item"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_fixup_namespace_item</span>(<span class="sig-arg">parent</span>,
+        <span class="sig-arg">mname</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">old_modules</span>,
+        <span class="sig-arg">path</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_without_prefix"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_without_prefix</span>(<span class="sig-arg">name</span>,
+        <span class="sig-arg">prefix</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="basic_css"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">basic_css</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Return the basic default CSS.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="bool_to_sign"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">bool_to_sign</span>(<span class="sig-arg">an_array</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Return -1 for each False; +1 for each True
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="comb"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">comb</span>(<span class="sig-arg">N</span>,
+        <span class="sig-arg">k</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Return number of combinations of k objects from a set of N objects
+without repetitions, a.k.a. the binomial coefficient of N and k.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="cov2"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">cov2</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Compute the covariance between 2D matrices x and y.
+Complies with the old scipy.cov function: different variables
+are on different columns.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="dig_node"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dig_node</span>(<span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Crawl recursively an MDP Node looking for arrays.</p>
+<p>Return (dictionary, string), where the dictionary is:
+{ attribute_name: (size_in_bytes, array_reference)}
+and string is a nice string representation of it.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="fixup_namespace"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fixup_namespace</span>(<span class="sig-arg">mname</span>,
+        <span class="sig-arg">names</span>,
+        <span class="sig-arg">old_modules</span>,
+        <span class="sig-arg">keep_modules</span>=<span class="sig-default"><code class="variable-group">(</code><code class="variable-group">)</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Update <code class="link">__module__</code> attribute and remove <code class="link">old_modules</code> from namespace</p>
+<p>When classes are imported from implementation modules into the
+package exporting them, the <code class="link">__module__</code> attribute reflects the
+place of definition. Splitting the code into separate files (and
+thus modules) makes the implementation managable. Nevertheless, we
+do not want the implementation modules to be visible and delete
+their names from the package's namespace. This causes some
+problems: when looking at the exported classes and other objects,
+their <code class="link">__module__</code> attribute points to something non-importable,
+<code class="link">repr</code> output and documentation do not show the module from
+which they are supposed to be imported. The documentation
+generators like epydoc and sphinx are also confused. To alleviate
+those problems, the <code class="link">__module__</code> attributes of all exported
+classes defined in a &quot;private&quot; module and then exported elsewhere
+are changed to the latter.</p>
+<p>For each name in <code class="link">names</code>, if <code class="link">&lt;mname&gt;.&lt;name&gt;</code> is accessible,
+and if its <code class="link">__module__</code> attribute is equal to one of the names
+in <code class="link">old_modules</code>, it is changed to <code class="link">&quot;&lt;mname&gt;&quot;</code>. In other
+words, all the <code class="link">__module__</code> attributes of objects exported from
+module <code class="link">&lt;mname&gt;</code> are updated, iff they used to point to one of the
+&quot;private&quot; modules in <code class="link">old_modules</code>.</p>
+<p>This operation is performed not only for classes, but actually for
+all objects with the <code class="link">__module__</code> attribute, following the rules
+stated above. The operation is also performed recursively, not
+only for names in <code class="link">names</code>, but also for methods, inner classes,
+and other attributes. This recursive invocation is necessary
+because all the problems affecting top-level exported classes also
+affect their attributes visible for the user, and especially
+documented functions.</p>
+<p>If <code class="link">names</code> is <code class="link">None</code>, all public names in module <code class="link">&lt;mname&gt;</code>
+(not starting with <code class="link">'_'</code>) are affected.</p>
+<p>After the <code class="link">__module__</code> attributes are changed, &quot;private&quot; modules given
+in <code class="link">old_modules</code>, except for the ones in <code class="link">keep_modules</code>, are deleted
+from the namespace of <code class="link">&lt;mname&gt;</code> module.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="gabor"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">gabor</span>(<span class="sig-arg">size</span>,
+        <span class="sig-arg">alpha</span>,
+        <span class="sig-arg">phi</span>,
+        <span class="sig-arg">freq</span>,
+        <span class="sig-arg">sgm</span>,
+        <span class="sig-arg">x0</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">res</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">ampl</span>=<span class="sig-default">1.0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return a 2D array containing a Gabor wavelet.</p>
+<p>Input arguments:
+size -- (height, width) (pixels)
+alpha -- orientation (rad)
+phi -- phase (rad)
+freq -- frequency (cycles/deg)
+sgm -- (sigma_x, sigma_y) standard deviation along the axis
+of the gaussian ellipse (pixel)
+x0 -- (x,y) coordinates of the center of the wavelet (pixel)
+Default: None, meaning the center of the array
+res -- spatial resolution (deg/pixel)
+Default: 1, so that 'freq' is measured in cycles/pixel
+ampl -- constant multiplying the result
+Default: 1.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_dtypes"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_dtypes</span>(<span class="sig-arg">typecodes_key</span>,
+        <span class="sig-arg">_safe</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return the list of dtypes corresponding to the set of
+typecodes defined in numpy.typecodes[typecodes_key].
+E.g., get_dtypes('Float') = [dtype('f'), dtype('d'), dtype('g')].</p>
+<p>If _safe is True (default), we remove large floating point types
+if the numerical backend does not support them.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_node_size"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_node_size</span>(<span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return node total byte-size using cPickle with protocol=2.</p>
+<p>The byte-size is related to the memory needed by the node).</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="hermitian"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">hermitian</span>(<span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Compute the Hermitian, i.e. conjugate transpose, of x.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="image_slideshow"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">image_slideshow</span>(<span class="sig-arg">filenames</span>,
+        <span class="sig-arg">image_size</span>,
+        <span class="sig-arg">title</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">section_ids</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">delay</span>=<span class="sig-default">100</span>,
+        <span class="sig-arg">delay_delta</span>=<span class="sig-default">20</span>,
+        <span class="sig-arg">loop</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">slideshow_id</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">magnification</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">mag_control</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">shortcuts</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Return a string with the JS and HTML code for an image slideshow.
+
+Note that the CSS code for the slideshow is not included, so you should
+add SLIDESHOW_STYLE or a custom style to your CSS code.
+
+filenames -- Sequence of the image filenames.
+image_size -- Tuple (x,y) with the original image size, or enter
+    a different size to force scaling.
+title -- Optional slideshow title (for default None not title is shown).
+section_ids -- List with the section id for each slide index. The id
+        can be a string or a number. Default value None disables the
+        section feature.
+
+For additional keyword arguments see the ImageHTMLSlideShow class.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="image_slideshow_css"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">image_slideshow_css</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Use nearest neighbour resampling in Firefox 3.6+ and IE.</p>
+<p>Webkit (Chrome, Safari) does not support this yet.
+(see <a class="rst-reference external" href="http://code.google.com/p/chromium/issues/detail?id=1502" target="_top">http://code.google.com/p/chromium/issues/detail?id=1502</a>)</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="inv"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">inv</span>(<span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="irep"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">irep</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">n</span>,
+        <span class="sig-arg">dim</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Replicate x n-times on a new dimension dim-th dimension
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="izip_stretched"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">izip_stretched</span>(<span class="sig-arg">*iterables</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Same as izip, except that for convenience non-iterables are repeated ad infinitum.</p>
+<p>This is useful when trying to zip input data with respective labels
+and allows for having a single label for all data, as well as for
+havning a list of labels for each data vector.
+Note that this will take strings as an iterable (of course), so
+strings acting as a single value need to be wrapped in a repeat
+statement of their own.</p>
+<p>Thus,
+&gt;&gt;&gt; for zipped in izip_stretched([1, 2, 3], -1):
+print zipped
+(1, -1)
+(2, -1)
+(3, -1)</p>
+<p>is equivalent to
+&gt;&gt;&gt; for zipped in izip([1, 2, 3], [-1] * 3):
+print zipped
+(1, -1)
+(2, -1)
+(3, -1)</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="lrep"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">lrep</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">n</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Replicate x n-times on a new first dimension
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="matmult"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">matmult</span>(<span class="sig-arg">a</span>,
+        <span class="sig-arg">b</span>,
+        <span class="sig-arg">alpha</span>=<span class="sig-default">1.0</span>,
+        <span class="sig-arg">beta</span>=<span class="sig-default">0.0</span>,
+        <span class="sig-arg">c</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">trans_a</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">trans_b</span>=<span class="sig-default">0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Return alpha*(a*b) + beta*c.
+a,b,c : matrices
+alpha, beta: scalars
+trans_a : 0 (a not transposed), 1 (a transposed),
+          2 (a conjugate transposed)
+trans_b : 0 (b not transposed), 1 (b transposed),
+          2 (b conjugate transposed)
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="mult"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mult</span>(<span class="sig-arg">a</span>,
+        <span class="sig-arg">b</span>,
+        <span class="sig-arg">out</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Dot product of two arrays.
+
+For 2-D arrays it is equivalent to matrix multiplication, and for 1-D
+arrays to inner product of vectors (without complex conjugation). For
+N dimensions it is a sum product over the last axis of `a` and
+the second-to-last of `b`::
+
+    dot(a, b)[i,j,k,m] = sum(a[i,j,:] * b[k,:,m])
+
+Parameters
+----------
+a : array_like
+    First argument.
+b : array_like
+    Second argument.
+out : ndarray, optional
+    Output argument. This must have the exact kind that would be returned
+    if it was not used. In particular, it must have the right type, must be
+    C-contiguous, and its dtype must be the dtype that would be returned
+    for `dot(a,b)`. This is a performance feature. Therefore, if these
+    conditions are not met, an exception is raised, instead of attempting
+    to be flexible.
+
+Returns
+-------
+output : ndarray
+    Returns the dot product of `a` and `b`.  If `a` and `b` are both
+    scalars or both 1-D arrays then a scalar is returned; otherwise
+    an array is returned.
+    If `out` is given, then it is returned.
+
+Raises
+------
+ValueError
+    If the last dimension of `a` is not the same size as
+    the second-to-last dimension of `b`.
+
+See Also
+--------
+vdot : Complex-conjugating dot product.
+tensordot : Sum products over arbitrary axes.
+einsum : Einstein summation convention.
+matmul : '@' operator as method with out parameter.
+
+Examples
+--------
+&gt;&gt;&gt; np.dot(3, 4)
+12
+
+Neither argument is complex-conjugated:
+
+&gt;&gt;&gt; np.dot([2j, 3j], [2j, 3j])
+(-13+0j)
+
+For 2-D arrays it is the matrix product:
+
+&gt;&gt;&gt; a = [[1, 0], [0, 1]]
+&gt;&gt;&gt; b = [[4, 1], [2, 2]]
+&gt;&gt;&gt; np.dot(a, b)
+array([[4, 1],
+       [2, 2]])
+
+&gt;&gt;&gt; a = np.arange(3*4*5*6).reshape((3,4,5,6))
+&gt;&gt;&gt; b = np.arange(3*4*5*6)[::-1].reshape((5,4,6,3))
+&gt;&gt;&gt; np.dot(a, b)[2,3,2,1,2,2]
+499128
+&gt;&gt;&gt; sum(a[2,3,2,:] * b[1,2,:,2])
+499128
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="mult_diag"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mult_diag</span>(<span class="sig-arg">d</span>,
+        <span class="sig-arg">mtx</span>,
+        <span class="sig-arg">left</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Multiply a full matrix by a diagonal matrix.
+This function should always be faster than dot.</p>
+<dl class="rst-docutils">
+<dt>Input:</dt>
+<dd>d -- 1D (N,) array (contains the diagonal elements)
+mtx -- 2D (N,N) array</dd>
+<dt>Output:</dt>
+<dd>mult_diag(d, mts, left=True) == dot(diag(d), mtx)
+mult_diag(d, mts, left=False) == dot(mtx, diag(d))</dd>
+</dl>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="nongeneral_svd"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">nongeneral_svd</span>(<span class="sig-arg">A</span>,
+        <span class="sig-arg">range</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  SVD routine for simple eigenvalue problem, API is compatible with
+symeig.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="norm2"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">norm2</span>(<span class="sig-arg">v</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Compute the 2-norm for 1D arrays.
+norm2(v) = sqrt(sum(v_i^2))
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="orthogonal_permutations"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">orthogonal_permutations</span>(<span class="sig-arg">a_dict</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Takes a dictionary with lists as keys and returns all permutations
+of these list elements in new dicts.</p>
+<p>This function is useful, when a method with several arguments
+shall be tested and all of the arguments can take several values.</p>
+<p>The order is not defined, therefore the elements should be
+orthogonal to each other.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">for</span> i <span class="py-keyword">in</span> orthogonal_permutations({<span class="py-string">'a'</span>: [1,2,3], <span class="py-string">'b'</span>: [4,5]}):
+<span class="py-output">        print i</span>
+<span class="py-output">{'a': 1, 'b': 4}</span>
+<span class="py-output">{'a': 1, 'b': 5}</span>
+<span class="py-output">{'a': 2, 'b': 4}</span>
+<span class="py-output">{'a': 2, 'b': 5}</span>
+<span class="py-output">{'a': 3, 'b': 4}</span>
+<span class="py-output">{'a': 3, 'b': 5}</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="permute"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">permute</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">indices</span>=<span class="sig-default"><code class="variable-group">(</code>0<code class="variable-op">, </code>0<code class="variable-group">)</code></span>,
+        <span class="sig-arg">rows</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">cols</span>=<span class="sig-default">1</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Swap two columns and (or) two rows of 'x', whose indices are specified
+in indices=[i,j].
+Note: permutations are done in-place. You'll lose your original matrix
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="pinv"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">pinv</span>(<span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="progressinfo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">progressinfo</span>(<span class="sig-arg">sequence</span>,
+        <span class="sig-arg">length</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">style</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">bar</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">custom</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+A fully configurable text-mode progress info box tailored to the
+  command-line die-hards.
+
+  To get a progress info box for your loops use it like this:
+
+     &gt;&gt;&gt; for i in progressinfo(sequence):
+     ...     do_something(i)
+
+ You can also use it with generators, files or any other iterable object,
+ but in this case you have to specify the total length of the sequence:
+
+     &gt;&gt;&gt; for line in progressinfo(open_file, nlines):
+     ...     do_something(line)
+
+ If the number of iterations is not known in advance, you may prefer
+ to iterate on the items directly. This can be useful for example if
+ you are downloading a big file in a subprocess and want to monitor
+ the progress. If the file to be downloaded is TOTAL bytes large and
+ you are downloading it on local:
+     &gt;&gt;&gt; def done():
+     ...     yield os.path.getsize(localfile)
+     &gt;&gt;&gt; for bytes in progressinfo(done(), -TOTAL)
+     ...     time.sleep(1)
+     ...     if download_process_has_finished():
+     ...         break
+
+
+Arguments:
+
+sequence    - if it is a Python container object (list,
+              dict, string, etc...) and it supports the
+              __len__ method call, the length argument can
+              be omitted. If it is an iterator (generators,
+              file objects, etc...) the length argument must
+              be specified.
+
+Keyword arguments:
+
+length     - length of the sequence. Automatically set
+             if `sequence' has the __len__ method. If length is
+             negative, iterate on items.
+
+style      - If style == 'bar', display a progress bar. The
+             default layout is:
+
+             [===========60%===&gt;.........]
+
+             If style == 'timer', display a time elapsed / time
+             remaining info box. The default layout is:
+
+             23% [02:01:28] - [00:12:37]
+
+             where fields have the following meaning:
+
+             percent_done% [time_elapsed] - [time_remaining]
+
+custom     - a dictionary for customizing the layout.
+             Default layout for the 'bar' style:
+              custom = { 'indent': '',
+                         'width' : terminal_width - 1,
+                         'position' : 'middle',
+                         'delimiters' : '[]',
+                         'char1' : '=',
+                         'char2' : '&gt;',
+                         'char3' : '.' }
+
+
+             Default layout for the 'timer' style:
+              custom = { 'speed': 'mean',
+                         'indent': '',
+                         'position' : 'left',
+                         'delimiters' : '[]',
+                         'separator' : ' - ' }
+
+             Description:
+               speed = completion time estimation method, must be one of
+                       ['mean', 'last']. 'mean' uses average speed, 'last'
+                       uses last step speed.
+               indent = string used for indenting the progress info box
+               position = position of the percent done string,
+                          must be one out of ['left', 'middle', 'right']
+
+
+Note 1: by default sys.stdout is flushed each time a new box is drawn.
+        If you need to rely on buffered stdout you'd better not use this
+        (any?) progress info box.
+Note 2: progressinfo slows down your loops. Always profile your scripts
+        and check that you are not wasting 99% of the time in drawing
+        the progress info box.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="random_rot"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">random_rot</span>(<span class="sig-arg">dim</span>,
+        <span class="sig-arg">dtype</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">d</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Return a random rotation matrix, drawn from the Haar distribution
+(the only uniform distribution on SO(n)).
+The algorithm is described in the paper
+Stewart, G.W., &quot;The efficient generation of random orthogonal
+matrices with an application to condition estimators&quot;, SIAM Journal
+on Numerical Analysis, 17(3), pp. 403-409, 1980.
+For more information see
+<a class="rst-reference external" href="http://en.wikipedia.org/wiki/Orthogonal_matrix#Randomization" target="_top">http://en.wikipedia.org/wiki/Orthogonal_matrix#Randomization</a>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="refcast"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">refcast</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">dtype</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Cast the array to dtype only if necessary, otherwise return a reference.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="rotate"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">rotate</span>(<span class="sig-arg">mat</span>,
+        <span class="sig-arg">angle</span>,
+        <span class="sig-arg">columns</span>=<span class="sig-default"><code class="variable-group">(</code>0<code class="variable-op">, </code>1<code class="variable-group">)</code></span>,
+        <span class="sig-arg">units</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">radians</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Rotate in-place data matrix (NxM) in the plane defined by the columns=[i,j]
+when observation are stored on rows. Observations are rotated
+counterclockwise. This corresponds to the following matrix-multiplication
+for each data-point (unchanged elements omitted):</p>
+<blockquote>
+<dl class="rst-docutils">
+<dt>[  cos(angle) -sin(angle)     [ x_i ]</dt>
+<dd>sin(angle)  cos(angle) ] * [ x_j ]</dd>
+</dl>
+</blockquote>
+<p>If M=2, columns=[0,1].</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="rrep"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">rrep</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">n</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Replicate x n-times on a new last dimension
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="scast"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">scast</span>(<span class="sig-arg">scalar</span>,
+        <span class="sig-arg">dtype</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Convert a scalar in a 0D array of the given dtype.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="sign_to_bool"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">sign_to_bool</span>(<span class="sig-arg">an_array</span>,
+        <span class="sig-arg">zero</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return False for each negative value, else True.</p>
+<p>The value for 0 is specified with 'zero'.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="slideshow_css"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">slideshow_css</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Return the additional CSS for a slideshow.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="solve"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">solve</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="sqrtm"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">sqrtm</span>(<span class="sig-arg">A</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  This is a symmetric definite positive matrix sqrt function
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="svd"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">svd</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">compute_uv</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Wrap the numx SVD routine, so that it returns arrays of the correct
+dtype and a SymeigException in case of failures.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="symeig_semidefinite_ldl"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">symeig_semidefinite_ldl</span>(<span class="sig-arg">A</span>,
+        <span class="sig-arg">B</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">eigenvectors</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">turbo</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">on</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">rng</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">overwrite</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">rank_threshold</span>=<span class="sig-default">1e-12</span>,
+        <span class="sig-arg">dfc_out</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+LDL-based routine to solve generalized symmetric positive semidefinite
+eigenvalue problems.
+This can be used in case the normal symeig() call in _stop_training()
+throws SymeigException ('Covariance matrices may be singular').
+
+This solver uses SciPy's raw LAPACK interface to access LDL decomposition.
+www.netlib.org/lapack/lug/node54.html describes how to solve a
+generalized eigenvalue problem with positive definite B using Cholesky/LL
+decomposition. We extend this method to solve for positive semidefinite B
+using LDL decomposition, which is a variant of Cholesky/LL decomposition
+for indefinite Matrices.
+Accessing raw LAPACK's LDL decomposition (sytrf) is challenging. This code
+is partly based on code for SciPy 1.1:
+github.com/scipy/scipy/pull/7941/files#diff-9bf9b4b2f0f40415bc0e72143584c889
+We optimized and shortened that code for the real-valued positive
+semidefinite case.
+
+This procedure is almost as efficient as the ordinary eigh implementation.
+This is because implementations for symmetric generalized eigenvalue
+problems usually perform the Cholesky approach mentioned above. The more
+general LDL decomposition is only slightly more expensive than Cholesky,
+due to pivotization.
+
+
+The signature of this function equals that of mdp.utils.symeig, but
+has two additional parameters:
+
+rank_threshold: A threshold to determine if an eigenvalue counts as zero.
+
+dfc_out: If dfc_out is not None dfc_out.rank_deficit will be set to an
+         integer indicating how many zero-eigenvalues were detected.
+
+
+Note:
+This method requires SciPy &gt;= 1.0.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="symeig_semidefinite_pca"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">symeig_semidefinite_pca</span>(<span class="sig-arg">A</span>,
+        <span class="sig-arg">B</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">eigenvectors</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">turbo</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">on</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">range</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">overwrite</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">rank_threshold</span>=<span class="sig-default">1e-12</span>,
+        <span class="sig-arg">dfc_out</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+PCA-based routine to solve generalized symmetric positive semidefinite
+eigenvalue problems.
+This can be used in case the normal symeig() call in _stop_training()
+throws SymeigException ('Covariance matrices may be singular').
+
+It applies PCA to B and filters out rank deficit before it applies
+symeig() to A.
+It is roughly twice as expensive as the ordinary eigh implementation.
+
+
+The signature of this function equals that of mdp.utils.symeig, but
+has two additional parameters:
+
+rank_threshold: A threshold to determine if an eigenvalue counts as zero.
+
+dfc_out: If dfc_out is not None dfc_out.rank_deficit will be set to an
+         integer indicating how many zero-eigenvalues were detected.
+
+
+Note:
+The advantage compared to prepending a PCA node is that in execution
+phase all data needs to be processed by one step less. That is because
+this approach includes the PCA into e.g. the SFA execution matrix.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="symeig_semidefinite_reg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">symeig_semidefinite_reg</span>(<span class="sig-arg">A</span>,
+        <span class="sig-arg">B</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">eigenvectors</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">turbo</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">on</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">range</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">overwrite</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">rank_threshold</span>=<span class="sig-default">1e-12</span>,
+        <span class="sig-arg">dfc_out</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Regularization-based routine to solve generalized symmetric positive
+semidefinite eigenvalue problems.
+This can be used in case the normal symeig() call in _stop_training()
+throws SymeigException ('Covariance matrices may be singular').
+
+This solver applies a moderate regularization to B before applying
+eigh/symeig. Afterwards it properly detects the rank deficit and
+filters out malformed features.
+For full range, this procedure is (approximately) as efficient as the
+ordinary eigh implementation, because all additional steps are
+computationally cheap.
+For shorter range, the LDL method should be preferred.
+
+
+The signature of this function equals that of mdp.utils.symeig, but
+has two additional parameters:
+
+rank_threshold: A threshold to determine if an eigenvalue counts as zero.
+
+dfc_out: If dfc_out is not None dfc_out.rank_deficit will be set to an
+         integer indicating how many zero-eigenvalues were detected.
+
+
+Note:
+For efficiency reasons it actually modifies the matrix B
+(even if overwrite=False), but the changes are negligible.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="symeig_semidefinite_svd"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">symeig_semidefinite_svd</span>(<span class="sig-arg">A</span>,
+        <span class="sig-arg">B</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">eigenvectors</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">turbo</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">on</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">range</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">overwrite</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">rank_threshold</span>=<span class="sig-default">1e-12</span>,
+        <span class="sig-arg">dfc_out</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+SVD-based routine to solve generalized symmetric positive semidefinite
+eigenvalue problems.
+This can be used in case the normal symeig() call in _stop_training()
+throws SymeigException ('Covariance matrices may be singular').
+
+This solver's computational cost depends on the underlying SVD
+implementation. Its dominant cost factor consists of two SVD runs.
+
+rank_threshold=1e-12
+dfc_out=None
+
+For details on the used algorithm see:
+    http://www.geo.tuwien.ac.at/downloads/tm/svd.pdf (section 0.3.2)
+
+
+The signature of this function equals that of mdp.utils.symeig, but
+has two additional parameters:
+
+rank_threshold: A threshold to determine if an eigenvalue counts as zero.
+
+dfc_out: If dfc_out is not None dfc_out.rank_deficit will be set to an
+         integer indicating how many zero-eigenvalues were detected.
+
+
+Note:
+The parameters eigenvectors, turbo, type, overwrite are not used.
+They only exist to provide a symeig compatible signature.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="symrand"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">symrand</span>(<span class="sig-arg">dim_or_eigv</span>,
+        <span class="sig-arg">dtype</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">d</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return a random symmetric (Hermitian) matrix.</p>
+<dl class="rst-docutils">
+<dt>If 'dim_or_eigv' is an integer N, return a NxN matrix, with eigenvalues</dt>
+<dd>uniformly distributed on (-1,1).</dd>
+<dt>If 'dim_or_eigv' is  1-D real array 'a', return a matrix whose</dt>
+<dd>eigenvalues are 'a'.</dd>
+</dl>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="timediff"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">timediff</span>(<span class="sig-arg">data</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  Returns the array of the time differences of data.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="weighted_choice"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">weighted_choice</span>(<span class="sig-arg">a_dict</span>,
+        <span class="sig-arg">normalize</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    >&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a key from a dictionary based on the weight that the value suggests.
+If 'normalize' is False, it is assumed the weights sum up to unity. Otherwise,
+the algorithm will take care of normalising.</p>
+<p>Example:
+&gt;&gt;&gt; d = {'a': 0.1, 'b': 0.5, 'c': 0.4}
+&gt;&gt;&gt; weighted_choice(d)
+# draws 'b':'c':'a' with 5:4:1 probability</p>
+<p>TODO: It might be good to either shuffle the order or explicitely specify it,
+before walking through the items, to minimise possible degeneration.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="FIXUP_DEBUG"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">FIXUP_DEBUG</h3>
+  <pre class="literalblock">
+hash(x)
+
+</pre>
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+None
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__package__"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__package__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'</code><code class="variable-string">mdp.utils</code><code class="variable-quote">'</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="mdp-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://mdp-toolkit.github.io">Modular toolkit for Data Processing MDP</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1-MDP on Mon Apr 27 21:56:15 2020
+    </td>
+    <td align="right" class="footer">
+      <a target="_blank" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

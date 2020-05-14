@@ -1,0 +1,225 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>BiMDP Custom Inspection &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Node List" href="../../node_list.html" />
+    <link rel="prev" title="BiMDP Hinet Inspection" href="bimdp_hinet_inspection.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="https://mdp-toolkit.github.io">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logmap/logmap.html">Logistic Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lle/lle.html">Locally Linear Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gng/gng.html">Growing Neural Gas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution/image_convolution.html">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bayes_guesser/bayes_guesser.html">Bayes Guesser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../word_generator/word_generator.html">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binetdbn/dbn.html">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://mdp-toolkit.github.io/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bimdp-custom-inspection">
+<span id="id1"></span><h1>BiMDP Custom Inspection<a class="headerlink" href="#bimdp-custom-inspection" title="Permalink to this headline">¶</a></h1>
+<p>Download <a class="reference download internal" href="../../_downloads/bimdp_custom_inspection.py" download=""><code class="xref download docutils literal"><span class="pre">bimdp_custom_inspection.py</span></code></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Test the inspection of a normal (non-bi) Flow with a customized visualization.</span>
+
+<span class="sd">This demonstrates how one can write custom TraceHTMLTranslator classes to</span>
+<span class="sd">conveniently create rich visualizations with the BiMDP trace inspection.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">mdp</span>
+<span class="kn">import</span> <span class="nn">bimdp</span>
+
+
+<span class="k">class</span> <span class="nc">CustomTraceHTMLConverter</span><span class="p">(</span><span class="n">bimdp</span><span class="o">.</span><span class="n">TraceHTMLConverter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Custom TraceHTMLTranslator to visualize the SFA node output.</span>
+
+<span class="sd">    This class also demonstrates how to use custom section_id values, and how</span>
+<span class="sd">    to correctly reset internal variables via the reset method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flow_html_converter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CustomTraceHTMLConverter</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+                                    <span class="n">flow_html_converter</span><span class="o">=</span><span class="n">flow_html_converter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sect_counter</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset the section counter.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CustomTraceHTMLConverter</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sect_counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">_write_data_html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">html_file</span><span class="p">,</span> <span class="n">flow</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span>
+                         <span class="n">method_result</span><span class="p">,</span> <span class="n">method_args</span><span class="p">,</span> <span class="n">method_kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Write the result part of the translation.&quot;&quot;&quot;</span>
+        <span class="c1"># check if we have reached the right node</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">BiNode</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">node_id</span> <span class="o">==</span> <span class="s2">&quot;sfa&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sect_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">html_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&lt;h3&gt;visualization (in section </span><span class="si">%d</span><span class="s2">)&lt;h3&gt;&quot;</span> <span class="o">%</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_sect_counter</span><span class="p">)</span>
+            <span class="n">slide_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">html_file</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span>
+            <span class="n">image_filename</span> <span class="o">=</span> <span class="n">slide_name</span> <span class="o">+</span> <span class="s2">&quot;_</span><span class="si">%d</span><span class="s2">.png&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sect_counter</span>
+            <span class="c1"># plot the y result values</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+            <span class="n">ys</span> <span class="o">=</span> <span class="n">method_result</span>
+            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;y sample </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ys</span><span class="p">))])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;SFA node output&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;coordinate&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y value&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">image_filename</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+            <span class="n">html_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&lt;img src=&quot;</span><span class="si">%s</span><span class="s1">&quot;&gt;&#39;</span> <span class="o">%</span> <span class="n">image_filename</span><span class="p">)</span>
+        <span class="n">section_id</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sect_counter</span>
+        <span class="c1"># now add the standard stuff</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CustomTraceHTMLConverter</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_write_data_html</span><span class="p">(</span>
+                               <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">html_file</span><span class="o">=</span><span class="n">html_file</span><span class="p">,</span> <span class="n">flow</span><span class="o">=</span><span class="n">flow</span><span class="p">,</span>
+                               <span class="n">node</span><span class="o">=</span><span class="n">node</span><span class="p">,</span> <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
+                               <span class="n">method_result</span><span class="o">=</span><span class="n">method_result</span><span class="p">,</span>
+                               <span class="n">method_args</span><span class="o">=</span><span class="n">method_args</span><span class="p">,</span>
+                               <span class="n">method_kwargs</span><span class="o">=</span><span class="n">method_kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">section_id</span>
+
+
+<span class="c1">## Create the flow.</span>
+<span class="n">noisenode</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">NormalNoiseNode</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">20</span><span class="o">*</span><span class="mi">20</span><span class="p">,</span>
+                                      <span class="n">noise_args</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">))</span>
+<span class="n">sfa_node</span> <span class="o">=</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">SFABiNode</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">20</span><span class="o">*</span><span class="mi">20</span><span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span>
+                                 <span class="n">node_id</span><span class="o">=</span><span class="s2">&quot;sfa&quot;</span><span class="p">)</span>
+<span class="n">switchboard</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">hinet</span><span class="o">.</span><span class="n">Rectangular2dSwitchboard</span><span class="p">(</span>
+                                          <span class="n">in_channels_xy</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                          <span class="n">field_channels_xy</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                                          <span class="n">field_spacing_xy</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">flownode</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">hinet</span><span class="o">.</span><span class="n">FlowNode</span><span class="p">(</span><span class="n">mdp</span><span class="o">.</span><span class="n">Flow</span><span class="p">([</span><span class="n">noisenode</span><span class="p">,</span> <span class="n">sfa_node</span><span class="p">]))</span>
+<span class="n">sfa_layer</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">hinet</span><span class="o">.</span><span class="n">CloneLayer</span><span class="p">(</span><span class="n">flownode</span><span class="p">,</span> <span class="n">switchboard</span><span class="o">.</span><span class="n">output_channels</span><span class="p">)</span>
+<span class="n">flow</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">Flow</span><span class="p">([</span><span class="n">switchboard</span><span class="p">,</span> <span class="n">sfa_layer</span><span class="p">])</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">cast</span><span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">](</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="o">*</span><span class="mi">100</span><span class="p">)))</span>
+              <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">flow</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">data_iterables</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">train_data</span><span class="p">])</span>
+
+<span class="c1">## This is where the inspection happens.</span>
+<span class="n">html_converter</span> <span class="o">=</span> <span class="n">CustomTraceHTMLConverter</span><span class="p">()</span>
+<span class="c1"># note that we could also specify a custom CSS file, via css_filename</span>
+<span class="n">tracer</span> <span class="o">=</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">InspectionHTMLTracer</span><span class="p">(</span><span class="n">html_converter</span><span class="o">=</span><span class="n">html_converter</span><span class="p">)</span>
+<span class="n">filename</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="n">bimdp</span><span class="o">.</span><span class="n">show_execution</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">train_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                     <span class="n">tracer</span><span class="o">=</span><span class="n">tracer</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="s2">&quot;done.&quot;</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-05-14 10:38:20 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>
