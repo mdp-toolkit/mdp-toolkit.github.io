@@ -287,13 +287,18 @@ post an issue on
 If this happens during a test of MDP, locally or in a CI service, the problem
 is typically easy to reproduce like this::
 
-       pytest --seed==INTEGER mdp/test/test_FUNCTIONALITY.py -k test_NAME
+       pytest --seed==SEED mdp/test/test_FUNCTIONALITY.py -k test_NAME
 
-Here ``INTEGER`` is the random seed, ``FUNCTIONALITY`` describes the component
-of MDP for which ``test_FUNCTIONALITY.py`` contains test and ``NAME`` is the
-name of the failing test. The values can be read out of the pytest report
-after a failed test run. The problem can be spotted by the other
-developers of MDP if the data is added to
+The variables have the following meaning:
+
+* ``SEED``: the random seed,
+* ``FUNCTIONALITY``: describes the component of MDP that is tested and
+* ``NAME``: the name of the failing test.
+
+The values can be read out of the pytest report after a failed test run.
+Further useful information is given by the versions of Python and the MDP
+dependencies for which the test failed. The other developers of MDP can spot
+the problem if the data is added to
 `the file dedicated to collecting such data <https://github.com/mdp-toolkit/mdp-toolkit/blob/master/BROKEN_SEEDS/>`_.
 
 ------------------------

@@ -336,14 +336,19 @@ post an issue on
 <a class="reference external" href="https://github.com/mdp-toolkit/mdp-toolkit/issues/">MDP’s issue tracker</a>.
 If this happens during a test of MDP, locally or in a CI service, the problem
 is typically easy to reproduce like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="o">--</span><span class="n">seed</span><span class="o">==</span><span class="n">INTEGER</span> <span class="n">mdp</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test_FUNCTIONALITY</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">k</span> <span class="n">test_NAME</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="o">--</span><span class="n">seed</span><span class="o">==</span><span class="n">SEED</span> <span class="n">mdp</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test_FUNCTIONALITY</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">k</span> <span class="n">test_NAME</span>
 </pre></div>
 </div>
-<p>Here <code class="docutils literal"><span class="pre">INTEGER</span></code> is the random seed, <code class="docutils literal"><span class="pre">FUNCTIONALITY</span></code> describes the component
-of MDP for which <code class="docutils literal"><span class="pre">test_FUNCTIONALITY.py</span></code> contains test and <code class="docutils literal"><span class="pre">NAME</span></code> is the
-name of the failing test. The values can be read out of the pytest report
-after a failed test run. The problem can be spotted by the other
-developers of MDP if the data is added to
+<p>The variables have the following meaning:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">SEED</span></code>: the random seed,</li>
+<li><code class="docutils literal"><span class="pre">FUNCTIONALITY</span></code>: describes the component of MDP that is tested and</li>
+<li><code class="docutils literal"><span class="pre">NAME</span></code>: the name of the failing test.</li>
+</ul>
+<p>The values can be read out of the pytest report after a failed test run.
+Further useful information is given by the versions of Python and the MDP
+dependencies for which the test failed. The other developers of MDP can spot
+the problem if the data is added to
 <a class="reference external" href="https://github.com/mdp-toolkit/mdp-toolkit/blob/master/BROKEN_SEEDS/">the file dedicated to collecting such data</a>.</p>
 </div>
 </div>
@@ -445,7 +450,7 @@ comments and remarks :-)</p>
         </td>
         <td class="footer-center">
           Last updated on
-             2020-05-15 1:18:28 AM Coordinated Universal Time
+             2020-05-17 11:52:12 PM Coordinated Universal Time
         </td>
         <td class="footer-right">
          <form class="search" action="search.html" method="get">
