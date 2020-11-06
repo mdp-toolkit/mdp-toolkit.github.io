@@ -1,0 +1,10 @@
+.. _gsfa_code:
+
+==================================
+Code snippets for page :ref:`gsfa`
+==================================
+
+Download :download:`gsfa.py </code/examples/gsfa/gsfa.py>`.
+Browse the :ref:`code snippet index <code_snippets>`.
+
+.. literalinclude:: /code/examples/gsfa/gsfa.py

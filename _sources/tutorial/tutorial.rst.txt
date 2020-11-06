@@ -14,7 +14,7 @@ Tutorial
 
 .. only:: latex
 
-    This document is also available `online. <https://mdp-toolkit.github.io/tutorial/tutorial.html>`_
+    This document is also available `online. <http://mdp-toolkit.sourceforge.net/tutorial/tutorial.html>`_
 
 
 This is a guide to basic and some more advanced features of
@@ -25,7 +25,7 @@ attributes and methods have telling names: All information about a
 node can be obtained using  the ``help`` and ``dir`` functions within
 the Python interpreter. In addition to that, an automatically generated
 `API documentation
-<https://mdp-toolkit.github.io/api/index.html>`_
+<http://mdp-toolkit.sourceforge.net/api/index.html>`_
 is available.
 
 .. Note::
@@ -48,7 +48,7 @@ is available.
 .. only:: latex
 
    You'll find all the code of this tutorial `online
-   <https://mdp-toolkit.github.io/code/code_snippets.html>`_.
+   <http://mdp-toolkit.sourceforge.net/code/code_snippets.html>`_.
 
 
 .. toctree::

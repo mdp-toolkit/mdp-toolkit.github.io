@@ -25,3 +25,4 @@ Code Snippets
    examples/lle/lle.rst
    tutorial/flows.rst
    tutorial/nodes.rst
+   examples/gsfa/gsfa.rst

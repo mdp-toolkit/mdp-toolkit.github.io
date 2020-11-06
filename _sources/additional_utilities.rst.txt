@@ -6,7 +6,7 @@ Additional utilities
 
 MDP offers some additional utilities of general interest
 in the ``mdp.utils`` module. Refer to the
-`API <https://mdp-toolkit.github.io/docs/api/index.html>`_
+`API <http://mdp-toolkit.sourceforge.net/docs/api/index.html>`_
 for the full documentation and interface description.
 
 :api:`mdp.utils.CovarianceMatrix`
