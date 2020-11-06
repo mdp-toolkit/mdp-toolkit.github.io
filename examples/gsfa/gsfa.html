@@ -1,0 +1,471 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Graph-based SFA (GSFA) &#8212; Modular toolkit for Data Processing (MDP)</title>
+    <link rel="stylesheet" href="../../_static/mdp.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '3.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Logo Animation" href="../logo/logo_animation.html" />
+    <link rel="prev" title="Handwritten digits classification with MDP and scikits.learn" href="../scikits_learn/digit_classification.html" /> 
+<meta name="viewport" content="width=740" />
+
+  </head>
+  <body>
+<div id="header">
+    <table width="100%">
+	<tr>
+	    <td class="td_header_left">
+		<a href="http://mdp-toolkit.sourceforge.net">
+		    Modular toolkit for<br />Data Processing
+		</a>
+	    </td>
+	    <td class="td_header_right">
+		<a href="../logo/logo_animation.html">
+		    <img src="../../_static/logo.png" alt="MDP logo"
+			 title="click to see the animated logo!" class="img_header"/>
+		</a>
+	    </td>
+	</tr>
+    </table>
+    <div class="clear"></div>
+</div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div class="navigation_title"><a href="../../index.html">Home</a></div>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/tutorial.html">Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logmap/logmap.html">Logistic Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lle/lle.html">Locally Linear Embedding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gng/gng.html">Growing Neural Gas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../convolution/image_convolution.html">Fast image filtering using the caching extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scikits_learn/digit_classification.html">Handwritten digits classification with MDP and scikits.learn</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Graph-based SFA (GSFA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logo/logo_animation.html">Logo Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bayes_guesser/bayes_guesser.html">Bayes Guesser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../word_generator/word_generator.html">Word generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html">Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../slideshow/slideshow.html#double-slideshow">Double slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gradnewton/gradnewton.html">Gradient Descent and the Newton Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binetdbn/dbn.html">Deep Belief Network (DBN) based on BiMDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_inverse.html">BiMDP flow inversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_hinet_inspection.html">BiMDP Hinet Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bimdp_examples/bimdp_custom_inspection.html">BiMDP Custom Inspection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../node_list.html">Node List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../additional_utilities.html">Additional utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l2"><a class="reference external" href="http://mdp-toolkit.sourceforge.net/api/index.html">API documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../talks/talks.html">Talks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_cite_mdp.html">How to cite MDP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact.html">Contact</a></li>
+</ul>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+   
+   
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="graph-based-sfa-gsfa">
+<span id="gsfa"></span><h1>Graph-based SFA (GSFA)<a class="headerlink" href="#graph-based-sfa-gsfa" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-codesnippet admonition" id="codesnippet-0">
+<p class="first admonition-title">CodeSnippet</p>
+<p class="last">You can download all the code on this page from the <a class="reference external" href="http://mdp-toolkit.sourceforge.net/code/examples/gsfa/gsfa.html">code snippets directory</a></p>
+</div>
+<ul class="simple">
+<li>Extension of Slow Feature Analysis (SFA)</li>
+<li>Supervised dimensionality reduction method</li>
+<li>Trained with a graph in which the vertices are the samples and the
+edges represent similarities of the corresponding labels</li>
+</ul>
+<p>Graph-based Slow Feature Analysis (GSFA) is a supervised extension of
+SFA <a class="footnote-reference" href="#id8" id="id1">[1]</a> that relies on a particular graph structure to extract
+features that preserve label similarities. More precisely, the algorithm
+utilizes training graphs in which the vertices are the samples, and the
+edges represent similarities of the corresponding labels. Later, we use
+the acquired low-dimensional representation of the original data to train
+a typical supervised learning algorithm.</p>
+<p>In this example, we briefly explain the idea behind GSFA <a class="footnote-reference" href="#id9" id="id2">[2]</a> and
+specify the optimization task it solves. Moreover, we show the
+efficiency of GSFA compared to a support vector machine (SVM) on a toy
+dataset and introduce an approach that makes the classification task more
+interpretable.</p>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title"><strong>Table of contents</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="#classification-using-gsfa" id="id10">1. Classification using GSFA</a></li>
+<li><a class="reference internal" href="#idea-behind-gsfa" id="id11">2. Idea behind GSFA</a></li>
+<li><a class="reference internal" href="#training-graphs" id="id12">3. Training graphs</a></li>
+<li><a class="reference internal" href="#gsfa-optimization-problem" id="id13">4. GSFA optimization problem</a></li>
+<li><a class="reference internal" href="#linear-gsfa-algorithm" id="id14">5. Linear GSFA algorithm</a></li>
+<li><a class="reference internal" href="#references" id="id15">References</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="classification-using-gsfa">
+<span id="id3"></span><h2><a class="toc-backref" href="#id10">1. Classification using GSFA</a><a class="headerlink" href="#classification-using-gsfa" title="Permalink to this headline">¶</a></h2>
+<p>To show the benefits of the model and its efficiency, we solve a
+classification task based on the
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_breast_cancer.html">‘breast_cancer’</a>
+dataset of the scikit-learn library. More precisely, we use an SVM classifier
+as a baseline method and then demonstrate the effect of preprocessing the data
+via GSFA.</p>
+<p>The breast cancer dataset is a classical and straightforward binary
+classification dataset. Features are computed from a digitized image of
+a fine needle aspirate (FNA) of breast mass. They describe
+characteristics of the cell nuclei present in the image. It can be found
+on <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29">UCI Machine Learning
+Repository</a>.</p>
+<p><strong>Number of instances:</strong> 569</p>
+<p><strong>Number of attributes:</strong> 30 numeric, predictive attributes and the class</p>
+<p><strong>Attribute information:</strong></p>
+<ul class="simple">
+<li>radius (mean of distances from center to points on the perimeter)</li>
+<li>texture (standard deviation of gray-scale values)</li>
+<li>perimeter</li>
+<li>area</li>
+<li>smoothness (local variation in radius lengths)</li>
+<li>compactness (perimeter² / area - 1.0)</li>
+<li>concavity (severity of concave portions of the contour)</li>
+<li>concave points (number of concave portions of the contour)</li>
+<li>symmetry</li>
+<li>fractal dimension (“coastline approximation” - 1)</li>
+</ul>
+<p><em>The mean, standard error, and “worst” or largest (mean of the three
+worst/largest values) of these features were computed for each image,
+resulting in 30 features. For instance, field 0 is “Mean Radius”, field 10
+is “Radius SE”, field 20 is “Worst Radius”.</em></p>
+<p><strong>Class:</strong></p>
+<ul class="simple">
+<li>WDBC-Malignant</li>
+<li>WDBC-Benign</li>
+</ul>
+<p>First, we import the usual data science modules and
+<a class="reference external" href="https://mdp-toolkit.github.io">mdp</a> to use its GSFA
+implementation and other data processing tools.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">model_selection</span><span class="p">,</span> <span class="n">metrics</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+</pre></div>
+</div>
+<p>Now, from <cite>sklearn</cite> we load the <cite>breast_cancer</cite> dataset. We’ll use
+20% of the data for testing.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_breast_cancer</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_train</span><span class="p">,</span> <span class="n">data_test</span><span class="p">,</span> <span class="n">label_train</span><span class="p">,</span> <span class="n">label_test</span> <span class="o">=</span> \
+<span class="gp">... </span><span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We get the baseline SVM classification quality as follows:</p>
+<p><strong>SVM performance on training data:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">SVM_clf_train</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SVM_clf_train</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">label_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SVM_prediction_train</span> <span class="o">=</span> <span class="n">SVM_clf_train</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SVM train score: &quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">label_train</span><span class="p">,</span> <span class="n">SVM_prediction_train</span><span class="p">))</span>
+<span class="go">SVM train score:  1.0</span>
+</pre></div>
+</div>
+<p><strong>SVM performance on test data:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">SVM_clf_test</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SVM_clf_test</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">label_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SVM_prediction_test</span> <span class="o">=</span> <span class="n">SVM_clf_test</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SVM test score: &quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">label_test</span><span class="p">,</span> <span class="n">SVM_prediction_test</span><span class="p">))</span>
+<span class="go">SVM test score:  0.5877192982456141</span>
+</pre></div>
+</div>
+<p>Next, we train a GSFA model on the training data such that it computes the
+slowest features possible according to the GSFA optimization problem.
+Since the label information is encoded in the graph connectivity, the
+low-dimensional output is highly predictive for the labels.</p>
+<p>We set the output dimension parameter to 2, which allows us to
+represent the data in 2D coordinates.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">output_dim</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GSFA_n</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">GSFANode</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="n">output_dim</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GSFA_n</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">train_mode</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;classification&quot;</span><span class="p">,</span> <span class="n">label_train</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GSFA_n</span><span class="o">.</span><span class="n">stop_training</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This yields projections of the training and test data to the obtained feature space.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">GSFA_train</span> <span class="o">=</span> <span class="n">GSFA_n</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">data_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GSFA_test</span> <span class="o">=</span> <span class="n">GSFA_n</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We depict the reduced training and test data on a 2D plot as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">GSFA_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">GSFA_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">label_train</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">cmap</span><span class="o">=</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">colors</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">GSFA_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">GSFA_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">label_test</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">cmap</span><span class="o">=</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">colors</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Train data in 2-D&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Test data in 2-D&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/plots.png"><img alt="../../_images/plots.png" src="../../_images/plots.png" style="width: 700px;" /></a>
+<p><strong>As we can see, GSFA shows good performance in finding features that
+separate the data even in a two-dimensional representation.</strong></p>
+<p>We train an SVM on the data transformed with GSFA.</p>
+<p><strong>SVM performance on test data previously transformed with GSFA:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">GSFA_clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GSFA_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">GSFA_train</span><span class="p">,</span> <span class="n">label_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GSFA_SVM_test</span> <span class="o">=</span> <span class="n">GSFA_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">GSFA_test</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GSFA dimension reduction + SVM score: &quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">label_test</span><span class="p">,</span> <span class="n">GSFA_SVM_test</span><span class="p">))</span>
+<span class="go">GSFA dimension reduction + SVM score:  0.9649122807017544</span>
+</pre></div>
+</div>
+<p><strong>Model comparison</strong></p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">classifier</th>
+<th class="head">train_score</th>
+<th class="head">test_score</th>
+<th class="head">training_time</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SVM</td>
+<td>1.0</td>
+<td>0.588</td>
+<td>0.024</td>
+</tr>
+<tr class="row-odd"><td>GSFA + SVM</td>
+<td>1.0</td>
+<td>0.964</td>
+<td>0.057</td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+</div>
+<div class="section" id="idea-behind-gsfa">
+<span id="id4"></span><h2><a class="toc-backref" href="#id11">2. Idea behind GSFA</a><a class="headerlink" href="#idea-behind-gsfa" title="Permalink to this headline">¶</a></h2>
+<p>With a large number of high-dimensional labeled samples, supervised
+learning is often not feasible due to prohibitive computational
+requirements. In such cases, the following general scheme based
+on hierarchical GSFA is proposed:</p>
+<p>1. Transform the labeled data into structured data where the label information is implicitly encoded in the connections between the data points (samples). This permits using unsupervised learning algorithms such as SFA or its extension GSFA.</p>
+<p>2. Use hierarchical processing to reduce the dimensionality, resulting in low-dimensional data with component similarities strongly dependent on the graph connectivity. Since the label information is encoded in the graph connectivity, the low-dimensional data is highly predictive of the labels.</p>
+<p>3. Convert the (low-dimensional) data back to labeled data by combining the low-dimensional data points with the original labels or classes. This constitutes a dataset suitable for standard supervised learning methods because the dimensionality has become manageable.</p>
+<p>4. Use standard supervised learning methods on the low-dimensional labeled data to estimate the labels. The unsupervised hierarchical network, together with the supervised direct method, constitutes the classifier or regression architecture.</p>
+<p>In the case of GSFA, the structured training data is called a
+<em>training graph</em>, a weighted graph that has vertices representing
+the samples, vertex weights specifying a priori sample probabilities,
+and edge weights indicating desired output similarities derived from the labels.</p>
+<a class="reference internal image-reference" href="../../_images/approach.png"><img alt="../../_images/approach.png" class="align-center" src="../../_images/approach.png" style="width: 700px; height: 400px;" /></a>
+<hr class="docutils" />
+</div>
+<div class="section" id="training-graphs">
+<span id="id5"></span><h2><a class="toc-backref" href="#id12">3. Training graphs</a><a class="headerlink" href="#training-graphs" title="Permalink to this headline">¶</a></h2>
+<p>The training data is represented as a training graph
+<span class="math">\(G = (\textbf{V}, \textbf{E})\)</span> <em>(as illustrated in Figure bellow)</em>
+such that:</p>
+<ul class="simple">
+<li><span class="math">\(\textbf{V}\)</span> corresponds to the set of <span class="math">\(\textbf{x}(n)\)</span>
+<span class="math">\(\rightarrow\)</span> <em>each vertex of the graph is a sample</em></li>
+<li>Each edge of <span class="math">\(\textbf{E}\)</span> corresponds to a pair of samples
+<span class="math">\((\textbf{x}(n), \textbf{x}(n'))\)</span></li>
+</ul>
+<p><strong>Weights:</strong></p>
+<p>1. Edge weights indicate the <strong>similarity between the connected vertices</strong>. Since edges are undirected and have symmetric weights, i.e.,</p>
+<blockquote>
+<div><div class="math">
+\[\gamma_{n, n'} = \gamma_{n', n} \,.\]</div>
+</div></blockquote>
+<p>2. Each vertex  <span class="math">\(\textbf{x(}n\textbf{)}\)</span> has an associated weight <span class="math">\(v_n &gt; 0\)</span> that can be used to reflect its importance, frequency, or reliability.</p>
+<p>For instance, a sample frequently occurring in an observed phenomenon
+should have a larger weight than a rare sample. This representation
+includes the standard time series as a special case in which the graph
+has a linear structure and all node and edge weights are identical <em>(as
+illustrated in Figure(b))</em>.</p>
+<a class="reference internal image-reference" href="../../_images/training_graph.png"><img alt="../../_images/training_graph.png" src="../../_images/training_graph.png" style="width: 1300px; height: 300px;" /></a>
+<hr class="docutils" />
+</div>
+<div class="section" id="gsfa-optimization-problem">
+<span id="id6"></span><h2><a class="toc-backref" href="#id13">4. GSFA optimization problem</a><a class="headerlink" href="#gsfa-optimization-problem" title="Permalink to this headline">¶</a></h2>
+<p>The GSFA optimization problem over <span class="math">\(N\)</span> training samples can be
+stated as follows.</p>
+<p><strong>Given</strong>:</p>
+<p><span class="math">\(I\)</span> - dimensional input
+<span class="math">\(\textbf{x}(n) = (x_1(n), ..., x_I(n))^T\)</span> signal with
+<span class="math">\(1 \leq n \leq N\)</span></p>
+<p><strong>Find</strong>:</p>
+<p>vector-valued function
+<span class="math">\(\textbf{g}: \mathbb{R}^{I} \rightarrow \mathbb{R}^{J}\)</span> within
+a function space <span class="math">\(\mathcal{F}\)</span> such that for each component of the
+output signal <span class="math">\(\textbf{y}(n) := \textbf{g}(\textbf{x}(n))\)</span> (
+i.e. each <span class="math">\(y_j(n)\)</span> for <span class="math">\(1 \leq j \leq J\)</span>) the objective
+function</p>
+<div class="math">
+\[\Delta_j := \frac{1}{R} \sum_{n, n'} \gamma_{n, n'} (y_j(n') - y_j(n))^2 \tag*{(weighted delta value)}\]</div>
+<p>is minimal under the constraints</p>
+<div class="math">
+\[\frac{1}{Q} \sum_{n} v_n y_j(n) = 0 \tag*{(weighted zero mean)}\]</div>
+<div class="math">
+\[\frac{1}{Q} \sum_{n} v_n (y_j(n))^2 = 1 \tag*{(weighted unit variance)}\]</div>
+<div class="math">
+\[\frac{1}{Q} \sum_{n} v_n y_j(n) y_{j'}(n)= 0 \quad \text{for all} \,\, j' &lt; j \tag*{(weighted decorrelation)}\]</div>
+<p>with</p>
+<div class="math">
+\[R := \sum_{n, n'} \gamma_{n, n'}\]</div>
+<div class="math">
+\[Q := \sum_{n} v_n\]</div>
+<p>is optimized.</p>
+<p>In practice, the function <span class="math">\(\textbf{g}\)</span> is usually chosen from a
+finite-dimensional function space <span class="math">\(\mathcal{F}\)</span>, e.g., from the
+space of quadratic or linear functions. Highly complex function spaces
+should be avoided because they are expensive to handle and may result in
+overfitting.</p>
+<hr class="docutils" />
+</div>
+<div class="section" id="linear-gsfa-algorithm">
+<span id="id7"></span><h2><a class="toc-backref" href="#id14">5. Linear GSFA algorithm</a><a class="headerlink" href="#linear-gsfa-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>In this section we consider the solution of the GSFA problem in a linear
+function space. Hence, the output components take the form</p>
+<div class="math">
+\[y_j(n) = \textbf{w}_j^{T} (\textbf{x}(n) - \hat{\textbf{x}}) \,,\]</div>
+<p>where</p>
+<div class="math">
+\[\hat{\textbf{x}} = \frac{1}{Q} \sum_n v_n \textbf{x}_n \,. \tag*{(weighted average of all samples)}\]</div>
+<p>Thus, in the linear case, the SFA problem reduces to finding an optimal
+set of weight vectors <span class="math">\(w_j\)</span> under the constraints above. It
+can be solved by linear algebra methods.</p>
+<p>As previously, suppose</p>
+<dl class="docutils">
+<dt>1. Vertices</dt>
+<dd><span class="math">\(\textbf{V} = \{ \textbf{x}(1), \dots, \textbf{x}(N)\}\)</span> are the
+input samples with weights <span class="math">\(\{v_1, \dots, v_N\}\)</span>, and</dd>
+<dt>2. Edges <span class="math">\(\textbf{E}\)</span></dt>
+<dd>are the set of edges <span class="math">\((\textbf{x}(n), \textbf{x}(n'))\)</span> with
+edge weights <span class="math">\(\gamma_{n, n'}\)</span>. For non-existing edges
+<span class="math">\((\textbf{x}(n), \textbf{x}(n')) \notin \textbf{E}\)</span> set zero
+weights <span class="math">\(\gamma_{n, n'} = 0\)</span>.</dd>
+</dl>
+<p class="rubric">Step 1: Calculate covariance and second-moment matrices</p>
+<p>The sample covariance matrix <span class="math">\(\textbf{C}_{G}\)</span> is defined as:</p>
+<div class="math">
+\[\textbf{C}_{G} := \frac{1}{Q} \sum_{n} v_n (\textbf{x}(n) - \hat{\textbf{x}})(\textbf{x}(n) - \hat{\textbf{x}})^T = \frac{1}{Q} \sum_{n} (v_n \textbf{x}(n) (\textbf{x}(n))^T ) - \hat{\textbf{x}} \hat{\textbf{x}}^T \,.\]</div>
+<p>The derivative second-moment matrix <span class="math">\(\dot{\textbf{C}}_{G}\)</span> is
+defined as:</p>
+<div class="math">
+\[\dot{\textbf{C}}_{G} := \frac{1}{R} \sum_{n, n'} \gamma_{n, n'} (\textbf{x}(n') - \textbf{x}(n))(\textbf{x}(n') - \textbf{x}(n))^T \,.\]</div>
+<p class="rubric">Step 2: Calculate sphering and rotation matrices</p>
+<p>A sphering matrix <span class="math">\(\textbf{S}\)</span> is computed as
+<span class="math">\(\textbf{S}^T \textbf{C}_{G} \textbf{S} = \textbf{I}\)</span>. Then we
+derive that a sphered signal
+<span class="math">\(\textbf{z} := \textbf{S}^T \textbf{x}\)</span>.</p>
+<p>Afterward, the <span class="math">\(J\)</span> directions of least variance in the derivative signal
+<span class="math">\(\dot{\textbf{z}}\)</span> are found and represented by an
+<span class="math">\(I \times J\)</span> rotation matrix <span class="math">\(\textbf{R}\)</span>, such that
+<span class="math">\(\textbf{R}^T \dot{\textbf{C}}_{z} \textbf{R} = \Lambda\)</span>, where
+<span class="math">\(\dot{\textbf{C}}_{z} := &lt;\dot{\textbf{z}} \dot{\textbf{z}}^T&gt;\)</span>
+and <span class="math">\(\Lambda\)</span> is a diagonal matrix with diagonal elements
+<span class="math">\(\lambda_1 \leq \lambda_2 \leq \dots \leq \lambda_J\)</span>.</p>
+<p class="rubric">Step 3: Calculate the weight matrix</p>
+<p>Finally, the algorithm returns the weight matrix
+<span class="math">\(W = (w_1, \dots, w_J)\)</span>, defined as</p>
+<div class="math">
+\[W = SR\]</div>
+<p>and the extracted features are given as</p>
+<div class="math">
+\[y = W^T (\textbf{x}(n) -  \hat{\textbf{x}}) \,,\]</div>
+<p>where</p>
+<div class="math">
+\[\hspace{0.5cm} \Delta(y_j) = \lambda_j \hspace{0.5cm} 1 \leq j \leq J \,.\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="references">
+<h2><a class="toc-backref" href="#id15">References</a><a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Wiskott and Sejnowski (2002) <a class="reference external" href="https://www.mitpressjournals.org/doi/10.1162/089976602317318938">Slow Feature Analysis: Unsupervised Learning of Invariances</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Escalante-B. et al. (2013) <a class="reference external" href="https://jmlr.csail.mit.edu/papers/v14/escalante13a.html">How to Solve Classification and Regression Problems on High-Dimensional Data with a Supervised Extension of Slow Feature Analysis</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>  
+<div class="footer">
+    <hr />
+    <table>
+      <tr>
+        <td class="footer-left">
+           <a href="https://github.com/mdp-toolkit/mdp-toolkit">
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
+      width="60" height="15" border="0"/> </a>
+        </td>
+        <td class="footer-center">
+          Last updated on
+             2020-11-06 8:12:03 PM Coordinated Universal Time
+        </td>
+        <td class="footer-right">
+         <form class="search" action="../../search.html" method="get">
+          <input type="submit" value="Search" />
+          <input type="text" name="q" size="18" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+         </form>
+        </td>
+    </table>  
+</div>   
+
+  </body>
+</html>

@@ -81,6 +81,7 @@ Strictly in alphabetical order:
 - `Samuel John <http://www.samueljohn.de/>`_
 - `Varun Kompella <https://varunrajk.gitlab.io/>`_
 - Susanne Lezius
+- `Nils Müller <https://www.ini.rub.de/the_institute/people/nils-mller/>`_
 - Maximilian Nickel
 - `Fabian Pedregosa <http://fseoane.net/blog/>`_
 - `José Quesada <https://github.com/quesada>`_
@@ -96,6 +97,7 @@ Strictly in alphabetical order:
 - `Niko Wilbert <https://github.com/nwilbert>`_
 - Ben Willmore
 - `Katharina Maria Zeiner <http://dgppf.de/dr-katharina-m-zeiner/>`_
+- `Tiziano Zito <https://github.com/otizonaizit>`_
 
 .. _`Yaroslav Halchenko`: http://centerforopenneuroscience.org/whoweare#yaroslav_o_halchenko_
  
